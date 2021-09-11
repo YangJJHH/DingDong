@@ -9,15 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AIFoodDiaryApp">
-        <activity android:name=".FirstActivity">
+        <activity android:name=".Register_body"></activity>
+        <activity android:name=".Register_Sex">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FirstActivity"></activity>
         <activity android:name=".Login" />
-
     </application>
 
 </manifest>
