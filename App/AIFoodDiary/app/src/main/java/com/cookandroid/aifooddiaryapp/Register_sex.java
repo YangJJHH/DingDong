@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 // !!!!!!!!!!인텐트 부분 수정해야함 !!!!!!!!!!!!!!!!!!!
 
-public class Register_Sex extends AppCompatActivity {
+public class Register_sex extends AppCompatActivity {
     ImageButton imgbtn_man, imgbtn_woman;  // 남성, 여성 이미지 버튼 위젯 변수 선언
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class Register_Sex extends AppCompatActivity {
         imgbtn_man.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Register_Sex.this, Register_body.class);
+                Intent intent = new Intent(Register_sex.this, Register_body.class);
                 startActivity(intent);
             }
         });
@@ -33,7 +33,7 @@ public class Register_Sex extends AppCompatActivity {
         imgbtn_woman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Register_Sex.this, Register_body.class);
+                Intent intent = new Intent(Register_sex.this, Register_body.class);
                 startActivity(intent);
             }
         });
