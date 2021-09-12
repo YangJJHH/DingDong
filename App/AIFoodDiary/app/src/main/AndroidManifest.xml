@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AIFoodDiaryApp">
+        <activity android:name=".Register_id_pass"></activity>
+        <activity android:name=".Register_sex"/>
+        <activity android:name=".Register_age"/>
+        <activity android:name=".Register_name"/>
+        <activity android:name=".Register_body"/>
+
+
         <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
-
     </application>
 
 </manifest>

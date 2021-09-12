@@ -22,7 +22,11 @@ public class Register_name extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Register_name.this, Register_sex.class);
+
+                //
+                // 입력받은 이름 DB에 저장 해야함
+                //
+                Intent intent = new Intent(Register_name.this, Register_age.class);
                 startActivity(intent);
             }
         });
