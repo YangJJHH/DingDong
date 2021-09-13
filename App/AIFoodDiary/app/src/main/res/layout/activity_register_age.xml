@@ -31,12 +31,12 @@
         android:textColor="@color/black"
         app:backgroundTint="#8073fb9c"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age_Spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spn_age" />
 
     //출생년도 선택창
 
     <DatePicker
-        android:id="@+id/age_Spinner"
+        android:id="@+id/spn_age"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:calendarViewShown="false"

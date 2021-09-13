@@ -55,5 +55,17 @@
         app:layout_constraintTop_toTopOf="@+id/imgbtn_man"
         app:srcCompat="@drawable/sex_woman" />
 
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="다음"
+        android:textColor="@color/black"
+        app:backgroundTint="#8073fb9c"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn_man" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
