@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 // intent_s 는 인텐트 보낼 떄 쓰는 변수, intent_r은 인텐트 받을 때 쓸 변수!!!!!!!!!!!!
 
@@ -17,6 +18,7 @@ public class Register_age extends AppCompatActivity {
     Button btn_next;
     DatePicker spn_age;
     TextView tv_info;
+    int age; //사용자 나이
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,15 @@ public class Register_age extends AppCompatActivity {
         Intent intent_r = getIntent();
 
         //
-        // 데이트피커(스피너)에서 출생년도 받는거 어케 하는지 모르겠음.
+        //DatePickerDialog로 해야할듯
         //
+        spn_age.init(spn_age.getYear(),spn_age.getMonth(),spn_age.getDayOfMonth() , new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
+
+            }
+        });
+
 
 
         //다음 버튼 이벤트 처리
