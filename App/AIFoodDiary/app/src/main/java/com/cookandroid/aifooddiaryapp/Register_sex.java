@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 public class Register_sex extends AppCompatActivity {
     ImageButton imgbtn_man, imgbtn_woman;  // 남성, 여성 이미지 버튼 위젯 변수 선언
     Button btn_next;    // 버튼 위젯 변수 선언
-    int sex;        // 성별을 알려줄 변수  (남성은 1, 여성은 0)
+    String sex;        // 성별을 알려줄 변수  (남성은 M, 여성은 F)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class Register_sex extends AppCompatActivity {
             public void onClick(View v) {
                 imgbtn_man.setImageResource(R.drawable.sex_man_onclick);
                 imgbtn_woman.setImageResource(R.drawable.sex_woman);
-                sex = 1;
+                sex = "M";
             }
         });
 
@@ -45,7 +45,7 @@ public class Register_sex extends AppCompatActivity {
             public void onClick(View v) {
                 imgbtn_man.setImageResource(R.drawable.sex_man);
                 imgbtn_woman.setImageResource(R.drawable.sex_woman_onclick);
-                sex = 0;
+                sex = "F";
             }
         });
 
@@ -57,11 +57,11 @@ public class Register_sex extends AppCompatActivity {
                 intent_s.putExtra("userID",intent_r.getStringExtra("userID"));
                 intent_s.putExtra("userPass",intent_r.getStringExtra("userPass"));
                 intent_s.putExtra("userName",intent_r.getStringExtra("userName"));
-                intent_s.putExtra("userBirth",intent_r.getStringExtra("userBirth"));
-                if(sex == 1)
-                    intent_s.putExtra("userSex","남성");
+                intent_s.putExtra("userAge", intent_r.getIntExtra("userAge",0));
+                if(sex == "M")
+                    intent_s.putExtra("userSex",sex);
                 else
-                    intent_s.putExtra("userSex", "여성");
+                    intent_s.putExtra("userSex", sex);
 
                 startActivity(intent_s);
             }

@@ -7,7 +7,7 @@
     tools:context=".Login">
 
     <ImageView
-        android:id="@+id/logo_image"
+        android:id="@+id/img_logo"
         android:layout_width="233dp"
         android:layout_height="249dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/ogo" />
 
     <EditText
-        android:id="@+id/edit_id"
+        android:id="@+id/et_id"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="아이디를 입력하세요"
@@ -26,11 +26,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_image"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo"
         app:layout_constraintVertical_bias="0.196" />
 
     <EditText
-        android:id="@+id/edit_pwd"
+        android:id="@+id/et_pass"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_id" />
+        app:layout_constraintTop_toBottomOf="@+id/et_id" />
 
     <Button
         android:id="@+id/btn_login"
@@ -52,7 +52,7 @@
         app:backgroundTint="#8073fb9c"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_pwd" />
+        app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
     <CheckBox
         android:id="@+id/check_autologin"

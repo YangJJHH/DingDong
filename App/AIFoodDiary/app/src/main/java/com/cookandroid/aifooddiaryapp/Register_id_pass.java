@@ -29,10 +29,14 @@ public class Register_id_pass extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 입력받은 userID와 userPass에 대해 변수 선언
+                String userID = et_id.getText().toString();
+                String userPass = et_pass.getText().toString();
+
                 // 입력받은 userID와 userPass를 다음 화면 인자로 넣어주며 전환
                 Intent intent_s = new Intent(Register_id_pass.this, Register_name.class);
-                intent_s.putExtra("userID",et_id.getText());
-                intent_s.putExtra("userPass",et_pass.getText());
+                intent_s.putExtra("userID", userID);
+                intent_s.putExtra("userPass", userPass);
                 startActivity(intent_s);
             }
         });

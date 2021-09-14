@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 public class Register_age extends AppCompatActivity {
     // 버튼 생성
     Button btn_next;
-    DatePicker spn_age;
+    EditText et_age;
     TextView tv_info;
     int age; //사용자 나이
 
@@ -27,34 +28,25 @@ public class Register_age extends AppCompatActivity {
 
         //위젯연결
         btn_next=(Button)findViewById(R.id.btn_next);
-        spn_age = (DatePicker) findViewById(R.id.spn_age);
+        et_age = (EditText) findViewById(R.id.et_age);
         tv_info = (TextView) findViewById(R.id.tv_info);
 
         // 이전 화면에서 보낸 인자를 받기 위한 변수 intent_r 선언
         Intent intent_r = getIntent();
 
-        //
-        //DatePickerDialog로 해야할듯
-        //
-        spn_age.init(spn_age.getYear(),spn_age.getMonth(),spn_age.getDayOfMonth() , new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
-
-            }
-        });
-
-
-
         //다음 버튼 이벤트 처리
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 이전 화면에서 받은 인자와 입력받은 userBirth를 다음 화면 인자로 넣어주며 전환
+                // 입력받은 userAge에 대한 변수 선언
+                int userAge = Integer.parseInt(et_age.getText().toString());
+
+                // 이전 화면에서 받은 인자와 입력받은 userAge를 다음 화면 인자로 넣어주며 전환
                 Intent intent_s = new Intent(Register_age.this, Register_sex.class);
                 intent_s.putExtra("userID",intent_r.getStringExtra("userID"));
                 intent_s.putExtra("userPass",intent_r.getStringExtra("userPass"));
                 intent_s.putExtra("userName",intent_r.getStringExtra("userName"));
-                intent_s.putExtra("userBirth", "");     //여기 채워야함 데이트피커에서 year값 받고 나이 계산해서 넘겨주셈
+                intent_s.putExtra("userAge", userAge);
 
                 startActivity(intent_s);
             }

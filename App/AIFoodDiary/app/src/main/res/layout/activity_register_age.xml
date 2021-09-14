@@ -25,28 +25,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:lineSpacingExtra="20sp"
         android:text="다음"
         android:textColor="@color/black"
         app:backgroundTint="#8073fb9c"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_age" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
     //출생년도 선택창
-
-    <DatePicker
-        android:id="@+id/spn_age"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578" />
 
     <TextView
         android:id="@+id/tv_age"
@@ -55,7 +42,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="200dp"
-        android:text="출생년도를 입력하세요"
+        android:text="나이를 입력해주세요"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,11 +51,24 @@
         android:id="@+id/tv_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:text="입력하신 정보를 확인해주세요. 가입 이후 수정이 불가합니다."
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_age" />
+        app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
+    <EditText
+        android:id="@+id/et_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="예) 24"
+        app:layout_constraintStart_toStartOf="@+id/tv_age"
+        app:layout_constraintTop_toBottomOf="@+id/tv_age" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
