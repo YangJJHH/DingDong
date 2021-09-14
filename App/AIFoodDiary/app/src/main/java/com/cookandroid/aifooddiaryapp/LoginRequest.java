@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class LoginRequest extends StringRequest {
     // 서버 URL 설정 - php 파일 연동
-    final static private String URL = "ftp주소입력해야함";
+    final static private String URL = "/home/jung/Capston/Capstone_php/Login.php";
     private Map<String, String> map;
 
     public LoginRequest(String userID, String userPass, Response.Listener<String> listener) {
