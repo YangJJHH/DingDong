@@ -28,7 +28,10 @@ public class Register_sex extends AppCompatActivity {
 
         // 이전 화면에서 보낸 인자를 받기 위한 변수 intent_r 선언
         Intent intent_r = getIntent();
-
+        String userID = intent_r.getStringExtra("userID");
+        String userPass = intent_r.getStringExtra("userPass");
+        String userName = intent_r.getStringExtra("userName");
+        int userAge = intent_r.getIntExtra("userAge",0);
         // imgbtn_man(남성 버튼)이 눌렸을 때의 이벤트 처리
         imgbtn_man.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,14 +57,11 @@ public class Register_sex extends AppCompatActivity {
             public void onClick(View v) {
                 // 이전 화면에서 받은 인자와 입력받은 userSex를 다음 화면 인자로 넣어주며 전환
                 Intent intent_s = new Intent(Register_sex.this, Register_body.class);
-                intent_s.putExtra("userID",intent_r.getStringExtra("userID"));
-                intent_s.putExtra("userPass",intent_r.getStringExtra("userPass"));
-                intent_s.putExtra("userName",intent_r.getStringExtra("userName"));
-                intent_s.putExtra("userAge", intent_r.getIntExtra("userAge",0));
-                if(sex == "M")
-                    intent_s.putExtra("userSex",sex);
-                else
-                    intent_s.putExtra("userSex", sex);
+                intent_s.putExtra("userID", userID);
+                intent_s.putExtra("userPass", userPass);
+                intent_s.putExtra("userName",userName);
+                intent_s.putExtra("userAge", userAge);
+                intent_s.putExtra("userSex",sex);
 
                 startActivity(intent_s);
             }

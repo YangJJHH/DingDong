@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,12 +48,6 @@ public class Login extends AppCompatActivity {
 
                             // 로그인에 성공한 경우
                             if(success) {
-                                //String userID = jsonObject.getString("userID");
-                                //String userPass = jsonObject.getString("userPassword");
-                                String userName = jsonObject.getString("userName");
-                                int userHeight = jsonObject.getInt("userHeight");
-                                int userWeight = jsonObject.getInt("userWeight");
-
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Login.this, HomeActivity.class);
                                 startActivity(intent);
@@ -67,6 +63,9 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 };
+                LoginRequest loginRequest = new LoginRequest(userID, userPass, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(Login.this);
+                queue.add(loginRequest);
             }
         });
     }

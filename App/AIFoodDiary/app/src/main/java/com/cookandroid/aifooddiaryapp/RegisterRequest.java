@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class RegisterRequest extends StringRequest{
     // 서버 URL 설정 - php 파일 연동
-    final static private String URL = "/home/jung/Capston/Capstone_php/Register.php";
+    final static private String URL = "http://yuninseon.ivyro.net/Register.php";
     private Map<String, String> map;
 
     public RegisterRequest(String userID, String userPass, String userName, int userAge, String userSex, double userHeight, double userWeight, Response.Listener<String> listener) {
@@ -18,7 +18,7 @@ public class RegisterRequest extends StringRequest{
         map = new HashMap<>();
 
         map.put("userID", userID);
-        map.put("userPassword", userPass);
+        map.put("userPass", userPass);
         map.put("userName", userName);
         map.put("userAge", userAge + "");
         map.put("userSex", userSex);

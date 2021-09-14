@@ -33,6 +33,9 @@ public class Register_age extends AppCompatActivity {
 
         // 이전 화면에서 보낸 인자를 받기 위한 변수 intent_r 선언
         Intent intent_r = getIntent();
+        String userID = intent_r.getStringExtra("userID");
+        String userPass = intent_r.getStringExtra("userPass");
+        String userName = intent_r.getStringExtra("userName");
 
         //다음 버튼 이벤트 처리
         btn_next.setOnClickListener(new View.OnClickListener() {
@@ -43,9 +46,9 @@ public class Register_age extends AppCompatActivity {
 
                 // 이전 화면에서 받은 인자와 입력받은 userAge를 다음 화면 인자로 넣어주며 전환
                 Intent intent_s = new Intent(Register_age.this, Register_sex.class);
-                intent_s.putExtra("userID",intent_r.getStringExtra("userID"));
-                intent_s.putExtra("userPass",intent_r.getStringExtra("userPass"));
-                intent_s.putExtra("userName",intent_r.getStringExtra("userName"));
+                intent_s.putExtra("userID", userID);
+                intent_s.putExtra("userPass", userPass);
+                intent_s.putExtra("userName",userName);
                 intent_s.putExtra("userAge", userAge);
 
                 startActivity(intent_s);
