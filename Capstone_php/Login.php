@@ -1,8 +1,8 @@
 <?php
-    $con = mysqli_connect("10.50.231.219", "root", "Root1234!", "DingDing", "3306");
+    $con = mysqli_connect("localhost", "yuninseon", "test0925", "yuninseon");
   
     $userID = $_POST["userID"];
-    $userPassword = $_POST["userPass"];
+    $userPass = $_POST["userPass"];
     
     $statement = mysqli_prepare($con, "SELECT * FROM USERS WHERE userID = ? AND userPass = ?");
     mysqli_stmt_bind_param($statement, "ss", $userID, $userPass);
@@ -10,7 +10,7 @@
 
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $userID, $userPass, $userName, $userAge, $userHeight, $userWeight);
+    mysqli_stmt_bind_result($statement, $userID, $userPass, $userName, $userAge, $userSex, $userHeight, $userWeight);
 
     $response = array();
     $response["success"] = false;
@@ -18,9 +18,10 @@
     while(mysqli_stmt_fetch($statement)) {
         $response["success"] = true;
         $response["userID"] = $userID;
-        $response["userPas"] = $userPass;
+        $response["userPass"] = $userPass;
         $response["userName"] = $userName;
-        $response["userAge"] = $userAge;    
+        $response["userAge"] = $userAge;
+        $response["userSex"] = $userSex;    
         $response["userHeight"] = $userHeight;
         $response["userWeight"] = $userWeight;
     }
