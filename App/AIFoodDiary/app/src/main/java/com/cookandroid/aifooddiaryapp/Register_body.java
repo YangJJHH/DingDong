@@ -39,7 +39,7 @@ public class Register_body extends AppCompatActivity {
         String userName = intent_r.getStringExtra("userName");
         int userAge = intent_r.getIntExtra("userAge",0);
         String userSex = intent_r.getStringExtra("userSex");
-        
+
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
