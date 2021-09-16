@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
     <CheckBox
-        android:id="@+id/check_autologin"
+        android:id="@+id/chk_autologin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <CheckBox
-        android:id="@+id/check_remember_id"
+        android:id="@+id/chk_remember_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
