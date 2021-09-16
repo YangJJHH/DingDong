@@ -14,7 +14,7 @@
         android:layout_marginEnd="280dp"
         android:layout_marginRight="280dp"
         android:text="회원가입"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
         android:layout_marginEnd="250dp"
         android:layout_marginRight="250dp"
         android:text="키"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="몸무게"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/et_height"
         app:layout_constraintTop_toBottomOf="@+id/et_height" />
 
