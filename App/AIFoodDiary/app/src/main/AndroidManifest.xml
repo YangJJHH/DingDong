@@ -13,20 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AIFoodDiaryApp">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".Register_id_pass">
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity android:name=".Register_id_pass"> </activity>
         <activity android:name=".Register_sex"></activity>
         <activity android:name=".Register_age"></activity>
         <activity android:name=".Register_name" />
         <activity android:name=".Register_body" />
         <activity android:name=".FirstActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Login" />
     </application>
