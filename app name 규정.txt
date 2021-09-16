@@ -1,0 +1,21 @@
+위젯 변수명
+	Textview : tv_변수명
+	EditText : et_변수명
+	Button : btn_변수명
+	RadioButton : rdb_변수명
+	RadioGroup : rdg_변수명
+	ImageView : img_변수명
+	ImageButton : imgbtn_변수명
+	CheckBox : chk_변수명
+
+자바 파일 이름
+	기능Activity	--> 예) FirstActivity, HomeActivity
+	Frag_기능		--> 예) Frag_home, Frag_camera
+	기능_종류		--> 예) Register_id_pass, Register_age
+
+레이아웃 이름
+	*액티비티를 만들며 생기는 레이아웃은 그대로 둠*
+	frag_기능		--> 예) frag_home, frag_camera
+
+*기타 drawable이나 menu,, 파일들 이름은 되도록이면 간단 명료하게 어떤 파일인지 알기 쉽게 해놓기*
+	
