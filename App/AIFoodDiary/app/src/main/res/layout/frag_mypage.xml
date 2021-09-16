@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_height" />
 
     <TextView
-        android:id="@+id/tv_fat"
+        android:id="@+id/tv_todayfat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -58,7 +58,7 @@
         android:layout_marginTop="30dp"
         android:text="골격근량"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_fat" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_todayfat" />
     <TextView
         android:id="@+id/tv_BMR"
         android:layout_width="wrap_content"
