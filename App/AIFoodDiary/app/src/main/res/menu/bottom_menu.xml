@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_home"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_24"
+        android:title="home"/>
+
+    <item
+        android:id="@+id/action_camera"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_camera_24"
+        android:title="camera"/>
+
+    <item
+        android:id="@+id/action_foodcalendar"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_calendar_24"
+        android:title="foodcalendar"/>
+
+    <item
+        android:id="@+id/action_mypage"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_mypage_24"
+        android:title="mypage"/>
+</menu>
