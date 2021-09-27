@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_height" />
 
     <TextView
-        android:id="@+id/tv_todayfat"
+        android:id="@+id/tv_body_fat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -58,7 +58,7 @@
         android:layout_marginTop="30dp"
         android:text="골격근량"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_todayfat" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_body_fat" />
     <TextView
         android:id="@+id/tv_BMR"
         android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_height" />
     <EditText
-        android:id="@+id/et_fat"
+        android:id="@+id/et_body_fat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -123,7 +123,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_fat" />
+        app:layout_constraintTop_toBottomOf="@+id/et_body_fat" />
     <EditText
         android:id="@+id/et_BMR"
         android:layout_width="wrap_content"
@@ -135,40 +135,41 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_muscle_mass" />
+
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="30dp"
         android:text="로그아웃"
         android:textColor="@color/black"
         app:backgroundTint="#8073fb9c"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save" />
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
         android:text="회원정보 저장"
         android:textColor="@color/black"
         app:backgroundTint="#8073fb9c"
-        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_list" />
+
     <Button
         android:id="@+id/btn_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:text="자주먹는 식단 리스트"
         android:textColor="@color/black"
         app:backgroundTint="#8073fb9c"
-        app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rdg_food_purpose" />
 
     <RadioGroup
         android:id="@+id/rdg_food_purpose"

@@ -7,12 +7,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
     // 하단바 변수 선언
     private BottomNavigationView bottomNavigationView;
+    Button btn_list;
     
     // 프래그먼트 매니저와 트랜잭션 변수 선언
     private FragmentManager fm;
@@ -23,7 +25,6 @@ public class HomeActivity extends AppCompatActivity {
     private Frag_FoodCalendar frag_foodcalendar;
     private Frag_Camera frag_camera;
     private Frag_Mypage frag_mypage;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
