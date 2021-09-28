@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ValidateRequest extends StringRequest {
     // 서버 URL 설정 - php 파일 연동
-    final static private String URL = "http://10.50.254.112/UserValidate.php";
+    final static private String URL = "http://10.50.239.148/UserValidate.php";
     private Map<String, String> map;
 
     public ValidateRequest(String userID, Response.Listener<String>listener) {
