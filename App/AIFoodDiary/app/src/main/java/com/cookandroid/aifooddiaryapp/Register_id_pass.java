@@ -67,6 +67,7 @@ public class Register_id_pass extends AppCompatActivity {
                                         .create();
                                 dialog.show();
                                 validate=true;
+                                btn_next.setVisibility(View.VISIBLE);
                             }
                             else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder( Register_id_pass.this );

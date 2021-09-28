@@ -5,10 +5,10 @@
     $userPass = $_POST["userPass"];
     
     $sql = "SELECT * FROM USERS WHERE userID = '{$userID}'";
-    $row = mysqli_query($connection, $sql);
+    $result = mysqli_query($connection, $sql);
+
     $row = mysqli_fetch_array($result);
     $hashedPass = $row['userPass'];
-
 
     if( password_verify($userPass, $hashedPass) ) {
         $statement = mysqli_prepare($connection, "SELECT * FROM USERS WHERE userID = ? AND userPass = ?");

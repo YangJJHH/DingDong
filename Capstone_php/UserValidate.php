@@ -12,10 +12,10 @@
     mysqli_stmt_bind_result($statement, $userID);
 
     $response = array();
-    $response["success"] = false;
+    $response["success"] = true;
 
     while(mysqli_stmt_fetch($statement)) {
-        $response["success"] = true;
+        $response["success"] = false;
         $response["userID"] = $userID;
     }
 

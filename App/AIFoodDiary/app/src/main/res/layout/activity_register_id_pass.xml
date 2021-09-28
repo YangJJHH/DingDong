@@ -75,6 +75,7 @@
         android:layout_marginTop="100dp"
         android:text="다음"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:backgroundTint="#8073fb9c"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
