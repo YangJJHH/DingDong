@@ -14,8 +14,8 @@
     $userBMR = 0;
     $userFoodpurpose = 'n';
 
-    $statement = mysqli_prepare($con, "INSERT INTO USERS VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($statement, "sssisddddic", $userID, $userPass, $userName, $userAge, $userSex, $userHeight, $userWeight, $userBodyfat, $userMusclemass, $userBMR, $userFoodpurpose);
+    $statement = mysqli_prepare($connection, "INSERT INTO USERS VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($statement, "sssisddddis", $userID, $userPass, $userName, $userAge, $userSex, $userHeight, $userWeight, $userBodyfat, $userMusclemass, $userBMR, $userFoodpurpose);
     mysqli_stmt_execute($statement);
 
 

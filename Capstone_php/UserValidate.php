@@ -4,7 +4,7 @@
     $userID = $_POST["userID"];
 
     
-    $statement = mysqli_prepare($connection, "SELECT * FROM USERS WHERE userID = ?");
+    $statement = mysqli_prepare($connection, "SELECT userID FROM USERS WHERE userID = ?");
     mysqli_stmt_bind_param($statement, "s", $userID);
     mysqli_stmt_execute($statement);
 
