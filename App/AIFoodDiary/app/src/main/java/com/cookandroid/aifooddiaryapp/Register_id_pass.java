@@ -22,7 +22,6 @@ public class Register_id_pass extends AppCompatActivity {
     // 버튼 생성
     Button btn_next, btn_validate;
     EditText et_id, et_pass;
-    private boolean validate = false;
     private AlertDialog dialog;
 
     @Override
@@ -43,9 +42,6 @@ public class Register_id_pass extends AppCompatActivity {
                 // editText에 입력된 아이디 변수에 저장
                 String userID = et_id.getText().toString();
 
-                if(validate) {
-                    return;
-                }
                 if(userID.equals("")) { // 입력된 값이 공백일시
                     AlertDialog.Builder builder = new AlertDialog.Builder(Register_id_pass.this);
                     dialog = builder.setMessage("아이디는 빈 칸일 수 없습니다.")
@@ -66,7 +62,6 @@ public class Register_id_pass extends AppCompatActivity {
                                         .setPositiveButton("확인",null)
                                         .create();
                                 dialog.show();
-                                validate=true;
                                 btn_next.setVisibility(View.VISIBLE);
                             }
                             else{
@@ -75,6 +70,7 @@ public class Register_id_pass extends AppCompatActivity {
                                         .setNegativeButton("확인",null)
                                         .create();
                                 dialog.show();
+                                btn_next.setVisibility(View.INVISIBLE);
                             }
                         }
                         catch(JSONException e) {

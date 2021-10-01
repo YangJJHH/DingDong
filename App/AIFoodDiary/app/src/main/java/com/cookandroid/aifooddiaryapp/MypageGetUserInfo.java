@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MypageGetUserInfo extends StringRequest {
-    final static private String URL = "http://10.50.239.148/GetUserInfo.php";
+    final static private String URL = "http://yuninseon.ivyro.net/GetUserInfo.php";
     private Map<String, String> map;
 
     public MypageGetUserInfo(String userID, Response.Listener<String> listener) {

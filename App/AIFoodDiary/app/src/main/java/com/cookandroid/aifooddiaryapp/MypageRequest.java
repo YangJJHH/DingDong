@@ -8,14 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MypageRequest extends StringRequest {
-    final static private String URL = "http://10.50.239.148/Mypage.php";
+    final static private String URL = "http://yuninseon.ivyro.net/SetMypage.php";
     private Map<String, String> map;
 
-    public MypageRequest(double userHeight, double userWeight, double userBodyfat,double userMusclemass, int userBMR, char userFoodpurpose,Response.Listener<String> listener) {
+    public MypageRequest(String userID, double userHeight, double userWeight, double userBodyfat,double userMusclemass, int userBMR, char userFoodpurpose,Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
 
         map = new HashMap<>();
+        map.put("userID", userID);
         map.put("userHeight", userHeight + "");
         map.put("userWeight", userWeight + "");
         map.put("userBodyfat", userBodyfat + "");

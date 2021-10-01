@@ -138,7 +138,7 @@ public class Frag_Mypage extends Fragment {
                 };
 
                 // 서버로 Volley를 이용해서 요청을 함.
-                MypageRequest mypageRequest= new MypageRequest(userHeight, userWeight, userBodyfat, userMusclemass, userBMR, userFoodpurpose, setresponseListener);
+                MypageRequest mypageRequest= new MypageRequest(HomeActivity.userID, userHeight, userWeight, userBodyfat, userMusclemass, userBMR, userFoodpurpose, setresponseListener);
                 RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
                 queue.add(mypageRequest);
 
