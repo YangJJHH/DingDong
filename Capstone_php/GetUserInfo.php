@@ -4,10 +4,24 @@
 
     $userID = $_POST["userID"];
 
-    $sql = "SELECT userHeight,userWeight,userBodyfat,userMusclemass,userBMR,userFoodpurpose FROM USERS WHERE userID = '{$userID}'";
-    $result = mysqli_query($connection, $sql);
+    $statement = mysqli_prepare($connection, "SELECT userHeight, userWeight, userBodyfat, userMusclemass, userBMR, userFoodpurpose FROM USERS WHERE userID = ?");
+    mysqli_stmt_bind_param($statement, "s", $userID);
+    mysqli_stmt_execute($statement);
 
-    $row = mysqli_fetch_array($result);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $userHeight, $userWeight, $userBodyfat, $userMusclemass, $userBMR, $userFoodpurpose);
+
+    $row = array();
+
+    while(mysqli_stmt_fetch($statement)) {
+        $row["userHeight"] = $userHeight;
+        $row["userWeight"] = $userWeight;
+        $row["userBodyfat"] = $userBodyfat;
+        $row["userMusclemass"] = $userMusclemass;
+        $row["userBMR"] = $userBMR;
+        $row["userFoodpurpose"] = $userFoodpurpose;
+        
+    }
    
     echo json_encode($row);
 

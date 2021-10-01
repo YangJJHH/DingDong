@@ -12,7 +12,7 @@
     $userBodyfat = 0.0;
     $userMusclemass = 0.0;
     $userBMR = 0;
-    $userFoodpurpose = 'n';
+    $userFoodpurpose = ' ';
 
     $statement = mysqli_prepare($connection, "INSERT INTO USERS VALUES (?,?,?,?,?,?,?,?,?,?,?)");
     mysqli_stmt_bind_param($statement, "sssisddddis", $userID, $userPass, $userName, $userAge, $userSex, $userHeight, $userWeight, $userBodyfat, $userMusclemass, $userBMR, $userFoodpurpose);

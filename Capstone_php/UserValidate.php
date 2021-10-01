@@ -16,7 +16,6 @@
 
     while(mysqli_stmt_fetch($statement)) {
         $response["success"] = false;
-        $response["userID"] = $userID;
     }
 
     echo json_encode($response);
