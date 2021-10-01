@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -15,7 +16,7 @@ public class HomeActivity extends AppCompatActivity {
     // 하단바 변수 선언
     private BottomNavigationView bottomNavigationView;
     Button btn_list;
-    
+
     // 프래그먼트 매니저와 트랜잭션 변수 선언
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -25,10 +26,17 @@ public class HomeActivity extends AppCompatActivity {
     private Frag_FoodCalendar frag_foodcalendar;
     private Frag_Camera frag_camera;
     private Frag_Mypage frag_mypage;
+
+    // 여러 화면에서 userID를 통해 데이터베이스에서 해당 회원의 값을 가져오기 위해 static 선언
+    public static String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // 이전 (로그인 화면)에서 보낸 인텐트 값 받아옴
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("userID");
 
         // 위젯 변수와 위젯 id 연결
         bottomNavigationView = findViewById(R.id.bottomNavi);

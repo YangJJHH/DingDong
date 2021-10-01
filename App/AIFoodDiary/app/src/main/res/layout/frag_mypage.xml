@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_height" />
 
     <TextView
-        android:id="@+id/tv_body_fat"
+        android:id="@+id/tv_bodyfat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_weight" />
     <TextView
-        android:id="@+id/tv_muscle_mass"
+        android:id="@+id/tv_musclemass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -58,7 +58,7 @@
         android:layout_marginTop="30dp"
         android:text="골격근량"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_body_fat" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_bodyfat" />
     <TextView
         android:id="@+id/tv_BMR"
         android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
         android:layout_marginTop="30dp"
         android:text="기초대사량"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_muscle_mass" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_musclemass" />
     <TextView
         android:id="@+id/tv_food_purpose"
         android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_height" />
     <EditText
-        android:id="@+id/et_body_fat"
+        android:id="@+id/et_bodyfat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_weight" />
     <EditText
-        android:id="@+id/et_muscle_mass"
+        android:id="@+id/et_musclemass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -123,7 +123,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_body_fat" />
+        app:layout_constraintTop_toBottomOf="@+id/et_bodyfat" />
     <EditText
         android:id="@+id/et_BMR"
         android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_muscle_mass" />
+        app:layout_constraintTop_toBottomOf="@+id/et_musclemass" />
 
     <Button
         android:id="@+id/btn_logout"
@@ -169,10 +169,10 @@
         app:backgroundTint="#8073fb9c"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdg_food_purpose" />
+        app:layout_constraintTop_toBottomOf="@+id/rdg_foodpurpose" />
 
     <RadioGroup
-        android:id="@+id/rdg_food_purpose"
+        android:id="@+id/rdg_foodpurpose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

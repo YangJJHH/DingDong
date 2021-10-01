@@ -50,6 +50,8 @@ public class Login extends AppCompatActivity {
                             if(success) {
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Login.this, HomeActivity.class);
+                                // 유저 ID를 인텐트에 넣어서 보냄
+                                intent.putExtra("userID", userID);
                                 startActivity(intent);
 
                             }

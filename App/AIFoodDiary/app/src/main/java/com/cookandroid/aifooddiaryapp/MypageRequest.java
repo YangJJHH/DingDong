@@ -21,7 +21,7 @@ public class MypageRequest extends StringRequest {
         map.put("userBodyfat", userBodyfat + "");
         map.put("userMusclemass", userMusclemass + "");
         map.put("userBMR", userBMR + "");
-        map.put("userFoodpurpose", userFoodpurpose+"");
+        map.put("userFoodpurpose", userFoodpurpose + "");
 
 
     }
