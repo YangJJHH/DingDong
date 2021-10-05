@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,30 +95,23 @@ public class Frag_Camera extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data); // 카메라 촬영을 하면 이미지뷰에 사진 삽입
 
-        if(requestCode == 101 && resultCode == Activity.RESULT_OK) { // Bundle로 데이터를 입력
+        if(requestCode == 101 && resultCode == Activity.RESULT_OK) {
+            /////////////////////////////////
+            // 학습모델로 이미지 보내는 코드/////////
+            /////////////////////////////////
 
-            File file = new File(mCurrentPhotoPath);
-            Bitmap bitmap;
-            if (Build.VERSION.SDK_INT >= 29) {
-                ImageDecoder.Source source = ImageDecoder.createSource(getContext().getContentResolver(), Uri.fromFile(file));
-                try {
-                    bitmap = ImageDecoder.decodeBitmap(source);
-                    if (bitmap != null) {
-                        //imageView.setImageBitmap(bitmap);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), Uri.fromFile(file));
-                    if (bitmap != null) {
-                        //imageView.setImageBitmap(bitmap);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            //사진 파일명을 bundle통해서 다음 프래그먼트로 넘겨준다
+            Bundle bundle = new Bundle();
+            bundle.putString("file_path",mCurrentPhotoPath);
+
+            //사진촬영이 완료되었을 경우 frag_add_camera로 이동
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            Frag_Add_Camera frag_add_camera = new Frag_Add_Camera();
+            frag_add_camera.setArguments(bundle);
+            transaction.replace(R.id.main_frame, frag_add_camera);
+            transaction.commit();
+
+
 
         }
     }
