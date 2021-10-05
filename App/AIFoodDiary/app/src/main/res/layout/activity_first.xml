@@ -11,22 +11,21 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="로그인"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:backgroundTint="#8073fb9c"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="회원가입"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -34,39 +33,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_snsLogin" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="417dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
 
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="233dp"
         android:layout_height="249dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209"
         app:srcCompat="@drawable/ogo" />
 
-    <Button
-        android:id="@+id/btn_snsLogin"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="SNS로 로그인"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:backgroundTint="#8073fb9c"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

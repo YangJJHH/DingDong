@@ -3,9 +3,12 @@ package com.cookandroid.aifooddiaryapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,19 +20,41 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
-    // 버튼, editText 위젯 변수 선언
+    // 버튼, editText, checkbox 위젯 변수 선언
     Button btn_login;
     EditText et_id, et_pass;
+    CheckBox chk_remember_id, chk_autologin;
+
+    // 아이디 저장, 자동 로그인 구현을 위해 SharedPreferences 변수 선언
+    SharedPreferences setting;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // 위젯 변수와 위젯 id 연결
         btn_login = (Button) findViewById(R.id.btn_login);
         et_id = (EditText) findViewById(R.id.et_id);
         et_pass = (EditText) findViewById(R.id.et_pass);
+        chk_remember_id = (CheckBox) findViewById(R.id.chk_remember_id);
+        chk_autologin = (CheckBox) findViewById(R.id.chk_autologin);
 
+        // SharedPreferences 정의
+        setting = getSharedPreferences("UserLogin", 0);
+        editor = setting.edit();
+
+        boolean blogin = setting.getBoolean("Auto_Login_enabled", false);
+        // 자동 로그인이 체크 되어있다면 자동로그인 함.
+        if(blogin) {
+            chk_autologin.setChecked(true);
+            Toast.makeText(getApplicationContext(),"자동 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Login.this, HomeActivity.class);
+            // 유저 ID를 인텐트에 넣어서 보냄
+            intent.putExtra("userID", setting.getString("userID",""));
+            startActivity(intent);
+        }
 
         //로그인 버튼 이벤트처리
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -48,12 +73,29 @@ public class Login extends AppCompatActivity {
 
                             // 로그인에 성공한 경우
                             if(success) {
+                                chk_autologin.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if(chk_autologin.isChecked()) {
+                                            editor.putString("userID", userID);
+                                            editor.putString("userPass", userPass);
+                                            editor.putBoolean("Auto_Login_enabled", true);
+                                            editor.commit();
+                                        }
+                                        // 체크박스가 해제 되어있다면
+                                        else {
+                                            editor.putBoolean("Auto_Login_enabled", false);
+                                            editor.clear();
+                                            editor.commit();
+                                        }
+                                    }
+                                });
+
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Login.this, HomeActivity.class);
                                 // 유저 ID를 인텐트에 넣어서 보냄
                                 intent.putExtra("userID", userID);
                                 startActivity(intent);
-
                             }
                             // 로그인에 실패한 경우
                             else {

@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class FirstActivity extends AppCompatActivity {
     //버튼 변수 생성
-    Button btn_login, btn_snslogin, btn_register;
+    Button btn_login, btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,6 @@ public class FirstActivity extends AppCompatActivity {
 
         //위젯 연결
         btn_login=(Button)findViewById(R.id.btn_Login);
-        btn_snslogin=(Button)findViewById(R.id.btn_snsLogin);
         btn_register=(Button)findViewById(R.id.btn_register);
 
         //로그인 버튼 이벤트 처리
@@ -38,14 +37,6 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(FirstActivity.this, Register_id_pass.class);
                 startActivity(intent);
-            }
-        });
-
-        // sns로그인 버튼 이벤트 처리
-        btn_snslogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //카카오 API
             }
         });
     }

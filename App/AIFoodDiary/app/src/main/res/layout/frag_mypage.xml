@@ -138,26 +138,27 @@
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:text="로그아웃"
         android:textColor="@color/black"
         app:backgroundTint="#8073fb9c"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_save" />
+        app:layout_constraintTop_toTopOf="@+id/btn_save" />
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:text="회원정보 저장"
         android:textColor="@color/black"
         app:backgroundTint="#8073fb9c"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_logout"
         app:layout_constraintTop_toBottomOf="@+id/btn_list" />
 
     <Button
