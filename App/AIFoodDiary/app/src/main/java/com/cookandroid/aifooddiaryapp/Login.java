@@ -25,10 +25,7 @@ public class Login extends AppCompatActivity {
     EditText et_id, et_pass;
     CheckBox chk_remember_id, chk_autologin;
 
-    // 아이디 저장, 자동 로그인 구현을 위해 SharedPreferences 변수 선언
-    SharedPreferences setting;
-    SharedPreferences.Editor editor;
-
+    String userID, userPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,19 +38,17 @@ public class Login extends AppCompatActivity {
         chk_remember_id = (CheckBox) findViewById(R.id.chk_remember_id);
         chk_autologin = (CheckBox) findViewById(R.id.chk_autologin);
 
-        // SharedPreferences 정의
-        setting = getSharedPreferences("UserLogin", 0);
-        editor = setting.edit();
+        // 아이디 저장, 자동 로그인 구현을 위해 SharedPreferences 변수 선언
+        SharedPreferences setting = getSharedPreferences("UserLogin", MODE_PRIVATE);;
+        SharedPreferences.Editor editor =  setting.edit();
 
-        boolean blogin = setting.getBoolean("Auto_Login_enabled", false);
-        // 자동 로그인이 체크 되어있다면 자동로그인 함.
-        if(blogin) {
-            chk_autologin.setChecked(true);
-            Toast.makeText(getApplicationContext(),"자동 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Login.this, HomeActivity.class);
-            // 유저 ID를 인텐트에 넣어서 보냄
-            intent.putExtra("userID", setting.getString("userID",""));
-            startActivity(intent);
+        boolean rememberid = setting.getBoolean("RememberIDEnabled", false);
+        userID = setting.getString("userID", "");
+
+        // 아이디 저장이 체크 되어있다면 아이디를 et_id에 찍어줌
+        if(rememberid == true) {
+            chk_remember_id.setChecked(true);
+            et_id.setText(userID);
         }
 
         //로그인 버튼 이벤트처리
@@ -61,8 +56,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 현재 화면에서 입력받은 userID와 userPass 값 변수에 저장
-                String userID = et_id.getText().toString();
-                String userPass = et_pass.getText().toString();
+                userID = et_id.getText().toString();
+                userPass = et_pass.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -73,28 +68,44 @@ public class Login extends AppCompatActivity {
 
                             // 로그인에 성공한 경우
                             if(success) {
-                                chk_autologin.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        if(chk_autologin.isChecked()) {
-                                            editor.putString("userID", userID);
-                                            editor.putString("userPass", userPass);
-                                            editor.putBoolean("Auto_Login_enabled", true);
-                                            editor.commit();
-                                        }
-                                        // 체크박스가 해제 되어있다면
-                                        else {
-                                            editor.putBoolean("Auto_Login_enabled", false);
-                                            editor.clear();
-                                            editor.commit();
-                                        }
-                                    }
-                                });
+                                // chk_autologin이 체크 되어있다면 userID, userPass, 체크박스 값 저장
+                                if(chk_autologin.isChecked() == true) {
+                                    SharedPreferences setting = getSharedPreferences("UserLogin", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = setting.edit();
+                                    editor.putString("userID", userID);
+                                    editor.putString("userPass", userPass);
+                                    editor.putBoolean("AutoLoginEnabled", true);
+                                    editor.commit();
+                                }
+                                // 체크박스가 해제 되어있다면
+                                else {
+                                    editor.putBoolean("AutoLoginEnabled", false);
+                                    editor.clear();
+                                    editor.commit();
+                                }
+                                // chk_remeber_id가 체크 되어있다면, userID와 체크박스 값 저장
+                                if(chk_remember_id.isChecked() == true) {
+                                    SharedPreferences setting = getSharedPreferences("UserLogin", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = setting.edit();
+                                    editor.putString("userID", userID);
+                                    editor.putBoolean("RememberIDEnabled", true);
+                                    editor.commit();
+                                }
+                                // 체크박스가 해제 되어있다면
+                                else {
+                                    editor.putBoolean("RememberIDEnabled", false);
+                                    editor.clear();
+                                    editor.commit();
+                                }
 
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Login.this, HomeActivity.class);
                                 // 유저 ID를 인텐트에 넣어서 보냄
                                 intent.putExtra("userID", userID);
+
+                                // 이후 로그아웃 후 EditText가 비어있게 함
+                                et_id.setText("");
+                                et_pass.setText("");
                                 startActivity(intent);
                             }
                             // 로그인에 실패한 경우

@@ -3,6 +3,7 @@ package com.cookandroid.aifooddiaryapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -148,10 +149,22 @@ public class Frag_Mypage extends Fragment {
             }
         });
         
-        // 로그아웃 버튼 구현 필요
+        // 로그아웃 버튼 이벤트 처리
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences setting = getActivity().getSharedPreferences("UserLogin", getActivity().MODE_PRIVATE);
+
+                boolean autologin = setting.getBoolean("AutoLoginEnabled", false);
+
+                // 자동 로그인이 체크 되어있다면 자동 로그인에 있는 모든 정보 지워줌
+                if(autologin == true) {
+                    SharedPreferences.Editor editor = setting.edit();
+                    editor.putBoolean("AutoLoginEnabled", false);
+                    editor.clear();
+                    editor.commit();
+                }
+
                 new AlertDialog.Builder(getActivity())
                         .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
                         .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
