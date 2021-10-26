@@ -20,24 +20,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_hand"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/btn_handwrite" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/btn_handwrite" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_camera"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
-        app:srcCompat="@drawable/btn_camera" />
+        app:layout_constraintTop_toTopOf="@+id/cardView_hand">
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/btn_camera" />
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

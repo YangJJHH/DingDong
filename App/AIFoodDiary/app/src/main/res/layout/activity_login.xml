@@ -30,22 +30,19 @@
         android:id="@+id/et_id"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:hint="아이디를 입력하세요"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.196" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <EditText
         android:id="@+id/et_pass"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:hint="비밀번호를 입력하세요"
-        android:fontFamily="@font/bmjua"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

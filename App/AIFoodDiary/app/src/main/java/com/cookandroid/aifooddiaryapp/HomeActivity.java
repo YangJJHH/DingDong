@@ -1,11 +1,15 @@
 package com.cookandroid.aifooddiaryapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -29,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // 여러 화면에서 userID를 통해 데이터베이스에서 해당 회원의 값을 가져오기 위해 static 선언
     public static String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,5 +100,28 @@ public class HomeActivity extends AppCompatActivity {
                 ft.commit();
                 break;
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder ad = new AlertDialog.Builder(HomeActivity.this);
+        ad.setTitle("앱 종료");
+        ad.setMessage("앱을 종료하시겠습니까?");
+        ad.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                moveTaskToBack(true);
+                finishAndRemoveTask();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        });
+        ad.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        ad.show();
     }
 }
