@@ -13,6 +13,7 @@
         android:layout_marginEnd="280dp"
         android:layout_marginRight="280dp"
         android:text="마이페이지"
+        android:fontFamily="@font/bmjua"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="120dp"
         android:text="키"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
@@ -36,6 +38,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:text="몸무게"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_height" />
 
@@ -47,6 +50,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:text="체지방량"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_weight" />
     <TextView
@@ -57,6 +61,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:text="골격근량"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_bodyfat" />
     <TextView
@@ -67,6 +72,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:text="기초대사량"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_musclemass" />
     <TextView
@@ -77,6 +83,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:text="식단목적"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_BMR" />
     <EditText
@@ -88,6 +95,7 @@
         android:layout_marginRight="100dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <EditText
@@ -99,6 +107,7 @@
         android:layout_marginRight="100dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_height" />
     <EditText
@@ -110,6 +119,7 @@
         android:layout_marginRight="100dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:fontFamily="@font/bmjua"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_weight" />
@@ -122,6 +132,7 @@
         android:layout_marginRight="100dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_bodyfat" />
     <EditText
@@ -133,6 +144,7 @@
         android:layout_marginRight="100dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_musclemass" />
 
@@ -140,11 +152,14 @@
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"
         android:text="로그아웃"
         android:textColor="@color/black"
-        app:backgroundTint="#8073fb9c"
+        android:textSize="20sp"
+        app:backgroundTint="@color/buttonColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_save" />
 
@@ -153,11 +168,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"
         android:text="회원정보 저장"
         android:textColor="@color/black"
-        app:backgroundTint="#8073fb9c"
+        android:textSize="20sp"
+        app:backgroundTint="@color/buttonColor"
         app:layout_constraintEnd_toStartOf="@+id/btn_logout"
         app:layout_constraintTop_toBottomOf="@+id/btn_list" />
 
@@ -165,9 +183,13 @@
         android:id="@+id/btn_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"
         android:text="자주먹는 식단 리스트"
         android:textColor="@color/black"
-        app:backgroundTint="#8073fb9c"
+        android:textSize="20sp"
+        app:backgroundTint="@color/buttonColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rdg_foodpurpose" />
@@ -188,6 +210,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/bmjua"
             android:text="다이어트" />
 
         <RadioButton
@@ -195,6 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/bmjua"
             android:text="벌크업" />
     </RadioGroup>
 

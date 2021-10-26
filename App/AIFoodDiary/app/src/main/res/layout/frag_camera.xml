@@ -14,6 +14,7 @@
         android:layout_marginEnd="280dp"
         android:layout_marginRight="280dp"
         android:text="식단 추가"
+        android:fontFamily="@font/bmjua"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

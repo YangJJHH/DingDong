@@ -6,45 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".FirstActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="150dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="233dp"
+            android:layout_height="249dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ogo" />
+    </androidx.cardview.widget.CardView>
+
     <Button
         android:id="@+id/btn_Login"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"
         android:text="로그인"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:backgroundTint="#8073fb9c"
+        app:backgroundTint="@color/subColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"
         android:text="회원가입"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:backgroundTint="#8073fb9c"
+        app:backgroundTint="@color/subColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
-
-    <ImageView
-        android:id="@+id/img_logo"
-        android:layout_width="233dp"
-        android:layout_height="249dp"
-        android:layout_marginTop="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ogo" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

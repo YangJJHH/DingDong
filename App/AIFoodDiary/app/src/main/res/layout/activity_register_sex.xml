@@ -15,6 +15,7 @@
         android:layout_marginRight="280dp"
         android:text="회원가입"
         android:textSize="24sp"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,44 +29,67 @@
         android:layout_marginRight="270dp"
         android:text="성별"
         android:textSize="24sp"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-    <ImageButton
-        android:id="@+id/imgbtn_man"
-        android:layout_width="140dp"
-        android:layout_height="190dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginRight="150dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_m"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginRight="180dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        app:srcCompat="@drawable/sex_man" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/imgbtn_woman"
-        android:layout_width="140dp"
-        android:layout_height="190dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
+        <ImageButton
+            android:id="@+id/imgbtn_man"
+            android:layout_width="140dp"
+            android:layout_height="190dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/sex_man" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_w"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgbtn_man"
-        app:srcCompat="@drawable/sex_woman" />
+        app:layout_constraintStart_toEndOf="@+id/cardView_m"
+        app:layout_constraintTop_toTopOf="@+id/cardView_m">
+
+        <ImageButton
+            android:id="@+id/imgbtn_woman"
+            android:layout_width="140dp"
+            android:layout_height="190dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/sex_woman" />
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btn_next"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"
         android:text="다음"
         android:textColor="@color/black"
-        app:backgroundTint="#8073fb9c"
+        android:textSize="20sp"
+        app:backgroundTint="@color/buttonColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgbtn_man" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView_m" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

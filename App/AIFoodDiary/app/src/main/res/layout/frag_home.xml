@@ -31,6 +31,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="80dp"
                 android:text="오늘의 칼로리? (kcal)"
+                android:fontFamily="@font/bmjua"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +54,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="60dp"
                 android:text="단백질"
+                android:fontFamily="@font/bmjua"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/prgbar_calorie" />
@@ -76,6 +78,7 @@
                 android:layout_marginLeft="60dp"
                 android:text="탄수화물"
                 android:textSize="24sp"
+                android:fontFamily="@font/bmjua"
                 app:layout_constraintStart_toEndOf="@+id/tv_todayprotein"
                 app:layout_constraintTop_toTopOf="@+id/tv_todayprotein" />
 
@@ -97,6 +100,7 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginLeft="60dp"
                 android:text="지방"
+                android:fontFamily="@font/bmjua"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/tv_todaycarbohydrate"
                 app:layout_constraintTop_toTopOf="@+id/tv_todaycarbohydrate" />
@@ -120,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:text="0/0 kcal"
+                android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/prgbar_calorie"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_calorie" />
@@ -130,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="0/0 g"
+                android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_protein"
                 app:layout_constraintStart_toStartOf="@+id/prgbar_protein"
@@ -141,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="0/0 g"
+                android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_carbohydrate"
                 app:layout_constraintStart_toStartOf="@+id/prgbar_carbohydrate"
@@ -152,6 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="0/0 g"
+                android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_fat"
                 app:layout_constraintStart_toStartOf="@+id/prgbar_fat"

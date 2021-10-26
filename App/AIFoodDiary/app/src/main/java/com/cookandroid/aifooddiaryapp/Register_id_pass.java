@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,9 +20,10 @@ import org.json.JSONObject;
 // intent_s 는 인텐트 보낼 떄 쓰는 변수, intent_r은 인텐트 받을 때 쓸 변수!!!!!!!!!!!!.
 
 public class Register_id_pass extends AppCompatActivity {
-    // 버튼 생성
+    // 각 위젯 변수 생성
     Button btn_next, btn_validate;
     EditText et_id, et_pass;
+    TextView tv_info;
     private AlertDialog dialog;
 
     @Override
@@ -34,6 +36,7 @@ public class Register_id_pass extends AppCompatActivity {
         et_id = (EditText) findViewById(R.id.et_id);
         et_pass = (EditText) findViewById(R.id.et_pass);
         btn_validate = (Button) findViewById(R.id.btn_validate);
+        tv_info = (TextView) findViewById(R.id.tv_info);
 
         // 아이디 중복체크 버튼 이벤트 처리
         btn_validate.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +65,8 @@ public class Register_id_pass extends AppCompatActivity {
                                         .setPositiveButton("확인",null)
                                         .create();
                                 dialog.show();
-                                btn_next.setVisibility(View.VISIBLE);
+                                tv_info.setVisibility(View.INVISIBLE);
+                                btn_next.setEnabled(true);
                             }
                             else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder( Register_id_pass.this );
@@ -70,7 +74,8 @@ public class Register_id_pass extends AppCompatActivity {
                                         .setNegativeButton("확인",null)
                                         .create();
                                 dialog.show();
-                                btn_next.setVisibility(View.INVISIBLE);
+                                tv_info.setVisibility(View.VISIBLE);
+                                btn_next.setEnabled(false);
                             }
                         }
                         catch(JSONException e) {

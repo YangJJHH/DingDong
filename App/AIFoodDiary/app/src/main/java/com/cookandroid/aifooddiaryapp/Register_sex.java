@@ -1,6 +1,7 @@
 package com.cookandroid.aifooddiaryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ public class Register_sex extends AppCompatActivity {
     ImageButton imgbtn_man, imgbtn_woman;  // 남성, 여성 이미지 버튼 위젯 변수 선언
     Button btn_next;    // 버튼 위젯 변수 선언
     String sex;        // 성별을 알려줄 변수  (남성은 M, 여성은 F)
+    CardView cardView_m, cardView_w; // 카드뷰 위젯 변수 선언
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,8 @@ public class Register_sex extends AppCompatActivity {
         imgbtn_man = (ImageButton) findViewById(R.id.imgbtn_man);
         imgbtn_woman = (ImageButton) findViewById(R.id.imgbtn_woman);
         btn_next = (Button) findViewById(R.id.btn_next);
+        cardView_m = (CardView) findViewById(R.id.cardView_m);
+        cardView_w = (CardView) findViewById(R.id.cardView_w);
 
         // 이전 화면에서 보낸 인자를 받기 위한 변수 intent_r 선언
         Intent intent_r = getIntent();
@@ -32,12 +37,13 @@ public class Register_sex extends AppCompatActivity {
         String userPass = intent_r.getStringExtra("userPass");
         String userName = intent_r.getStringExtra("userName");
         int userAge = intent_r.getIntExtra("userAge",0);
+        
         // imgbtn_man(남성 버튼)이 눌렸을 때의 이벤트 처리
         imgbtn_man.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imgbtn_man.setImageResource(R.drawable.sex_man_onclick);
-                imgbtn_woman.setImageResource(R.drawable.sex_woman);
+                cardView_m.setCardElevation(20);
+                cardView_w.setCardElevation(4);
                 sex = "M";
             }
         });
@@ -46,8 +52,8 @@ public class Register_sex extends AppCompatActivity {
         imgbtn_woman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imgbtn_man.setImageResource(R.drawable.sex_man);
-                imgbtn_woman.setImageResource(R.drawable.sex_woman_onclick);
+                cardView_m.setCardElevation(4);
+                cardView_w.setCardElevation(20);
                 sex = "F";
             }
         });

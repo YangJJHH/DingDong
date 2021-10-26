@@ -17,6 +17,10 @@
         android:layout_height="match_parent"
         android:id="@+id/btn_add_meal"
         android:layout_weight="8"
-        android:text="식단 추가"/>
+        android:text="식단 추가"
+        android:backgroundTint="@color/buttonColor"
+        android:textSize="20sp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"/>
 
 </LinearLayout>

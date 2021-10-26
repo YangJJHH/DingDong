@@ -15,6 +15,7 @@
         android:layout_marginRight="280dp"
         android:text="회원가입"
         android:textSize="24sp"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +29,7 @@
         android:layout_marginTop="200dp"
         android:text="아이디"
         android:textSize="30sp"
+        android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,35 +37,30 @@
         android:id="@+id/et_id"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:hint="아이디를 입력하세요"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_id"
         app:layout_constraintTop_toBottomOf="@+id/tv_id" />
 
     <TextView
         android:id="@+id/tv_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/bmjua"
         android:text="비밀번호"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/et_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_id" />
 
     <EditText
         android:id="@+id/et_pass"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:hint="비밀먼호를 입력하세요"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_pass"
         app:layout_constraintTop_toBottomOf="@+id/tv_pass" />
 
     <Button
@@ -72,11 +69,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/bmjua"
         android:text="다음"
+        android:enabled="false"
         android:textColor="@color/black"
-        android:visibility="invisible"
-        app:backgroundTint="#8073fb9c"
+        android:textSize="20sp"
+        app:backgroundTint="@color/buttonColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
@@ -87,10 +87,25 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:text="중복확인"
+        android:textSize="16sp"
+        android:background="@drawable/round_button"
         android:textColor="@color/black"
-        app:backgroundTint="#8073fb9c"
+        android:fontFamily="@font/bmjua"
+        app:backgroundTint="@color/buttonColor"
         app:layout_constraintStart_toEndOf="@+id/et_id"
         app:layout_constraintTop_toTopOf="@+id/et_id" />
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/bmjua"
+        android:text="* 아이디 중복확인 후 버튼 클릭이 가능합니다!"
+        android:textColor="#99FF0000"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next"
+        app:layout_constraintEnd_toEndOf="@+id/btn_next"
+        app:layout_constraintStart_toStartOf="@+id/btn_next" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
