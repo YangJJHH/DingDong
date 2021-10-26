@@ -41,17 +41,23 @@ public class Register_age extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 입력받은 userAge에 대한 변수 선언
-                int userAge = Integer.parseInt(et_age.getText().toString());
+                // editText에 나이가 입력되어 있어야 다음 화면으로 전환
+                if(et_age.length() != 0) {
+                    // 입력받은 userAge에 대한 변수 선언
+                    int userAge = Integer.parseInt(et_age.getText().toString());
 
-                // 이전 화면에서 받은 인자와 입력받은 userAge를 다음 화면 인자로 넣어주며 전환
-                Intent intent_s = new Intent(Register_age.this, Register_sex.class);
-                intent_s.putExtra("userID", userID);
-                intent_s.putExtra("userPass", userPass);
-                intent_s.putExtra("userName",userName);
-                intent_s.putExtra("userAge", userAge);
+                    // 이전 화면에서 받은 인자와 입력받은 userAge를 다음 화면 인자로 넣어주며 전환
+                    Intent intent_s = new Intent(Register_age.this, Register_sex.class);
+                    intent_s.putExtra("userID", userID);
+                    intent_s.putExtra("userPass", userPass);
+                    intent_s.putExtra("userName",userName);
+                    intent_s.putExtra("userAge", userAge);
 
-                startActivity(intent_s);
+                    startActivity(intent_s);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "나이를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

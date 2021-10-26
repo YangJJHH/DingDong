@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 // !!!!!!!!!!인텐트 부분 수정해야함 !!!!!!!!!!!!!!!!!!!
 // intent_s 는 인텐트 보낼 떄 쓰는 변수, intent_r은 인텐트 받을 때 쓸 변수!!!!!!!!!!!!
@@ -31,15 +32,20 @@ public class Register_name extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 입력받은 userName 변수 선언
-                String userName = et_name.getText().toString();
+                // editText에 이름이 입력되어 있어야 다음 화면으로 전환
+                if(et_name.length() != 0) {
+                    // 입력받은 userName 변수 선언
+                    String userName = et_name.getText().toString();
 
-                // 이전 화면에서 받은 인자와 입력받은 userName을 다음 화면 인자로 넣어주며 전환
-                Intent intent_s = new Intent(Register_name.this, Register_age.class);
-                intent_s.putExtra("userID", userID);
-                intent_s.putExtra("userPass",userPass);
-                intent_s.putExtra("userName", userName);
-                startActivity(intent_s);
+                    // 이전 화면에서 받은 인자와 입력받은 userName을 다음 화면 인자로 넣어주며 전환
+                    Intent intent_s = new Intent(Register_name.this, Register_age.class);
+                    intent_s.putExtra("userID", userID);
+                    intent_s.putExtra("userPass", userPass);
+                    intent_s.putExtra("userName", userName);
+                    startActivity(intent_s);
+                } else {
+                    Toast.makeText(getApplicationContext(), "이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 // !!!!!!!!!!인텐트 부분 수정해야함 !!!!!!!!!!!!!!!!!!!
 // intent_s 는 인텐트 보낼 떄 쓰는 변수, intent_r은 인텐트 받을 때 쓸 변수!!!!!!!!!!!!
@@ -16,7 +17,7 @@ import android.widget.ImageButton;
 public class Register_sex extends AppCompatActivity {
     ImageButton imgbtn_man, imgbtn_woman;  // 남성, 여성 이미지 버튼 위젯 변수 선언
     Button btn_next;    // 버튼 위젯 변수 선언
-    String sex;        // 성별을 알려줄 변수  (남성은 M, 여성은 F)
+    String sex = null;        // 성별을 알려줄 변수  (남성은 M, 여성은 F)
     CardView cardView_m, cardView_w; // 카드뷰 위젯 변수 선언
 
     @Override
@@ -61,15 +62,21 @@ public class Register_sex extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 이전 화면에서 받은 인자와 입력받은 userSex를 다음 화면 인자로 넣어주며 전환
-                Intent intent_s = new Intent(Register_sex.this, Register_body.class);
-                intent_s.putExtra("userID", userID);
-                intent_s.putExtra("userPass", userPass);
-                intent_s.putExtra("userName",userName);
-                intent_s.putExtra("userAge", userAge);
-                intent_s.putExtra("userSex",sex);
+                // 두 버튼 중 하나의 값이 눌려 있어야 다음 화면으로 전환
+                if(sex != null) {
+                    // 이전 화면에서 받은 인자와 입력받은 userSex를 다음 화면 인자로 넣어주며 전환
+                    Intent intent_s = new Intent(Register_sex.this, Register_body.class);
+                    intent_s.putExtra("userID", userID);
+                    intent_s.putExtra("userPass", userPass);
+                    intent_s.putExtra("userName",userName);
+                    intent_s.putExtra("userAge", userAge);
+                    intent_s.putExtra("userSex",sex);
 
-                startActivity(intent_s);
+                    startActivity(intent_s);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "성별을 선택해주세요.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

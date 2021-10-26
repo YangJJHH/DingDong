@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -91,20 +92,26 @@ public class Register_id_pass extends AppCompatActivity {
             }
         });
 
-        //다음 버튼 이벤트 처리
-        btn_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 입력받은 userID와 userPass에 대해 변수 선언
-                String userID = et_id.getText().toString();
-                String userPass = et_pass.getText().toString();
+            //다음 버튼 이벤트 처리
+            btn_next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 아이디 값과 비밀번호 값이 공백이 아니면 다음 화면으로 이동
+                    if(et_id.length() != 0 && et_pass.length() != 0) {
+                        // 입력받은 userID와 userPass에 대해 변수 선언
+                        String userID = et_id.getText().toString();
+                        String userPass = et_pass.getText().toString();
 
-                // 입력받은 userID와 userPass를 다음 화면 인자로 넣어주며 전환
-                Intent intent_s = new Intent(Register_id_pass.this, Register_name.class);
-                intent_s.putExtra("userID", userID);
-                intent_s.putExtra("userPass", userPass);
-                startActivity(intent_s);
-            }
-        });
+                        // 입력받은 userID와 userPass를 다음 화면 인자로 넣어주며 전환
+                        Intent intent_s = new Intent(Register_id_pass.this, Register_name.class);
+                        intent_s.putExtra("userID", userID);
+                        intent_s.putExtra("userPass", userPass);
+                        startActivity(intent_s);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
     }
 }
