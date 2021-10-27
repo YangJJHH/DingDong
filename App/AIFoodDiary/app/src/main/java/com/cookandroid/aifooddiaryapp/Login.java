@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,6 +20,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
     // 버튼, editText, checkbox 위젯 변수 선언
@@ -50,6 +54,19 @@ public class Login extends AppCompatActivity {
             chk_remember_id.setChecked(true);
             et_id.setText(userID);
         }
+
+        // et_id에는 영문과 숫자만 입력되어야함
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                Pattern ps = Pattern.compile("^[a-zA-Z0-9]+$");
+                if(!ps.matcher(source).matches()) {
+                    return "";
+                }
+                return null;
+            }
+        };
+        et_id.setFilters(new InputFilter[]{filter});
 
         //로그인 버튼 이벤트처리
         btn_login.setOnClickListener(new View.OnClickListener() {

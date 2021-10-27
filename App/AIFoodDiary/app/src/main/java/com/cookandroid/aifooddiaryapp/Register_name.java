@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.regex.Pattern;
 
 // !!!!!!!!!!인텐트 부분 수정해야함 !!!!!!!!!!!!!!!!!!!
 // intent_s 는 인텐트 보낼 떄 쓰는 변수, intent_r은 인텐트 받을 때 쓸 변수!!!!!!!!!!!!
@@ -28,6 +32,19 @@ public class Register_name extends AppCompatActivity {
         Intent intent_r = getIntent();
         String userID = intent_r.getStringExtra("userID");
         String userPass = intent_r.getStringExtra("userPass");
+
+        // et_name에는 영문과 한글만 입력받게 함.
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                Pattern ps = Pattern.compile("^[a-zA-Zㄱ-ㅎ가-힣]+$");
+                if(!ps.matcher(source).matches()) {
+                    return "";
+                }
+                return null;
+            }
+        };
+        et_name.setFilters(new InputFilter[]{filter});
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -102,49 +102,56 @@ public class Frag_Mypage extends Fragment {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 현재 입력받은 값들 모두 저장
-                double userHeight = Double.parseDouble(et_height.getText().toString());
-                double userWeight = Double.parseDouble(et_weight.getText().toString());
-                double userBodyfat = Double.parseDouble(et_bodyfat.getText().toString());
-                double userMusclemass = Double.parseDouble(et_musclemass.getText().toString());
-                int userBMR = Integer.parseInt(et_BMR.getText().toString());
-                char userFoodpurpose = ' ';
+                // 자료형이 맞지 않을 때(사용자의 실수로 . 이 두 번 입력됐을 때 예외 처리 함)
+                try{
 
-                switch(rdg_foodpurpose.getCheckedRadioButtonId()) {
-                    case R.id.rdb_bulk :
-                        userFoodpurpose = 'B';
-                        break;
-                    case R.id.rdb_diet:
-                        userFoodpurpose = 'D';
-                        break;
-                }
+                    // 현재 입력받은 값들 모두 저장
+                    double userHeight = Double.parseDouble(et_height.getText().toString());
+                    double userWeight = Double.parseDouble(et_weight.getText().toString());
+                    double userBodyfat = Double.parseDouble(et_bodyfat.getText().toString());
+                    double userMusclemass = Double.parseDouble(et_musclemass.getText().toString());
+                    int userBMR = Integer.parseInt(et_BMR.getText().toString());
+                    char userFoodpurpose = ' ';
 
-                Response.Listener<String> setresponseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject setjsonObject = new JSONObject(response);
-                            boolean success = setjsonObject.getBoolean("success");
+                    switch(rdg_foodpurpose.getCheckedRadioButtonId()) {
+                        case R.id.rdb_bulk :
+                            userFoodpurpose = 'B';
+                            break;
+                        case R.id.rdb_diet:
+                            userFoodpurpose = 'D';
+                            break;
+                    }
 
-                            // 회원 정보 수정에 성공한 경우
-                            if(success) {
-                                Toast.makeText(getActivity().getApplicationContext(),"회원 정보를 수정하였습니다.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                // 회원 정보 수정에 실패한 경우
-                                Toast.makeText(getActivity().getApplicationContext(),"회원 정보 수정을 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                    Response.Listener<String> setresponseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject setjsonObject = new JSONObject(response);
+                                boolean success = setjsonObject.getBoolean("success");
+
+                                // 회원 정보 수정에 성공한 경우
+                                if(success) {
+                                    Toast.makeText(getActivity().getApplicationContext(),"회원 정보를 수정하였습니다.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // 회원 정보 수정에 실패한 경우
+                                    Toast.makeText(getActivity().getApplicationContext(),"회원 정보 수정을 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                }
+
+                            } catch(JSONException e) {
+                                e.printStackTrace();
                             }
 
-                        } catch(JSONException e) {
-                            e.printStackTrace();
                         }
+                    };
 
-                    }
-                };
+                    // 서버로 Volley를 이용해서 요청을 함.
+                    MypageRequest mypageRequest= new MypageRequest(HomeActivity.userID, userHeight, userWeight, userBodyfat, userMusclemass, userBMR, userFoodpurpose, setresponseListener);
+                    RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+                    queue.add(mypageRequest);
 
-                // 서버로 Volley를 이용해서 요청을 함.
-                MypageRequest mypageRequest= new MypageRequest(HomeActivity.userID, userHeight, userWeight, userBodyfat, userMusclemass, userBMR, userFoodpurpose, setresponseListener);
-                RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-                queue.add(mypageRequest);
+                }catch (Exception e) {
+                    Toast.makeText(getActivity().getApplicationContext(), "오류! 입력된 값들을 확인해주세요.", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:hint="아이디를 입력하세요"
+        android:privateImeOptions="defalutInputmode=english"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"

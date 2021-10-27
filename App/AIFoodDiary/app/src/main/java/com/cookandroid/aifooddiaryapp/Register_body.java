@@ -43,42 +43,49 @@ public class Register_body extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // editText에 키와 몸무게가 입력되어 있어야만 회원가입 진행
-                if(et_weight.length() != 0 && et_height.length() != 0) {
-                    // 현재 화면에서 받은 키와 몸무게를 저장할 변수 저장
-                    double userHeight = Double.parseDouble(et_height.getText().toString());
-                    double userWeight = Double.parseDouble(et_weight.getText().toString());
+                // 자료형이 맞지 않을 때(사용자의 실수로 . 이 두 번 입력됐을 때 예외 처리 함)
+                try{
+                    // editText에 키와 몸무게가 입력되어 있어야만 회원가입 진행
+                    if(et_weight.length() != 0 && et_height.length() != 0) {
+                        // 현재 화면에서 받은 키와 몸무게를 저장할 변수 저장
+                        double userHeight = Double.parseDouble(et_height.getText().toString());
+                        double userWeight = Double.parseDouble(et_weight.getText().toString());
 
-                    Response.Listener<String> responseListener = new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                JSONObject jsonObject = new JSONObject(response);
-                                boolean success = jsonObject.getBoolean("success");
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
 
-                                //회원 등록에 성공한 경우
-                                if(success) {
-                                    Toast.makeText(getApplicationContext(),"회원 등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(Register_body.this, Login.class);
-                                    startActivity(intent);
-                                } else {
-                                    //회원 등록에 실패한 경우
-                                    Toast.makeText(getApplicationContext(),"회원 가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                    return;
+                                    //회원 등록에 성공한 경우
+                                    if(success) {
+                                        Toast.makeText(getApplicationContext(),"회원 등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(Register_body.this, Login.class);
+                                        startActivity(intent);
+                                    } else {
+                                        //회원 등록에 실패한 경우
+                                        Toast.makeText(getApplicationContext(),"회원 가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
-                        }
-                    };
+                        };
 
-                    // 서버로 Volley를 이용해서 요청을 함.
-                    RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userAge, userSex, userHeight, userWeight, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(Register_body.this);
-                    queue.add(registerRequest);
-                } else {
-                    Toast.makeText(getApplicationContext(), "키와 몸무게를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        // 서버로 Volley를 이용해서 요청을 함.
+                        RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userAge, userSex, userHeight, userWeight, responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(Register_body.this);
+                        queue.add(registerRequest);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "키와 몸무게를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "오류! 입력된 값들을 확인해주세요.", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
     }

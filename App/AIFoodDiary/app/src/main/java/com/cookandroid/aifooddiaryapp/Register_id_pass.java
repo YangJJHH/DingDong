@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.regex.Pattern;
 
 // intent_s 는 인텐트 보낼 떄 쓰는 변수, intent_r은 인텐트 받을 때 쓸 변수!!!!!!!!!!!!.
 
@@ -38,6 +42,19 @@ public class Register_id_pass extends AppCompatActivity {
         et_pass = (EditText) findViewById(R.id.et_pass);
         btn_validate = (Button) findViewById(R.id.btn_validate);
         tv_info = (TextView) findViewById(R.id.tv_info);
+
+        // et_id에는 영문과 숫자만 입력되어야함
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                Pattern ps = Pattern.compile("^[a-zA-Z0-9]+$");
+                if(!ps.matcher(source).matches()) {
+                    return "";
+                }
+                return null;
+            }
+        };
+        et_id.setFilters(new InputFilter[]{filter});
 
         // 아이디 중복체크 버튼 이벤트 처리
         btn_validate.setOnClickListener(new View.OnClickListener() {

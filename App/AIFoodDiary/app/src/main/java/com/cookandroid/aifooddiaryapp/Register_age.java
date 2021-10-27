@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -11,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.regex.Pattern;
 
 // intent_s 는 인텐트 보낼 떄 쓰는 변수, intent_r은 인텐트 받을 때 쓸 변수!!!!!!!!!!!!
 
@@ -36,6 +40,19 @@ public class Register_age extends AppCompatActivity {
         String userID = intent_r.getStringExtra("userID");
         String userPass = intent_r.getStringExtra("userPass");
         String userName = intent_r.getStringExtra("userName");
+
+        // et_age에는 숫자만 입력되게 함
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                Pattern ps = Pattern.compile("^[0-9]+$");
+                if(!ps.matcher(source).matches()) {
+                    return "";
+                }
+                return null;
+            }
+        };
+        et_age.setFilters(new InputFilter[]{filter});
 
         //다음 버튼 이벤트 처리
         btn_next.setOnClickListener(new View.OnClickListener() {

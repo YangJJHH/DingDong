@@ -72,7 +72,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:hint="예) 24"
         android:fontFamily="@font/bmjua"
         app:layout_constraintStart_toStartOf="@+id/tv_age"
