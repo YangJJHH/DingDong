@@ -7,12 +7,12 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MypageGetUserInfo extends StringRequest {
+public class HomeGetUserData extends StringRequest {
     // 서버 URL 설정 - php 파일 연동
-    final static private String URL = "http://yuninseon.ivyro.net/GetUserInfo.php";
+    final static private String URL = "http://yuninseon.ivyro.net/HomeGetUserData.php";
     private Map<String, String> map;
 
-    public MypageGetUserInfo(String userID, Response.Listener<String> listener) {
+    public HomeGetUserData(String userID, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -25,4 +25,3 @@ public class MypageGetUserInfo extends StringRequest {
         return map;
     }
 }
-
