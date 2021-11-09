@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class MypageRequest extends StringRequest {
     // 서버 URL 설정 - php 파일 연동
-    final static private String URL = "http://yuninseon.ivyro.net/SetMypage.php";
+    final static private String URL = "http://15.164.88.236/SetMypage.php";
     private Map<String, String> map;
 
     public MypageRequest(String userID, double userHeight, double userWeight, double userBodyfat,double userMusclemass, int userBMR, char userFoodpurpose,Response.Listener<String> listener) {

@@ -33,7 +33,7 @@ public class Register_name extends AppCompatActivity {
         String userID = intent_r.getStringExtra("userID");
         String userPass = intent_r.getStringExtra("userPass");
 
-        // et_name에는 영문과 한글만 입력받게 함.
+        // et_name에는 영문과 한글만 10자까지 입력받게 함.
         InputFilter filter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -44,7 +44,7 @@ public class Register_name extends AppCompatActivity {
                 return null;
             }
         };
-        et_name.setFilters(new InputFilter[]{filter});
+        et_name.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(10)});
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override

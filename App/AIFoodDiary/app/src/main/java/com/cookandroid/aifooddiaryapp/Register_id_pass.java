@@ -43,7 +43,7 @@ public class Register_id_pass extends AppCompatActivity {
         btn_validate = (Button) findViewById(R.id.btn_validate);
         tv_info = (TextView) findViewById(R.id.tv_info);
 
-        // et_id에는 영문과 숫자만 입력되어야함
+        // et_id에는 영문과 숫자만 11자까지 입력되어야함
         InputFilter filter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -54,7 +54,7 @@ public class Register_id_pass extends AppCompatActivity {
                 return null;
             }
         };
-        et_id.setFilters(new InputFilter[]{filter});
+        et_id.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(11)});
 
         // 아이디 중복체크 버튼 이벤트 처리
         btn_validate.setOnClickListener(new View.OnClickListener() {

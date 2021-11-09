@@ -30,8 +30,8 @@ public class Frag_Home extends Fragment {
     int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
     double userHeight;
 
-    ///////////// 하루 권장 섭취량 구하는 식 : ((키)-100)*0.9 * 30 (40 : 운동하는 사람들, 30 : 보통, 20 : 다이어터)
-    ///////////// 탄단지 비율 -> 전체 권장 섭취 칼로리에서 보통 사람 비율 (탄,단,지) : (6, 2, 2) , 다이어트 : 4, 3, 3, 벌크업 : 5, 3, 2
+    ///////////// 하루 권장 섭취량 구하는 식 : ((키)-100)*0.9 * 30 (35 : 운동하는 사람들, 30 : 보통, 25 : 다이어터)
+    ///////////// 탄단지 비율 -> 전체 권장 섭취 칼로리에서 보통 사람 비율 (탄,단,지) : (6, 2, 2) , 다이어트 : 4, 3, 3, 벌크업 : 5.5, 2.5, 2
     ///////////// 구하는 법은? -> 권장 섭취 칼로리 * 해당 영양소 비율 / 해당 영양소 칼로리 (탄수화물, 단백질 : 4, 지방 :9)
     ///////////// 하루 권장 섭취 탄수화물 구하기 -> Ex) 2523 * 0.6 / 4
 
@@ -64,11 +64,11 @@ public class Frag_Home extends Fragment {
 
                     if(getjsonObject.getString("userBMR").equals("0")) {
                         // userBMR이 설정이 되어있지 않다면 권장 섭취량으로 설정해줌
-                        if(getjsonObject.getString("userFoodpurpose").equals(" ")) {
+                        if(getjsonObject.getString("userFoodpurpose").equals("")) {
                             today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 30);
                             today_carbohydrate = (int) Math.floor(today_calorie * 0.6 / 4);
                             today_protein = (int) Math.floor(today_calorie * 0.2 / 4);
-                            today_fat = (int) Math.floor(today_calorie * 0.2 / 4);
+                            today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
 
                             // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
                             // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
@@ -76,21 +76,21 @@ public class Frag_Home extends Fragment {
 
                         }   // 다이어트인 사람들의 권장 섭취량 수정
                         else if(getjsonObject.getString("userFoodpurpose").equals("D")) {
-                            today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 20);
+                            today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 25);
                             today_carbohydrate = (int) Math.floor(today_calorie * 0.4 / 4);
                             today_protein = (int) Math.floor(today_calorie * 0.3 / 4);
-                            today_fat = (int) Math.floor(today_calorie * 0.3 / 4);
+                            today_fat = (int) Math.floor(today_calorie * 0.3 / 9);
 
                             // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
                             // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
 
 
                         }   // 벌크업인 사람들의 권장 섭취량 수정
-                        else if(getjsonObject.getString("userFoodpurpose").equals("D")) {
-                            today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 40);
-                            today_carbohydrate = (int) Math.floor(today_calorie * 0.5 / 4);
-                            today_protein = (int) Math.floor(today_calorie * 0.3 / 4);
-                            today_fat = (int) Math.floor(today_calorie * 0.2 / 4);
+                        else if(getjsonObject.getString("userFoodpurpose").equals("B")) {
+                            today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 35);
+                            today_carbohydrate = (int) Math.floor(today_calorie * 0.55 / 4);
+                            today_protein = (int) Math.floor(today_calorie * 0.25 / 4);
+                            today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
 
                             // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
                             // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
@@ -103,7 +103,7 @@ public class Frag_Home extends Fragment {
                         today_calorie = Integer.parseInt(getjsonObject.getString("userBMR"));
                         today_carbohydrate = (int) Math.floor(today_calorie * 0.5 / 4);
                         today_protein = (int) Math.floor(today_calorie * 0.3 / 4);
-                        today_fat = (int) Math.floor(today_calorie * 0.2 / 4);
+                        today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
                     }
 
                     // 프로그래스바 설정해줌
@@ -113,10 +113,10 @@ public class Frag_Home extends Fragment {
                     prgbar_fat.setMax(today_fat);
 
                     // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
-                    tv_current_calorie.setText(current_calorie + " / " + today_calorie);
-                    tv_current_carbohydrate.setText(current_carbohydrate + " / " + today_carbohydrate);
-                    tv_current_protein.setText(current_protein + " / " + today_protein);
-                    tv_current_fat.setText(current_fat + " / " + today_fat);
+                    tv_current_calorie.setText(current_calorie + " / " + today_calorie + " kcal");
+                    tv_current_carbohydrate.setText(current_carbohydrate + " / " + today_carbohydrate + " g");
+                    tv_current_protein.setText(current_protein + " / " + today_protein + " g");
+                    tv_current_fat.setText(current_fat + " / " + today_fat + " g");
 
 
                 } catch(JSONException e) {

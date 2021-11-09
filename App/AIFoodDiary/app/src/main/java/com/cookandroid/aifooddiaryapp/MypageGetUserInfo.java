@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class MypageGetUserInfo extends StringRequest {
     // 서버 URL 설정 - php 파일 연동
-    final static private String URL = "http://yuninseon.ivyro.net/GetUserInfo.php";
+    final static private String URL = "http://15.164.88.236/GetUserInfo.php";
     private Map<String, String> map;
 
     public MypageGetUserInfo(String userID, Response.Listener<String> listener) {
