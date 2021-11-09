@@ -5,13 +5,216 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/img_food_photo"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="125dp"
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="380dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        android:backgroundTint="#F6FBF6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/img_food_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 칼로리, 단백질, 탄수화물, 지방 차트 표시 -->
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="380dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="450dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
+            android:backgroundTint="#F6FBF6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- 칼로리, 단백질, 탄수화물, 지방 차트 표시 -->
+
+                <TextView
+                    android:id="@+id/tv_todaycalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/bmjua"
+                    android:text="총섭취량 (kcal)"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/prgbar_calorie"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:progressDrawable="@drawable/custom_progressbar"
+                    app:layout_constraintStart_toStartOf="@+id/tv_todaycalorie"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_todaycalorie" />
+
+                <TextView
+                    android:id="@+id/tv_todayprotein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/bmjua"
+                    android:text="단백질"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/prgbar_calorie" />
+
+                <ProgressBar
+                    android:id="@+id/prgbar_protein"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
+                    android:progressDrawable="@drawable/custom_progressbar"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_todayprotein"
+                    app:layout_constraintStart_toStartOf="@+id/tv_todayprotein"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_todayprotein" />
+
+                <TextView
+                    android:id="@+id/tv_todaycarbohydrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginLeft="60dp"
+                    android:text="탄수화물"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/bmjua"
+                    app:layout_constraintStart_toEndOf="@+id/tv_todayprotein"
+                    app:layout_constraintTop_toTopOf="@+id/tv_todayprotein" />
+
+                <ProgressBar
+                    android:id="@+id/prgbar_carbohydrate"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:progressDrawable="@drawable/custom_progressbar"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_todaycarbohydrate"
+                    app:layout_constraintStart_toStartOf="@+id/tv_todaycarbohydrate"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_todaycarbohydrate" />
+
+                <TextView
+                    android:id="@+id/tv_bodyfat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginLeft="60dp"
+                    android:text="지방"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_todaycarbohydrate"
+                    app:layout_constraintTop_toTopOf="@+id/tv_todaycarbohydrate" />
+
+                <ProgressBar
+                    android:id="@+id/prgbar_fat"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:progressDrawable="@drawable/custom_progressbar"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_bodyfat"
+                    app:layout_constraintStart_toStartOf="@+id/tv_bodyfat"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_bodyfat" />
+
+                <!-- 칼로리, 단백질, 탄수화물, 지방 수치 알려주는 텍스트뷰 -->
+
+                <TextView
+                    android:id="@+id/tv_currentcalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="0/0 kcal"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@+id/prgbar_calorie"
+                    app:layout_constraintEnd_toEndOf="@+id/prgbar_calorie" />
+
+                <TextView
+                    android:id="@+id/tv_currentprotein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="0/0 g"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/prgbar_protein"
+                    app:layout_constraintStart_toStartOf="@+id/prgbar_protein"
+                    app:layout_constraintTop_toBottomOf="@+id/prgbar_protein" />
+
+                <TextView
+                    android:id="@+id/tv_currentcarbohydrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="0/0 g"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/prgbar_carbohydrate"
+                    app:layout_constraintStart_toStartOf="@+id/prgbar_carbohydrate"
+                    app:layout_constraintTop_toBottomOf="@+id/prgbar_carbohydrate" />
+
+                <TextView
+                    android:id="@+id/tv_currentfat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="0/0 g"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/prgbar_fat"
+                    app:layout_constraintStart_toStartOf="@+id/prgbar_fat"
+                    app:layout_constraintTop_toBottomOf="@+id/prgbar_fat" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="720dp"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="a\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na"
+                android:fontFamily="@font/bmjua"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
