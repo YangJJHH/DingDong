@@ -41,7 +41,7 @@ public class Register_age extends AppCompatActivity {
         String userPass = intent_r.getStringExtra("userPass");
         String userName = intent_r.getStringExtra("userName");
 
-        // et_age에는 숫자만 입력되게 함
+        // et_age에는 숫자만 3자리까지 입력되게 함
         InputFilter filter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -52,7 +52,7 @@ public class Register_age extends AppCompatActivity {
                 return null;
             }
         };
-        et_age.setFilters(new InputFilter[]{filter});
+        et_age.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(3)});
 
         //다음 버튼 이벤트 처리
         btn_next.setOnClickListener(new View.OnClickListener() {

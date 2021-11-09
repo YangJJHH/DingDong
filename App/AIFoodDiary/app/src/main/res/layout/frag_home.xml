@@ -64,6 +64,8 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="30dp"
                 android:progressDrawable="@drawable/custom_progressbar"
                 app:layout_constraintEnd_toEndOf="@+id/tv_todayprotein"
@@ -94,7 +96,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_todaycarbohydrate" />
 
             <TextView
-                android:id="@+id/tv_bodyfat"
+                android:id="@+id/tv_fat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
@@ -112,29 +114,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:progressDrawable="@drawable/custom_progressbar"
-                app:layout_constraintEnd_toEndOf="@+id/tv_bodyfat"
-                app:layout_constraintStart_toStartOf="@+id/tv_bodyfat"
-                app:layout_constraintTop_toBottomOf="@+id/tv_bodyfat" />
+                app:layout_constraintEnd_toEndOf="@+id/tv_fat"
+                app:layout_constraintStart_toStartOf="@+id/tv_fat"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fat" />
 
             <!-- 칼로리, 단백질, 탄수화물, 지방 수치 알려주는 텍스트뷰 -->
 
             <TextView
-                android:id="@+id/tv_currentcalorie"
+                android:id="@+id/tv_current_calorie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="0/0 kcal"
+                android:text="0 / 0 kcal"
                 android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/prgbar_calorie"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_calorie" />
 
             <TextView
-                android:id="@+id/tv_currentprotein"
+                android:id="@+id/tv_current_protein"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="0/0 g"
+                android:text="0 / 0 g"
                 android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_protein"
@@ -142,11 +144,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/prgbar_protein" />
 
             <TextView
-                android:id="@+id/tv_currentcarbohydrate"
+                android:id="@+id/tv_current_carbohydrate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="0/0 g"
+                android:text="0 / 0 g"
                 android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_carbohydrate"
@@ -154,11 +156,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/prgbar_carbohydrate" />
 
             <TextView
-                android:id="@+id/tv_currentfat"
+                android:id="@+id/tv_current_fat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="0/0 g"
+                android:text="0 / 0 g"
                 android:fontFamily="@font/bmjua"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/prgbar_fat"

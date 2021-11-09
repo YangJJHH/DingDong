@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity {
             et_id.setText(userID);
         }
 
-        // et_id에는 영문과 숫자만 입력되어야함
+        // et_id에는 영문과 숫자만 11자까지 입력되어야함
         InputFilter filter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity {
                 return null;
             }
         };
-        et_id.setFilters(new InputFilter[]{filter});
+        et_id.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(11)});
 
         //로그인 버튼 이벤트처리
         btn_login.setOnClickListener(new View.OnClickListener() {
