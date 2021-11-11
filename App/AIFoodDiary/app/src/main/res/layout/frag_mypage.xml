@@ -1,237 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="280dp"
-        android:layout_marginRight="280dp"
-        android:text="마이페이지"
-        android:fontFamily="@font/bmjua"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="120dp"
-        android:text="키"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/tv_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:text="몸무게"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_height" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_bodyfat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:text="체지방량"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_weight" />
-    <TextView
-        android:id="@+id/tv_musclemass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:text="골격근량"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bodyfat" />
-    <TextView
-        android:id="@+id/tv_BMR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:text="기초대사량"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_musclemass" />
-    <TextView
-        android:id="@+id/tv_food_purpose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:text="식단목적"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_BMR" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-10dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:digits="0123456789."
-        android:maxLength="5"
-        android:ems="10"
-        android:fontFamily="@font/bmjua"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_height" />
-    <EditText
-        android:id="@+id/et_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:maxLength="5"
-        android:ems="10"
-        android:inputType="number"
-        android:digits="0123456789."
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_height" />
-    <EditText
-        android:id="@+id/et_bodyfat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:maxLength="5"
-        android:ems="10"
-        android:inputType="number"
-        android:digits="0123456789."
-        android:fontFamily="@font/bmjua"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_weight" />
-    <EditText
-        android:id="@+id/et_musclemass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:maxLength="5"
-        android:ems="10"
-        android:inputType="number"
-        android:digits="0123456789."
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_bodyfat" />
-    <EditText
-        android:id="@+id/et_BMR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:maxLength="4"
-        android:ems="10"
-        android:inputType="number"
-        android:digits="0123456789"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_musclemass" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:background="@drawable/round_button"
-        android:fontFamily="@font/bmjua"
-        android:text="로그아웃"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:backgroundTint="@color/buttonColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_save" />
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bmjua"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="마이페이지"
+                    android:textSize="24sp"/>
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/round_button"
-        android:fontFamily="@font/bmjua"
-        android:text="회원정보 저장"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:backgroundTint="@color/buttonColor"
-        app:layout_constraintEnd_toStartOf="@+id/btn_logout"
-        app:layout_constraintTop_toBottomOf="@+id/btn_list" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/round_button"
-        android:fontFamily="@font/bmjua"
-        android:text="자주먹는 식단 리스트"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:backgroundTint="@color/buttonColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdg_foodpurpose" />
+            // 마이페이지 밑 부분 레이아웃
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <RadioGroup
-        android:id="@+id/rdg_foodpurpose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="130dp"
-        android:layout_marginRight="130dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_BMR">
+                // 왼쪽 텍스트 뷰 부분의 레이아웃
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="60dp">
 
-        <RadioButton
-            android:id="@+id/rdb_diet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/bmjua"
-            android:text="다이어트" />
+                    <TextView
+                        android:id="@+id/tv_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/bmjua"
+                        android:text="키"
+                        android:textSize="20sp"/>
 
-        <RadioButton
-            android:id="@+id/rdb_bulk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/bmjua"
-            android:text="벌크업" />
-    </RadioGroup>
+                    <TextView
+                        android:id="@+id/tv_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/bmjua"
+                        android:text="몸무게"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_bodyfat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/bmjua"
+                        android:text="체지방량"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_musclemass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/bmjua"
+                        android:text="골격근량"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_BMR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/bmjua"
+                        android:layout_gravity="center_horizontal"
+                        android:text="기초대사량"
+                        android:textSize="20sp"/>
+
+                    // 왼쪽 텍스트 뷰 부분의 레이아웃 끝
+                </LinearLayout>
+
+                // EditText의 레이아웃 부분
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:digits="0123456789."
+                        android:ems="10"
+                        android:fontFamily="@font/bmjua"
+                        android:inputType="number"
+                        android:maxLength="5"/>
+
+                    <EditText
+                        android:id="@+id/et_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="12dp"
+                        android:digits="0123456789."
+                        android:ems="10"
+                        android:fontFamily="@font/bmjua"
+                        android:inputType="number"
+                        android:maxLength="5"/>
+
+                    <EditText
+                        android:id="@+id/et_bodyfat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="12dp"
+                        android:digits="0123456789."
+                        android:ems="10"
+                        android:fontFamily="@font/bmjua"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text=""/>
+
+                    <EditText
+                        android:id="@+id/et_musclemass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="12dp"
+                        android:digits="0123456789."
+                        android:ems="10"
+                        android:fontFamily="@font/bmjua"
+                        android:inputType="number"
+                        android:maxLength="5"/>
+
+                    <EditText
+                        android:id="@+id/et_BMR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="12dp"
+                        android:digits="0123456789"
+                        android:ems="10"
+                        android:fontFamily="@font/bmjua"
+                        android:inputType="number"
+                        android:maxLength="4" />
+
+                    // EditText의 레이아웃 부분 끝
+                </LinearLayout>
+
+                // 마이페이지 밑 부분 레이아웃 끝
+            </LinearLayout>
+
+            // 식단목적 레이아웃 부분 시작
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                // 식단 목적 텍스트뷰
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_food_purpose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="식단목적"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/bmjua"/>
+                    // 식단 목적 텍스트 뷰 레이아웃 부분 끝
+                </LinearLayout>
+
+                // 식단 목적 라디오 그룹 레이아웃 시작
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center">
+
+                    <RadioGroup
+                        android:id="@+id/rdg_foodpurpose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rdb_diet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua"
+                            android:text="다이어트" />
+
+                        <RadioButton
+                            android:id="@+id/rdb_bulk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="20dp"
+                            android:fontFamily="@font/bmjua"
+                            android:text="벌크업" />
+                    </RadioGroup>
+                    // 식단 목적 라디오 그룹 레이아웃 끝
+                </LinearLayout>
+
+                // 즐겨찾는 식단 리스트 버튼 레이아웃 부분
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_gravity="center">
+
+                    <Button
+                        android:id="@+id/btn_list"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/bmjua"
+                        android:text="자주먹는 식단 리스트"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:backgroundTint="@color/buttonColor" />
+                    // 즐겨찾는 식단 리스트 버튼 레이아웃 부분 끝
+                </LinearLayout>
+
+                // 회원 정보 수정 버튼, 로그아웃 버튼 레이아웃 시작
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center">
+
+                    <Button
+                        android:id="@+id/btn_save"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/bmjua"
+                        android:text="회원정보 저장"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:backgroundTint="@color/buttonColor" />
+
+                    <Button
+                        android:id="@+id/btn_logout"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/bmjua"
+                        android:text="로그아웃"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:backgroundTint="@color/buttonColor" />
+                    // 회원정보 버튼, 로그아웃 버튼 레이아웃 부분 끝
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+

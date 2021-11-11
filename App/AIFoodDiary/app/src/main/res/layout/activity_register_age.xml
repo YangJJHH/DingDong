@@ -10,13 +10,12 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="280dp"
-        android:layout_marginRight="280dp"
-        android:text="회원가입"
         android:fontFamily="@font/bmjua"
+        android:text="회원가입"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,8 +23,6 @@
         android:id="@+id/btn_next"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
         android:fontFamily="@font/bmjua"
@@ -34,6 +31,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:backgroundTint="@color/buttonColor"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
@@ -43,8 +41,8 @@
         android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="240dp"
         android:fontFamily="@font/bmjua"
         android:text="나이"
@@ -60,21 +58,19 @@
         android:fontFamily="@font/bmjua"
         android:text="입력하신 정보를 확인해주세요. 가입 이후 수정이 불가합니다."
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_next"
+        app:layout_constraintStart_toStartOf="@+id/btn_next"
         app:layout_constraintTop_toBottomOf="@+id/et_age" />
 
     <EditText
         android:id="@+id/et_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="number"
-        android:hint="나이를 입력해주세요"
         android:fontFamily="@font/bmjua"
+        android:hint="나이를 입력해주세요"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/tv_age"
         app:layout_constraintTop_toBottomOf="@+id/tv_age" />
 

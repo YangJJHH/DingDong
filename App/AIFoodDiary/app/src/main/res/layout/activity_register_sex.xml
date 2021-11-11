@@ -10,13 +10,12 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="280dp"
-        android:layout_marginRight="280dp"
+        android:fontFamily="@font/bmjua"
         android:text="회원가입"
         android:textSize="24sp"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,26 +23,26 @@
         android:id="@+id/tv_sex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="270dp"
-        android:layout_marginRight="270dp"
+        android:fontFamily="@font/bmjua"
         android:text="성별"
         android:textSize="24sp"
-        android:fontFamily="@font/bmjua"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_m"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="180dp"
-        android:layout_marginRight="180dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="250dp"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="100dp"
         app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -56,11 +55,15 @@
 
     </androidx.cardview.widget.CardView>
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_w"
         android:layout_width="180dp"
         android:layout_height="180dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="100dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
