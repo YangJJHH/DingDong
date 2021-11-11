@@ -126,7 +126,7 @@
                    <ImageView
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:id="@+id/img_after"/>
+                       android:id="@+id/img_lunch"/>
 
                    <androidx.cardview.widget.CardView
                        android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                        android:layout_gravity="center"
                        android:backgroundTint="@color/white"
                        app:cardElevation="10dp"
-                       android:id="@+id/cv_after">
+                       android:id="@+id/cv_lunch">
 
                        <ImageView
                            android:layout_width="50dp"

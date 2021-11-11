@@ -1,6 +1,6 @@
 package com.cookandroid.aifooddiaryapp;
 
-public class Meal {
+public class Usually_Meal {
     private String name; //식단 이름
     private int kacl; //칼로리
     private int carbohydrate; //탄수화물
@@ -8,7 +8,7 @@ public class Meal {
     private int fat; //지방
 
     //생성자
-    public Meal(String name, int kacl, int carbohydrate, int protein, int fat) {
+    public Usually_Meal(String name, int kacl, int carbohydrate, int protein, int fat) {
         this.name = name;
         this.kacl = kacl;
         this.carbohydrate = carbohydrate;

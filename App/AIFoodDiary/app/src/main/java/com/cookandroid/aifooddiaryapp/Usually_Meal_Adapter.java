@@ -9,31 +9,29 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 // 커스텀 리사이클러뷰 어댑터 정의
-public class Meal_Adapter extends RecyclerView.Adapter<Meal_Adapter.CustomViewHolder> {
+public class Usually_Meal_Adapter extends RecyclerView.Adapter<Usually_Meal_Adapter.CustomViewHolder> {
 
     //Meal(식단) 객체 ArrayList 생성
-    private ArrayList<Meal> arrayList;
+    private ArrayList<Usually_Meal> arrayList;
 
-    public Meal_Adapter(ArrayList<Meal> arrayList) {
+    public Usually_Meal_Adapter(ArrayList<Usually_Meal> arrayList) {
         this.arrayList = arrayList;
     }
 
     @NonNull
     @Override
     //어댑터 생성주기 설정
-    public Meal_Adapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Usually_Meal_Adapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.list_meals,parent,false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Meal_Adapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Usually_Meal_Adapter.CustomViewHolder holder, int position) {
 
 
         holder.tv_meal_name.setText(arrayList.get(position).getName());

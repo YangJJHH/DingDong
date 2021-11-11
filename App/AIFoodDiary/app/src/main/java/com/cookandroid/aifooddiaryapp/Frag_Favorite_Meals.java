@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +17,8 @@ import java.util.ArrayList;
 
 public class Frag_Favorite_Meals extends Fragment {
     private View view;
-    private ArrayList<Meal> arrayList;
-    private Meal_Adapter meal_adapter;
+    private ArrayList<Usually_Meal> arrayList;
+    private Usually_Meal_Adapter usuallyMeal_adapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     Button btn;
@@ -33,25 +32,25 @@ public class Frag_Favorite_Meals extends Fragment {
         linearLayoutManager= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         arrayList = new ArrayList<>();
-        meal_adapter = new Meal_Adapter(arrayList);
-        recyclerView.setAdapter(meal_adapter);
+        usuallyMeal_adapter = new Usually_Meal_Adapter(arrayList);
+        recyclerView.setAdapter(usuallyMeal_adapter);
 
         btn=(Button)view.findViewById(R.id.btn_add_meal);
 
         //예시 식단 추가
-        Meal m = new Meal("제육",134,22,23,34);
+        Usually_Meal m = new Usually_Meal("제육",134,22,23,34);
         arrayList.add(m);
         //새로고침
-        meal_adapter.notifyDataSetChanged();
+        usuallyMeal_adapter.notifyDataSetChanged();
 
         //test용 메소드
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Meal m1 = new Meal("치킨",131234,322,23,34);
+                Usually_Meal m1 = new Usually_Meal("치킨",131234,322,23,34);
                 arrayList.add(m1);
                 //새로고침
-                meal_adapter.notifyDataSetChanged();
+                usuallyMeal_adapter.notifyDataSetChanged();
             }
         });
         return view;
