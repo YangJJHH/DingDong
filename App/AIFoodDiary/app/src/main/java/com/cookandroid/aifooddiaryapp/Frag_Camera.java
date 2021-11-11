@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,9 @@ public class Frag_Camera extends Fragment {
     File file;
     ImageButton btn_camera;
     String mCurrentPhotoPath;
+    TextView tv_AddFood;
+    String date,meal;
+    Bundle bundle = new Bundle();
     final private static String TAG = "CAMERA";
     @Nullable
     @Override
@@ -43,6 +47,24 @@ public class Frag_Camera extends Fragment {
         btn_camera=(ImageButton)view.findViewById(R.id.imageButton2);
         File sdcard = Environment.getExternalStorageDirectory();
         file= new File(sdcard,"capture.jpg");
+        tv_AddFood=view.findViewById(R.id.tv_AddFood);
+
+        //이전 프래그먼트에서 받아온 날짜정보 끼니정보 저장
+        Bundle bundle_pre = getArguments();
+        if(bundle_pre!=null){
+            //bundle 통해서 파일 경로 얻어오기
+            mCurrentPhotoPath= bundle_pre.getString("file_path");
+            meal=bundle_pre.getString("meal");
+            date=bundle_pre.getString("date");
+            tv_AddFood.setText(date+" 식단추가");
+        }
+
+
+
+
+        //다음 프래그먼트에도 날짜 정보 끼니 정보 전달
+        bundle.putString("meal",meal);
+        bundle.putString("date",date);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -101,7 +123,6 @@ public class Frag_Camera extends Fragment {
             /////////////////////////////////
 
             //사진 파일명을 bundle통해서 다음 프래그먼트로 넘겨준다
-            Bundle bundle = new Bundle();
             bundle.putString("file_path",mCurrentPhotoPath);
 
             //사진촬영이 완료되었을 경우 frag_add_camera로 이동
@@ -118,7 +139,7 @@ public class Frag_Camera extends Fragment {
 
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+        String imageFileName = date+meal;
         File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile( imageFileName, ".jpg", storageDir );
         mCurrentPhotoPath = image.getAbsolutePath();
