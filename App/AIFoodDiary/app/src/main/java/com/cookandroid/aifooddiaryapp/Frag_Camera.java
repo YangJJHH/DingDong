@@ -34,10 +34,11 @@ import java.util.Date;
 public class Frag_Camera extends Fragment {
     private View view;
     File file;
-    ImageButton btn_camera;
+    ImageButton btn_camera,btn_handwrite;
     String mCurrentPhotoPath;
     TextView tv_AddFood;
     String date,meal;
+    String flag="camera";
     Bundle bundle = new Bundle();
     final private static String TAG = "CAMERA";
     @Nullable
@@ -45,6 +46,7 @@ public class Frag_Camera extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_camera, container, false);
         btn_camera=(ImageButton)view.findViewById(R.id.imageButton2);
+        btn_handwrite=(ImageButton)view.findViewById(R.id.imageButton);
         File sdcard = Environment.getExternalStorageDirectory();
         file= new File(sdcard,"capture.jpg");
         tv_AddFood=view.findViewById(R.id.tv_AddFood);
@@ -82,6 +84,17 @@ public class Frag_Camera extends Fragment {
                 dispatchTakePictureIntent();
             }
         });
+        btn_handwrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                Frag_Add_HandWrite frag_add_handWrite = new Frag_Add_HandWrite();
+                frag_add_handWrite.setArguments(bundle);
+                transaction.replace(R.id.main_frame, frag_add_handWrite);
+                transaction.commit();
+            }
+        });
+
         return view;
     }
 
@@ -124,6 +137,7 @@ public class Frag_Camera extends Fragment {
 
             //사진 파일명을 bundle통해서 다음 프래그먼트로 넘겨준다
             bundle.putString("file_path",mCurrentPhotoPath);
+            bundle.putString("flag",flag);
 
             //사진촬영이 완료되었을 경우 frag_add_camera로 이동
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
