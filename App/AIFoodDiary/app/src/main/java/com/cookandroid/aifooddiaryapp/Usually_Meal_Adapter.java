@@ -35,18 +35,15 @@ public class Usually_Meal_Adapter extends RecyclerView.Adapter<Usually_Meal_Adap
 
 
         holder.tv_meal_name.setText(arrayList.get(position).getName());
-        holder.tv_carbohydrate.setText("탄수화물: "+arrayList.get(position).getCarbohydrate()+"");
-        holder.tv_kcal.setText("칼로리: "+arrayList.get(position).getKacl()+"");
-        holder.tv_protein.setText("단백질 "+arrayList.get(position).getProtein()+"");
-        holder.tv_fat.setText("지방: "+arrayList.get(position).getFat()+"");
 
         //리스트 아이템에 대한 이벤트 처리
         holder.itemView.setTag(position);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                String meal_name=holder.tv_meal_name.getText().toString();
+                String meal_name = holder.tv_meal_name.getText().toString();
                 Toast.makeText(view.getContext(),meal_name,Toast.LENGTH_SHORT).show();
             }
         });
@@ -61,17 +58,10 @@ public class Usually_Meal_Adapter extends RecyclerView.Adapter<Usually_Meal_Adap
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         protected TextView tv_meal_name;
-        protected TextView tv_kcal;
-        protected TextView tv_carbohydrate;
-        protected TextView tv_protein;
-        protected TextView tv_fat;
+
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_meal_name=(TextView)itemView.findViewById(R.id.tv_meal_name);
-            this.tv_kcal=(TextView)itemView.findViewById(R.id.tv_kcal);
-            this.tv_carbohydrate=(TextView)itemView.findViewById(R.id.tv_carbohydrate);
-            this.tv_protein=(TextView)itemView.findViewById(R.id.tv_protein);
-            this.tv_fat=(TextView)itemView.findViewById(R.id.tv_fat);
+            this.tv_meal_name = (TextView) itemView.findViewById(R.id.tv_meal_name);
         }
     }
 }

@@ -2,62 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="15dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_meal_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
             android:text="음식이름"
+            android:layout_gravity="center"
             android:fontFamily="@font/bmjua"
             android:padding="10dp"
             android:textSize="24sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_kcal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="칼로리"
-                android:fontFamily="@font/bmjua"
-                android:paddingLeft="20dp"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/tv_carbohydrate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="탄수화물"
-                android:fontFamily="@font/bmjua"
-                android:paddingLeft="20dp"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/tv_protein"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="단백질"
-                android:fontFamily="@font/bmjua"
-                android:paddingLeft="20dp"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/tv_fat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="지방"
-                android:fontFamily="@font/bmjua"
-                android:paddingLeft="20dp"
-                android:textSize="24sp" />
-        </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>
