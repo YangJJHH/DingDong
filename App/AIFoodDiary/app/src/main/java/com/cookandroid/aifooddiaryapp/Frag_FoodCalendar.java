@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -122,6 +123,11 @@ public class Frag_FoodCalendar extends Fragment {
                             //
                         }
 
+                    } else {
+                        // 가져온 데이터가 없다는 것이므로 + 모양(추가 모양)이 다시 보이게함
+                        cv_morning.setVisibility(View.VISIBLE);
+                        cv_lunch.setVisibility(View.VISIBLE);
+                        cv_dinner.setVisibility(View.VISIBLE);
                     }
 
                 } catch(JSONException e) {
@@ -150,7 +156,7 @@ public class Frag_FoodCalendar extends Fragment {
                 tv_date.setText(today);
 
                 // 현재 선택한 날짜를 담을 변수 선언
-                currentDate = year + "-" + month + 1 + "-" + dayOfMonth;
+                currentDate = year + "-" + (month + 1) + "-" + dayOfMonth;
 
                 // 푸드 다이어리 부분
                 // 현재 보고 있는 데이트에 식단이 존재 한다면 기존에 있는 다이어리 내용 가져오는 과정 필요
@@ -211,6 +217,11 @@ public class Frag_FoodCalendar extends Fragment {
                                     //
                                 }
 
+                            } else {
+                                // 가져온 데이터가 없다는 것이므로 + 모양(추가 모양)이 다시 보이게함
+                                cv_morning.setVisibility(View.VISIBLE);
+                                cv_lunch.setVisibility(View.VISIBLE);
+                                cv_dinner.setVisibility(View.VISIBLE);
                             }
 
                         } catch(JSONException e) {
