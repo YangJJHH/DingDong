@@ -88,8 +88,8 @@ public class HomeActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.main_frame, frag_set_date);
-                ft.commit();
+                Intent intent = new Intent(HomeActivity.this,Add_Set_Date.class);
+                startActivity(intent);
                 break;
             case 2:
                 ft.replace(R.id.main_frame, frag_foodcalendar);

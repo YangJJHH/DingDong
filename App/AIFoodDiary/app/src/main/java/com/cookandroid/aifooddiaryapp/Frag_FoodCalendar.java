@@ -1,6 +1,7 @@
 package com.cookandroid.aifooddiaryapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,12 +39,13 @@ public class Frag_FoodCalendar extends Fragment {
     // 날짜 변수 생성
     Date today;
     String currentDate;
+    Intent intent;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_foodcalendar, container, false);
-
+        intent = new Intent(getActivity(),Camera.class);
         // 위젯 변수 id 연결
         tv_date = (TextView) view.findViewById(R.id.tv_date);
 
@@ -255,13 +257,9 @@ public class Frag_FoodCalendar extends Fragment {
             @Override
             public void onClick(View v) {
                 //다음 프래그먼트에도 날짜 정보 끼니 정보 전달
-                bundle.putString("meal","아침");
-                bundle.putString("date",currentDate);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Frag_Camera frag_camera = new Frag_Camera();
-                frag_camera.setArguments(bundle);
-                transaction.replace(R.id.main_frame, frag_camera);
-                transaction.commit();
+                intent.putExtra("meal","아침");
+                intent.putExtra("date",currentDate);
+                startActivity(intent);
             }
         });
 
@@ -269,13 +267,9 @@ public class Frag_FoodCalendar extends Fragment {
         cv_lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("meal","점심");
-                bundle.putString("date",currentDate);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Frag_Camera frag_camera = new Frag_Camera();
-                frag_camera.setArguments(bundle);
-                transaction.replace(R.id.main_frame, frag_camera);
-                transaction.commit();
+                intent.putExtra("meal","아침");
+                intent.putExtra("date",currentDate);
+                startActivity(intent);
             }
         });
 
@@ -283,13 +277,9 @@ public class Frag_FoodCalendar extends Fragment {
         cv_dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("meal","저녁");
-                bundle.putString("date",currentDate);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Frag_Camera frag_camera = new Frag_Camera();
-                frag_camera.setArguments(bundle);
-                transaction.replace(R.id.main_frame, frag_camera);
-                transaction.commit();
+                intent.putExtra("meal","아침");
+                intent.putExtra("date",currentDate);
+                startActivity(intent);
             }
         });
 
@@ -297,13 +287,9 @@ public class Frag_FoodCalendar extends Fragment {
         cv_snack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("meal","간식");
-                bundle.putString("date",currentDate);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Frag_Camera frag_camera = new Frag_Camera();
-                frag_camera.setArguments(bundle);
-                transaction.replace(R.id.main_frame, frag_camera);
-                transaction.commit();
+                intent.putExtra("meal","아침");
+                intent.putExtra("date",currentDate);
+                startActivity(intent);
             }
         });
 
