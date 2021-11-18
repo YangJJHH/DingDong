@@ -34,8 +34,7 @@ public class Frag_FoodCalendar extends Fragment {
     TextView tv_date;
     CardView cv_morning, cv_lunch, cv_dinner, cv_snack;
     ImageView img_morning, img_after, img_dinner, img_snack;
-
-
+    Bundle bundle = new Bundle();
     // 날짜 변수 생성
     Date today;
     String currentDate;
@@ -255,8 +254,12 @@ public class Frag_FoodCalendar extends Fragment {
         cv_morning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //다음 프래그먼트에도 날짜 정보 끼니 정보 전달
+                bundle.putString("meal","아침");
+                bundle.putString("date",currentDate);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Frag_Camera frag_camera = new Frag_Camera();
+                frag_camera.setArguments(bundle);
                 transaction.replace(R.id.main_frame, frag_camera);
                 transaction.commit();
             }
@@ -266,8 +269,11 @@ public class Frag_FoodCalendar extends Fragment {
         cv_lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bundle.putString("meal","점심");
+                bundle.putString("date",currentDate);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Frag_Camera frag_camera = new Frag_Camera();
+                frag_camera.setArguments(bundle);
                 transaction.replace(R.id.main_frame, frag_camera);
                 transaction.commit();
             }
@@ -277,8 +283,11 @@ public class Frag_FoodCalendar extends Fragment {
         cv_dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bundle.putString("meal","저녁");
+                bundle.putString("date",currentDate);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Frag_Camera frag_camera = new Frag_Camera();
+                frag_camera.setArguments(bundle);
                 transaction.replace(R.id.main_frame, frag_camera);
                 transaction.commit();
             }
@@ -288,8 +297,11 @@ public class Frag_FoodCalendar extends Fragment {
         cv_snack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bundle.putString("meal","간식");
+                bundle.putString("date",currentDate);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Frag_Camera frag_camera = new Frag_Camera();
+                frag_camera.setArguments(bundle);
                 transaction.replace(R.id.main_frame, frag_camera);
                 transaction.commit();
             }

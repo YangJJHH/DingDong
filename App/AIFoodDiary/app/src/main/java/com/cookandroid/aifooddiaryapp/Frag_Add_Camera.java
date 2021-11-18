@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import java.io.BufferedInputStream;
@@ -37,6 +38,7 @@ public class Frag_Add_Camera extends Fragment {
     private ImageView img_food_photo;
     Button btn_add;
     CardView cv_add_food;
+    TextView tv_AddFood;
     CardView[] cv_food= new CardView[7];
     CardView[] cv_food_cancel= new CardView[7];
     Integer id[]={R.id.cv_food1,R.id.cv_food2,R.id.cv_food3,R.id.cv_food4,R.id.cv_food5,R.id.cv_food6,R.id.cv_food7};
@@ -53,6 +55,7 @@ public class Frag_Add_Camera extends Fragment {
         img_food_photo=(ImageView) view.findViewById(R.id.img_food_photo);
         btn_add=view.findViewById(R.id.btn_add);
         cv_add_food=view.findViewById(R.id.cv_add_food);
+        tv_AddFood=view.findViewById(R.id.tv_AddFood);
 
         //카드뷰 위젯연결
         for(int i=0; i<7; i++){
@@ -84,6 +87,13 @@ public class Frag_Add_Camera extends Fragment {
             }
         });
 
+        //+버튼 눌렀을경우 이벤트 리스너
+        cv_add_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         //frag_camera 에서 받아온 파일경로 받아오고 loadImage메소드 호출
         Bundle bundle = getArguments();
@@ -94,6 +104,7 @@ public class Frag_Add_Camera extends Fragment {
             date=bundle.getString("date");
             food_name= bundle.getString("food_name");
             flag=bundle.getString("flag");
+            tv_AddFood.setText(date+"식단추가");
         }
         if(flag.equals("camera")){
             //카메라 추가로부터 왔을경우
@@ -119,6 +130,7 @@ public class Frag_Add_Camera extends Fragment {
         cv_food[index].setVisibility(View.VISIBLE);
 
     }
+
 
     //이미지뷰에 음식사진 불러오기
     public void loadImage(){
