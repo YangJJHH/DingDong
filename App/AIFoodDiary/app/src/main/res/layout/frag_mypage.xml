@@ -214,6 +214,15 @@
                             android:text="다이어트" />
 
                         <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rdb_keep"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="1"
+                            android:text="몸무게 유지"
+                            android:fontFamily="@font/bmjua"/>
+
+                        <RadioButton
                             android:id="@+id/rdb_bulk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

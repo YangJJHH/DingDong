@@ -51,6 +51,15 @@ public class Register_body extends AppCompatActivity {
                         double userHeight = Double.parseDouble(et_height.getText().toString());
                         double userWeight = Double.parseDouble(et_weight.getText().toString());
 
+                        // 유저 기초대사량 구하여 데이트베이스에 저장
+                        int userBMR = 0;
+
+                        if(userSex.equals("M")) {
+                            userBMR =  (int) Math.floor(66.47 + (13.75 * userWeight) + (5 * userHeight) - (6.76 * userAge));
+                        } else {
+                            userBMR =  (int) Math.floor(665.1 + (9.56 * userWeight) + (1.85 * userHeight) - (4.68 * userAge));
+                        }
+
                         Response.Listener<String> responseListener = new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -75,7 +84,7 @@ public class Register_body extends AppCompatActivity {
                         };
 
                         // 서버로 Volley를 이용해서 요청을 함.
-                        RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userAge, userSex, userHeight, userWeight, responseListener);
+                        RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userAge, userSex, userHeight, userWeight, userBMR, responseListener);
                         RequestQueue queue = Volley.newRequestQueue(Register_body.this);
                         queue.add(registerRequest);
                     } else {

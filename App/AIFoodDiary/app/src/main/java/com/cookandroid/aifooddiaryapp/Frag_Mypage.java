@@ -33,7 +33,7 @@ public class Frag_Mypage extends Fragment {
     // 회원정보 위젯 변수 선언
     EditText et_height, et_weight, et_bodyfat, et_musclemass, et_BMR;
     RadioGroup rdg_foodpurpose;
-    RadioButton rdb_diet, rdb_bulk;
+    RadioButton rdb_diet, rdb_bulk, rdb_keep;
 
     @Nullable
     @Override
@@ -53,6 +53,7 @@ public class Frag_Mypage extends Fragment {
         rdg_foodpurpose = (RadioGroup) view.findViewById(R.id.rdg_foodpurpose);
         rdb_diet = (RadioButton) view.findViewById(R.id.rdb_diet);
         rdb_bulk = (RadioButton) view.findViewById(R.id.rdb_bulk);
+        rdb_keep = (RadioButton) view.findViewById(R.id.rdb_keep);
 
         // 기존 회원 정보 가져오는 과정 필요
         Response.Listener<String> getresponseListener = new Response.Listener<String>() {
@@ -70,8 +71,10 @@ public class Frag_Mypage extends Fragment {
 
                     if(getjsonObject.getString("userFoodpurpose").equals("B")) {
                         rdb_bulk.setChecked(true);
-                    } else {
+                    } else if (getjsonObject.getString("userFoodpurpose").equals("D")){
                         rdb_diet.setChecked(true);
+                    } else {
+                        rdb_keep.setChecked(true);
                     }
 
                 } catch(JSONException e) {
@@ -119,6 +122,9 @@ public class Frag_Mypage extends Fragment {
                             break;
                         case R.id.rdb_diet:
                             userFoodpurpose = 'D';
+                            break;
+                        case R.id.rdb_keep:
+                            userFoodpurpose = 'K';
                             break;
                     }
 

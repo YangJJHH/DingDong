@@ -29,8 +29,9 @@ public class Frag_Home extends Fragment {
     int today_calorie, today_carbohydrate, today_protein, today_fat;            // 오늘 먹어야할 것들 : today_0000
     int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
     double userHeight;
+    int userBMR;
 
-    ///////////// 하루 권장 섭취량 구하는 식 : ((키)-100)*0.9 * 30 (35 : 운동하는 사람들, 30 : 보통, 25 : 다이어터)
+    ///////////// 하루 권장 섭취량 구하는 법 : 기초대사량 + (기초대사량 * 0.7) 
     ///////////// 탄단지 비율 -> 전체 권장 섭취 칼로리에서 보통 사람 비율 (탄,단,지) : (6, 2, 2) , 다이어트 : 4, 3, 3, 벌크업 : 5.5, 2.5, 2
     ///////////// 구하는 법은? -> 권장 섭취 칼로리 * 해당 영양소 비율 / 해당 영양소 칼로리 (탄수화물, 단백질 : 4, 지방 :9)
     ///////////// 하루 권장 섭취 탄수화물 구하기 -> Ex) 2523 * 0.6 / 4
@@ -60,50 +61,43 @@ public class Frag_Home extends Fragment {
                     JSONObject getjsonObject = new JSONObject(response);
 
                     // 현재 회원의 키 정보 변수에 저장
-                    userHeight = Double.parseDouble(getjsonObject.getString("userHeight"));
-
-                    if(getjsonObject.getString("userBMR").equals("0")) {
-                        // userBMR이 설정이 되어있지 않다면 권장 섭취량으로 설정해줌
-                        if(getjsonObject.getString("userFoodpurpose").equals("")) {
-                            today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 30);
-                            today_carbohydrate = (int) Math.floor(today_calorie * 0.6 / 4);
-                            today_protein = (int) Math.floor(today_calorie * 0.2 / 4);
-                            today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
-
-                            // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
-                            // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
+                    userHeight = getjsonObject.getDouble("userHeight");
+                    userBMR = getjsonObject.getInt("userBMR");
 
 
-                        }   // 다이어트인 사람들의 권장 섭취량 수정
-                        else if(getjsonObject.getString("userFoodpurpose").equals("D")) {
-                            today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 25);
-                            today_carbohydrate = (int) Math.floor(today_calorie * 0.4 / 4);
-                            today_protein = (int) Math.floor(today_calorie * 0.3 / 4);
-                            today_fat = (int) Math.floor(today_calorie * 0.3 / 9);
-
-                            // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
-                            // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
-
-
-                        }   // 벌크업인 사람들의 권장 섭취량 수정
-                        else if(getjsonObject.getString("userFoodpurpose").equals("B")) {
-                            today_calorie = (int) Math.floor(((userHeight) - 100) * 0.9 * 35);
-                            today_carbohydrate = (int) Math.floor(today_calorie * 0.55 / 4);
-                            today_protein = (int) Math.floor(today_calorie * 0.25 / 4);
-                            today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
-
-                            // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
-                            // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
-
-
-                        }
-
-                    } else {
-                        // userBMR이 설정 되어 있으므로 해당 BMR을 권장 섭취량으로 설정해줌
-                        today_calorie = Integer.parseInt(getjsonObject.getString("userBMR"));
-                        today_carbohydrate = (int) Math.floor(today_calorie * 0.5 / 4);
-                        today_protein = (int) Math.floor(today_calorie * 0.3 / 4);
+                    // 식단 목적이 아직 없는 사람들의 경우 표준으로 구해서 제공해줌
+                    if(getjsonObject.getString("userFoodpurpose").equals("") || getjsonObject.getString("userFoodpurpose").equals("K")) {
+                        today_calorie = (int) Math.floor(userBMR + (userBMR * 0.4));
+                        today_carbohydrate = (int) Math.floor(today_calorie * 0.6 / 4);
+                        today_protein = (int) Math.floor(today_calorie * 0.2 / 4);
                         today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
+
+                        // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
+                        // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
+
+
+                    }   // 다이어트인 사람들의 권장 섭취량 수정
+                    else if(getjsonObject.getString("userFoodpurpose").equals("D")) {
+                        today_calorie = (int) Math.floor(userBMR + (userBMR * 0.2));
+                        today_carbohydrate = (int) Math.floor(today_calorie * 0.55 / 4);
+                        today_protein = (int) Math.floor(today_calorie * 0.15 / 4);
+                        today_fat = (int) Math.floor(today_calorie * 0.3 / 9);
+
+                        // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
+                        // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
+
+
+                    }   // 벌크업인 사람들의 권장 섭취량 수정
+                    else if(getjsonObject.getString("userFoodpurpose").equals("B")) {
+                        today_calorie = (int) Math.floor(userBMR + (userBMR * 0.6));
+                        today_carbohydrate = (int) Math.floor(today_calorie * 0.55 / 4);
+                        today_protein = (int) Math.floor(today_calorie * 0.25 / 4);
+                        today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
+
+                        // 현재 먹은 값들 가져와서 변수에 넣어줘야함!!!!!!!!!!!!!!!!!!!
+                        // 채워 넣을것!!!!!!!!!!!!!!!!!!!!!!!
+
+
                     }
 
                     // 프로그래스바 설정해줌

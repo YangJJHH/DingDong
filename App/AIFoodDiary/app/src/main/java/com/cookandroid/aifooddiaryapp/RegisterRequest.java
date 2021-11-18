@@ -12,7 +12,7 @@ public class RegisterRequest extends StringRequest{
     final static private String URL = "http://15.164.88.236/Register.php";
     private Map<String, String> map;
 
-    public RegisterRequest(String userID, String userPass, String userName, int userAge, String userSex, double userHeight, double userWeight, Response.Listener<String> listener) {
+    public RegisterRequest(String userID, String userPass, String userName, int userAge, String userSex, double userHeight, double userWeight, int userBMR, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -24,6 +24,7 @@ public class RegisterRequest extends StringRequest{
         map.put("userSex", userSex);
         map.put("userHeight", userHeight + "");
         map.put("userWeight", userWeight + "");
+        map.put("userBMR", userBMR + "");
     }
 
     @Override
