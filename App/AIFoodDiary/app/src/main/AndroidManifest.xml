@@ -18,8 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AIFoodDiaryApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".Register_id_pass"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".Register_id_pass" />
         <activity android:name=".Register_sex" />
         <activity android:name=".Register_age" />
         <activity android:name=".Register_name" />
