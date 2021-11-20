@@ -22,10 +22,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
-import org.tensorflow.lite.Interpreter;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

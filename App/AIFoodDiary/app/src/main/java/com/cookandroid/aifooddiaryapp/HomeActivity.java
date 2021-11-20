@@ -28,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
     // 프래그먼트 변수 선언
     private Frag_Home frag_home;
     private Frag_FoodCalendar frag_foodcalendar;
-    private Frag_Set_Date frag_set_date;
     private Frag_Mypage frag_mypage;
 
     // 여러 화면에서 userID를 통해 데이터베이스에서 해당 회원의 값을 가져오기 위해 static 선언
@@ -70,7 +69,6 @@ public class HomeActivity extends AppCompatActivity {
         // 프래그먼트 생성
         frag_home = new Frag_Home();
         frag_foodcalendar = new Frag_FoodCalendar();
-        frag_set_date = new Frag_Set_Date();
         frag_mypage =  new Frag_Mypage();
 
         // 초기 표시 화면을 홈화면으로 하기 위해 매개변수 0을 줌
