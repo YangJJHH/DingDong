@@ -79,16 +79,18 @@ public class Frag_Add_HandWrite extends Fragment {
 
                     SpinnerAdapter adapter2 = new SpinnerAdapter(food_names, getContext());
                     spinner.setAdapter(adapter2);
+                    spinner.setSelection(0, false);
 
                     // 스피너 아이템이 선택 되면 autoText에 띄워줌
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            auto.setText(spinner.getItemAtPosition(position)+"");
+                            auto.setText(food_names[position]);
                         }
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
+                            auto.setText("");
                         }
                     });
 
