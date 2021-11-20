@@ -27,6 +27,21 @@
         android:singleLine="true"
         android:drawableLeft="@drawable/custom_handwrite_icon"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="자주 먹는 식단"
+        android:fontFamily="@font/bmjua"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_margin="20dp"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="350dp"
+        android:layout_gravity="center"
+        android:layout_height="40dp"/>
+
     <Button
         android:id="@+id/btn_add"
         android:layout_width="match_parent"
