@@ -12,11 +12,12 @@ public class SetUsuallyMealRequest extends StringRequest {
     final static private String URL = "http://15.164.88.236/SetUserUsuallyMeal.php";
     private Map<String, String> map;
 
-    public SetUsuallyMealRequest(String userID, Response.Listener<String>listener) {
+    public SetUsuallyMealRequest(String userID, String mealTable, Response.Listener<String>listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
         map.put("userID", userID);
+        map.put("mealTable", mealTable);
     }
 
     @Override
