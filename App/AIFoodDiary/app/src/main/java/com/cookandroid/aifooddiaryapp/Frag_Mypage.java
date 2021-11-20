@@ -95,8 +95,8 @@ public class Frag_Mypage extends Fragment {
             public void onClick(View view) {
 
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Frag_Favorite_Meals frag_favorite_meals = new Frag_Favorite_Meals();
-                transaction.replace(R.id.main_frame, frag_favorite_meals);
+                Frag_Usually_Meals frag_usually_meals = new Frag_Usually_Meals();
+                transaction.replace(R.id.main_frame, frag_usually_meals);
                 transaction.commit();
             }
         });

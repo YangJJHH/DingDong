@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:id="@+id/auto_name"
+                    android:hint="음식 이름을 입력해주세요"
+                    android:background="@drawable/custom_input_text"
+                    android:drawableStart="@drawable/custom_handwrite_icon"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/custom_handwrite_icon"/>
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bmjua"
+                    android:id="@+id/btn_add_meal"
+                    android:text="추가"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/mainColor"/>
+
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarSize="5dp"
+                android:scrollbarThumbVertical="@android:color/darker_gray"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btn_save"
+                android:layout_weight="5"
+                android:text="자주 먹는 식단 저장"
+                android:backgroundTint="@color/buttonColor"
+                android:textSize="20sp"
+                android:background="@drawable/round_button"
+                android:fontFamily="@font/bmjua"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
