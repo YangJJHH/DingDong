@@ -1,11 +1,16 @@
 package com.cookandroid.aifooddiaryapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
@@ -17,10 +22,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
+import org.tensorflow.lite.Interpreter;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 
 public class Add_Camera extends AppCompatActivity {
+    Bitmap bitmap;
     private ImageView img_food_photo;
     Button btn_add;
     CardView cv_add_food;
@@ -117,6 +131,8 @@ public class Add_Camera extends AppCompatActivity {
         if(flag.equals("camera")){
             //카메라 추가로부터 왔을경우
             loadImage();
+            modelRun();
+            addFood();
         }
         else{
             //수기추가로부터 왔을경우
@@ -144,7 +160,6 @@ public class Add_Camera extends AppCompatActivity {
 
     //이미지뷰에 음식사진 불러오기
     public void loadImage(){
-        Bitmap bitmap;
         File file = new File(mCurrentPhotoPath);
         if (Build.VERSION.SDK_INT >= 29) {
             ImageDecoder.Source source = ImageDecoder.createSource(this.getContentResolver(), Uri.fromFile(file));
@@ -169,4 +184,6 @@ public class Add_Camera extends AppCompatActivity {
             }
         }
     }
+    public void modelRun(){}
+
 }
