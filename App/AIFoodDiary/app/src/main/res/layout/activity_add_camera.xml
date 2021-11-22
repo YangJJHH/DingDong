@@ -205,7 +205,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="300dp"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
@@ -229,8 +229,8 @@
                         android:visibility="gone"
                         android:id="@+id/cv_food1"
                         android:layout_margin="10dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/white"
                         app:cardElevation="8dp">
@@ -240,7 +240,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_margin="10dp"/>
 
                         <androidx.cardview.widget.CardView
@@ -269,8 +269,8 @@
                         android:visibility="gone"
                         android:id="@+id/cv_food2"
                         android:layout_margin="10dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/white"
                         app:cardElevation="8dp">
@@ -280,7 +280,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_margin="10dp"/>
 
                         <androidx.cardview.widget.CardView
@@ -307,8 +307,8 @@
                         android:visibility="gone"
                         android:id="@+id/cv_food3"
                         android:layout_margin="10dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/white"
                         app:cardElevation="8dp">
@@ -318,7 +318,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_margin="10dp"/>
 
                         <androidx.cardview.widget.CardView
@@ -344,8 +344,8 @@
                         android:visibility="gone"
                         android:id="@+id/cv_food4"
                         android:layout_margin="10dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/white"
                         app:cardElevation="8dp">
@@ -355,7 +355,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_margin="10dp"/>
 
                         <androidx.cardview.widget.CardView
@@ -380,8 +380,8 @@
                         android:visibility="gone"
                         android:id="@+id/cv_food5"
                         android:layout_margin="10dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/white"
                         app:cardElevation="8dp">
@@ -391,7 +391,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_margin="10dp"/>
 
                         <androidx.cardview.widget.CardView
@@ -417,8 +417,8 @@
                         android:visibility="gone"
                         android:id="@+id/cv_food6"
                         android:layout_margin="10dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/white"
                         app:cardElevation="8dp">
@@ -428,7 +428,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_margin="10dp"/>
 
                         <androidx.cardview.widget.CardView
@@ -455,8 +455,8 @@
                         android:visibility="gone"
                         android:id="@+id/cv_food7"
                         android:layout_margin="10dp"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
                         android:backgroundTint="@color/white"
                         app:cardElevation="8dp">
@@ -466,7 +466,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/bmjua"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_margin="10dp"/>
 
                         <androidx.cardview.widget.CardView

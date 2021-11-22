@@ -86,9 +86,16 @@ public class Add_Camera extends AppCompatActivity {
                     JSONObject getjsonObject = new JSONObject(response);
 
                     foodSize = getjsonObject.getString("foodSize");
+                    foodCarbo = getjsonObject.getString("foodCarbo");
+                    foodProtein = getjsonObject.getString("foodProtein");
+                    foodFat = getjsonObject.getString("foodFat");
+                    foodKcal = getjsonObject.getString("foodKcal");
+
+
                     Toast.makeText(getApplicationContext(), foodSize+":1", Toast.LENGTH_SHORT).show();
                     //카드뷰 정보입력
-                    tv_food_info[index].setText("음식이름:"+food_name +"\n음식 섭취량:" + foodSize);
+                    String info="음식이름: "+food_name +"\n\n음식 섭취량: " +foodSize+"g"+"\n\n칼로리: " + foodKcal+"Kcal"+"\n\n탄수화물: " + foodCarbo+"g"+"\n\n단백질: " + foodProtein+"g"+"\n\n지방: " + foodFat+"g";
+                    tv_food_info[index].setText(info);
                     //
                     cv_food[index].setVisibility(View.VISIBLE);
                     if(userMeal.equals("")){
