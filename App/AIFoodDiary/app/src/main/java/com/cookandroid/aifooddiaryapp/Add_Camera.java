@@ -91,6 +91,11 @@ public class Add_Camera extends AppCompatActivity {
                     tv_food_info[index].setText("음식이름:"+food_name +"\n음식 섭취량:" + foodSize);
                     //
                     cv_food[index].setVisibility(View.VISIBLE);
+                    if(userMeal.equals("")){
+                        userMeal+=food_name;
+                    }else{
+                        userMeal+=(","+food_name);
+                    }
 
                 } catch(JSONException e) {
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -155,12 +160,22 @@ public class Add_Camera extends AppCompatActivity {
         for(i=0; i<7; i++){
             final int index;
             index=i;
-
             cv_food_cancel[index].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //x버튼 클릭시 식단 지우기
                     cv_food[index].setVisibility(View.GONE);
+                    String tmp1[]=userMeal.split(",");
+                    String rst="";
+                    int length=tmp1.length-1;
+                    for(int i=0; i<length; i++){
+                        if(i==length-1){
+                            rst+=tmp1[i];
+                        }else{
+                            rst+=tmp1[i]+",";
+                        }
+                    }
+                    userMeal=rst;
                 }
             });
         }
@@ -209,7 +224,7 @@ public class Add_Camera extends AppCompatActivity {
                 FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, userMeal, mCurrentPhotoPath,setresponseListener);
                 RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
                 queue.add(foodCalendarSetRequest);
-
+                Toast.makeText(getApplicationContext(),userMeal,Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -240,13 +255,7 @@ public class Add_Camera extends AppCompatActivity {
 
         }
 
-        // btn_add(식단 기록하기) 버튼 클릭 이벤트 처리
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
     }   // onCreate 메소드 종료 부분
 
