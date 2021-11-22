@@ -16,18 +16,33 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Add_Camera extends AppCompatActivity {
     Bitmap bitmap;
@@ -43,6 +58,46 @@ public class Add_Camera extends AppCompatActivity {
     Integer id3[]={R.id.tv_food1_info,R.id.tv_food2_info,R.id.tv_food3_info,R.id.tv_food4_info,R.id.tv_food5_info,R.id.tv_food6_info,R.id.tv_food7_info,};
     //이미지 파일경로
     String mCurrentPhotoPath,date,meal,food_name,flag;
+
+    // 음식 정보 변수!!!!!!!!!
+    String foodK_name, foodSize, foodCarbo, foodProtein, foodFat, foodKcal;
+
+    // 푸드 캘린더에 작성할 때 mealType 변수 필요 아침 : M, 점심 : L, 저녁 : D, 간식 : S
+    String mealType = "";
+
+    // 음식 사진 서버에 올릴 변수들 선언
+    //
+    //
+    String encodeImageString;
+    private static final String url = "http://15.164.88.236/InsertPhotoInDB.php";
+
+
+    // DB에서 푸드 정보 가져오는 메소드
+    public void getFoodInfo(String food_name) {
+        // 기존 회원 정보 가져오는 과정 필요
+        Response.Listener<String> getresponseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject getjsonObject = new JSONObject(response);
+
+                    foodSize = getjsonObject.getString("foodSize");
+
+
+                } catch(JSONException e) {
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        // 서버로 Volley를 이용해서 요청을 함.
+        FoodInfo_GetRequest foodInfoGetRequest = new FoodInfo_GetRequest(food_name, getresponseListener);
+        RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
+        queue.add(foodInfoGetRequest);
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -105,6 +160,46 @@ public class Add_Camera extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(meal.equals("아침")) {
+                    mealType = "M";
+                } else if(meal.equals("점심")) {
+                    mealType = "L";
+                } else if(meal.equals("저녁")) {
+                    mealType = "D";
+                } else if(meal.equals("간식")) {
+                    mealType = "S";
+                }
+
+                // 해당 회원의 식단 정보 DB에 저장
+                Response.Listener<String> setresponseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject getjsonObject = new JSONObject(response);
+
+                            boolean success = getjsonObject.getBoolean("success");
+
+                            if(success) {
+                                Toast.makeText(getApplicationContext(), "식단을 정상적으로 등록하였습니다.", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(Add_Camera.this, HomeActivity.class);
+                                startActivity(intent);
+                            } else
+                                Toast.makeText(getApplicationContext(), "식단을 등록하는데 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+
+                        } catch(JSONException e) {
+                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                // 서버로 Volley를 이용해서 요청을 함.
+                // String userID, String mealDate, String mealType, String userMeal, listener
+                FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, meal, setresponseListener);
+                RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
+                queue.add(foodCalendarSetRequest);
 
             }
         });
@@ -132,11 +227,20 @@ public class Add_Camera extends AppCompatActivity {
         }
         else{
             //수기추가로부터 왔을경우
-            Toast.makeText(getApplicationContext(),"rs", Toast.LENGTH_SHORT).show();
             addFood();
 
         }
-    }
+
+        // btn_add(식단 기록하기) 버튼 클릭 이벤트 처리
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }   // onCreate 메소드 종료 부분
+
     public void addFood(){
         int index=-1;
         for(int i=0; i<7; i++){
@@ -145,9 +249,12 @@ public class Add_Camera extends AppCompatActivity {
                 break;
             }
         }
-        //
+
+        getFoodInfo(food_name);
+
         //카드뷰 정보입력
-        tv_food_info[index].setText("음식이름:"+food_name);
+        tv_food_info[index].setText("음식이름:"+food_name +"\n음식 섭취량:" + foodSize);
+
         //
         cv_food[index].setVisibility(View.VISIBLE);
 
@@ -164,6 +271,8 @@ public class Add_Camera extends AppCompatActivity {
                 Bitmap targetBmp = bitmap.copy(Bitmap.Config.ARGB_8888, false);
                 if (bitmap != null) {
                     img_food_photo.setImageBitmap(bitmap);
+                    encodeBitmapImage(bitmap);
+                    uploadDataToDB();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -174,12 +283,56 @@ public class Add_Camera extends AppCompatActivity {
                 Bitmap targetBmp = bitmap.copy(Bitmap.Config.ARGB_8888, false);
                 if (bitmap != null) {
                     img_food_photo.setImageBitmap(bitmap);
+                    encodeBitmapImage(bitmap);
+                    uploadDataToDB();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    // DB에 파일 올릴 메소드
+    public void uploadDataToDB() {
+        final String name = date;
+
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError
+            {
+                Map<String, String> map = new HashMap<>();
+                // 1번 인자는 PHP 파일의 $_POST['']; 부분과 똑같이 해줘야 한다
+                map.put("name", name);
+                map.put("upload", encodeImageString);
+                return map;
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(request);
+    }
+
+    private void encodeBitmapImage(Bitmap bitmap)
+    {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+        byte[] bytesOfImage = byteArrayOutputStream.toByteArray();
+        encodeImageString = android.util.Base64.encodeToString(bytesOfImage, Base64.DEFAULT);
+    }
+
+
+
     public void modelRun(){}
 
 }

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cookandroid.aifooddiaryapp">
+
     <!-- 인터넷 권한 선언 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 카메라를 사용하는 어플임을 정한다 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 카메라를 사용하는 어플임을 정한다 -->
+    <!-- 카메라 권한 선언 -->
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" /> <!-- 카메라 권한 선언 -->
+        android:required="true" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 파일 업로드할 때 외부 저장소에 대한 퍼미션 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -54,6 +60,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 
 </manifest>

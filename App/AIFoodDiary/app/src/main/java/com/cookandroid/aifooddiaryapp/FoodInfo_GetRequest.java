@@ -12,12 +12,12 @@ public class FoodInfo_GetRequest extends StringRequest{
     final static private String URL = "http://15.164.88.236/GetFoodInfo.php";
     private Map<String, String> map;
 
-    public FoodInfo_GetRequest(String foodK_Name, String currentDate, Response.Listener<String> listener) {
+    public FoodInfo_GetRequest(String foodK_Name, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
 
-        map.put("foodK_name", foodK_Name);
+        map.put("foodK_Name", foodK_Name);
     }
 
     @Override
