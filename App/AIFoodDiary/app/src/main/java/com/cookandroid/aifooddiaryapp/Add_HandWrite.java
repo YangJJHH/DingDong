@@ -60,6 +60,7 @@ public class Add_HandWrite extends AppCompatActivity {
         auto.setAdapter(adapter);
         if(flag==null){
             flag="hand";
+            Toast.makeText(getApplicationContext(),"result:calendar", Toast.LENGTH_SHORT).show();
         }
 
         else if(flag.equals("add_camera")){
@@ -114,7 +115,6 @@ public class Add_HandWrite extends AppCompatActivity {
             public void onClick(View v) {
                 food_name = auto.getText().toString();
                 if(flag.equals("add_camera")){
-                    Toast.makeText(getApplicationContext(),"result", Toast.LENGTH_SHORT).show();
                     Intent intent_res = new Intent();
                     intent_res.putExtra("meal", meal);
                     intent_res.putExtra("date", date);

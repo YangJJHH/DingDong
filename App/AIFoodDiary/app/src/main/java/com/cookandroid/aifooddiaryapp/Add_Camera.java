@@ -58,6 +58,7 @@ public class Add_Camera extends AppCompatActivity {
     Integer id3[]={R.id.tv_food1_info,R.id.tv_food2_info,R.id.tv_food3_info,R.id.tv_food4_info,R.id.tv_food5_info,R.id.tv_food6_info,R.id.tv_food7_info,};
     //이미지 파일경로
     String mCurrentPhotoPath,date,meal,food_name,flag;
+    int index;
 
     // 음식 정보 변수!!!!!!!!!
     String foodK_name, foodSize, foodCarbo, foodProtein, foodFat, foodKcal;
@@ -73,7 +74,7 @@ public class Add_Camera extends AppCompatActivity {
 
 
     // DB에서 푸드 정보 가져오는 메소드
-    public void getFoodInfo(String food_name) {
+    public void getFoodInfo(String food_name,int index) {
         // 기존 회원 정보 가져오는 과정 필요
         Response.Listener<String> getresponseListener = new Response.Listener<String>() {
             @Override
@@ -82,7 +83,11 @@ public class Add_Camera extends AppCompatActivity {
                     JSONObject getjsonObject = new JSONObject(response);
 
                     foodSize = getjsonObject.getString("foodSize");
-
+                    Toast.makeText(getApplicationContext(), foodSize+":1", Toast.LENGTH_SHORT).show();
+                    //카드뷰 정보입력
+                    tv_food_info[index].setText("음식이름:"+food_name +"\n음식 섭취량:" + foodSize);
+                    //
+                    cv_food[index].setVisibility(View.VISIBLE);
 
                 } catch(JSONException e) {
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -91,11 +96,12 @@ public class Add_Camera extends AppCompatActivity {
                 }
             }
         };
-
+        Toast.makeText(getApplicationContext(), foodSize+":2", Toast.LENGTH_SHORT).show();
         // 서버로 Volley를 이용해서 요청을 함.
         FoodInfo_GetRequest foodInfoGetRequest = new FoodInfo_GetRequest(food_name, getresponseListener);
         RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
         queue.add(foodInfoGetRequest);
+
 
     }
 
@@ -242,22 +248,14 @@ public class Add_Camera extends AppCompatActivity {
     }   // onCreate 메소드 종료 부분
 
     public void addFood(){
-        int index=-1;
+        index=-1;
         for(int i=0; i<7; i++){
             if(cv_food[i].getVisibility()==View.GONE){
                 index=i;
                 break;
             }
         }
-
-        getFoodInfo(food_name);
-
-        //카드뷰 정보입력
-        tv_food_info[index].setText("음식이름:"+food_name +"\n음식 섭취량:" + foodSize);
-
-        //
-        cv_food[index].setVisibility(View.VISIBLE);
-
+        getFoodInfo(food_name,index);
     }
 
 
