@@ -66,6 +66,9 @@ public class Add_Camera extends AppCompatActivity {
     // 푸드 캘린더에 작성할 때 mealType 변수 필요 아침 : M, 점심 : L, 저녁 : D, 간식 : S
     String mealType = "";
 
+    // DB에 넣을 음식 이름!!!!!
+    String userMeal = "";
+
     // 음식 사진 서버에 올릴 변수들 선언
     //
     //
@@ -202,8 +205,8 @@ public class Add_Camera extends AppCompatActivity {
                 };
 
                 // 서버로 Volley를 이용해서 요청을 함.
-                // String userID, String mealDate, String mealType, String userMeal, listener
-                FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, meal, setresponseListener);
+                // String userID, String mealDate, String mealType, String userMeal, String mealPhoto, listener
+                FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, userMeal, mCurrentPhotoPath,setresponseListener);
                 RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
                 queue.add(foodCalendarSetRequest);
 
