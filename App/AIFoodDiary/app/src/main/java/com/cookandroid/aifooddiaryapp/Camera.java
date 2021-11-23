@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,11 +17,13 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Camera extends AppCompatActivity {
@@ -35,6 +36,9 @@ public class Camera extends AppCompatActivity {
     final private static String TAG = "CAMERA";
     Intent intent_c;
     Intent intent_h;
+    ListView lv_recommend;
+    ArrayList<list_recommend_item> mitems = new ArrayList<>();
+    Adapter_Recommed adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,23 @@ public class Camera extends AppCompatActivity {
         File sdcard = Environment.getExternalStorageDirectory();
         file= new File(sdcard,"capture.jpg");
         tv_AddFood=findViewById(R.id.tv_AddFood);
+        lv_recommend=findViewById(R.id.lv_recommend);
+
+        //어댑터 연결
+        adapter=new Adapter_Recommed(this,mitems);
+        lv_recommend.setAdapter(adapter);
+        for(int i=0; i<3; i++){
+            list_recommend_item item = new list_recommend_item();
+            item.setKacl("2300kcal");
+            item.setCarbo("23");
+            item.setProtein("12");
+            item.setFat("0");
+            mitems.add(item);
+            adapter.setItem(mitems);
+        }
+
+
+
 
 
         Intent intent_r = getIntent();
