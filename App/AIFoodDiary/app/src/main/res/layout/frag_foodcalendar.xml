@@ -81,6 +81,15 @@
                        android:layout_height="match_parent"
                        android:id="@+id/img_morning"/>
 
+                   // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:id="@+id/img_no_image_morning"
+                       android:layout_gravity="center"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_no_food_24"/>
+
                    <androidx.cardview.widget.CardView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -127,6 +136,15 @@
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:id="@+id/img_lunch"/>
+
+                   // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:id="@+id/img_no_image_lunch"
+                       android:layout_gravity="center"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_no_food_24"/>
 
                    <androidx.cardview.widget.CardView
                        android:layout_width="wrap_content"
@@ -175,6 +193,15 @@
                        android:layout_height="match_parent"
                        android:id="@+id/img_dinner"/>
 
+                   // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:id="@+id/img_no_image_dinner"
+                       android:layout_gravity="center"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_no_food_24"/>
+
                    <androidx.cardview.widget.CardView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -221,6 +248,15 @@
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:id="@+id/img_snack"/>
+
+                   // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:id="@+id/img_no_image_snack"
+                       android:layout_gravity="center"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_no_food_24"/>
 
                    <androidx.cardview.widget.CardView
                        android:layout_width="wrap_content"
