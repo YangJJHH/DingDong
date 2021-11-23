@@ -75,6 +75,7 @@ public class Add_Camera extends AppCompatActivity {
     private static final String url = "http://15.164.88.236/InsertPhotoInDB.php";
 
 
+
     // DB에서 푸드 정보 가져오는 메소드
     public void getFoodInfo(String food_name) {
         // 기존 회원 정보 가져오는 과정 필요
