@@ -53,6 +53,17 @@ public class Frag_Home extends Fragment {
         tv_current_protein = (TextView) view. findViewById(R.id.tv_current_protein);
         tv_current_fat = (TextView) view.findViewById(R.id.tv_current_fat);
 
+        //현재 정보 프로그래스바에 표시
+        prgbar_calorie.setProgress(current_calorie);
+        prgbar_carbohydrate.setProgress(current_carbohydrate);
+        prgbar_protein.setProgress(current_protein);
+        prgbar_fat.setProgress(current_fat);
+        // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
+        tv_current_calorie.setText(current_calorie + " / " + Frag_Home.today_calorie + " kcal");
+        tv_current_carbohydrate.setText(current_carbohydrate + " / " + Frag_Home.today_carbohydrate + " g");
+        tv_current_protein.setText(current_protein + " / " + Frag_Home.today_protein + " g");
+        tv_current_fat.setText(current_fat + " / " + Frag_Home.today_fat + " g");
+
         // 기존 회원 정보 가져오는 과정 필요
         Response.Listener<String> getresponseListener = new Response.Listener<String>() {
             @Override

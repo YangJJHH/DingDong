@@ -33,6 +33,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +66,13 @@ public class Add_Camera extends AppCompatActivity {
 
     // DB에 넣을 음식 이름!!!!!
     String userMeal = "";
-
+    //프로그래스바 업데이트 위해 날짜 확인 변수
+    boolean date_Check;
+    //프로그래스바 정보 임시저장
+    //오늘
+    int tmp[]={Frag_Home.current_calorie,Frag_Home.current_carbohydrate,Frag_Home.current_protein,Frag_Home.current_fat};
+    //오늘 아닌경우
+    int  c[]={0,0,0,0};
     // 음식 사진 서버에 올릴 변수들 선언
     //
     //
@@ -93,18 +101,32 @@ public class Add_Camera extends AppCompatActivity {
                     tv_food_info[index].setText(info);
                     //
                     cv_food[index].setVisibility(View.VISIBLE);
-                    //프로그래스바 설정
-                    Frag_Home.current_calorie+=(int)Math.floor(Double.parseDouble(foodKcal));
-                    Frag_Home.current_carbohydrate+=(int)Math.floor(Double.parseDouble(foodCarbo));
-                    Frag_Home.current_fat+=(int)Math.floor(Double.parseDouble(foodFat));
-                    Frag_Home.current_protein+=(int)Math.floor(Double.parseDouble(foodProtein));
+                    //날짜 확인
+                    int kcal=(int)Math.floor(Double.parseDouble(foodKcal));
+                    int carbo=(int)Math.floor(Double.parseDouble(foodCarbo));
+                    int protein=(int)Math.floor(Double.parseDouble(foodProtein));
+                    int fat=(int)Math.floor(Double.parseDouble(foodFat));
+                    if(date_Check){
+                        //프로그래스바 설정을 위한 임시데이터 저장
+                        tmp[0]+=kcal;
+                        tmp[1]+=carbo;
+                        tmp[2]+=protein;
+                        tmp[3]+=fat;
 
+                    }
+                    else{
+                        c[0]+=kcal;
+                        c[1]+=carbo;
+                        c[2]+=protein;
+                        c[3]+=fat;
+
+                    }
                     //나중에 카드뷰 삭제할때 프로그래스바에서도 수정해줘야 하기 때문에 수치 저장
-                    card_infoInt[index][0]=(int)Math.floor(Double.parseDouble(foodKcal));
-                    card_infoInt[index][1]=(int)Math.floor(Double.parseDouble(foodCarbo));
-                    card_infoInt[index][2]=(int)Math.floor(Double.parseDouble(foodFat));
-                    card_infoInt[index][3]=(int)Math.floor(Double.parseDouble(foodProtein));
-                    setProgressBar();
+                    card_infoInt[index][0]=kcal;
+                    card_infoInt[index][1]=carbo;
+                    card_infoInt[index][2]=protein;
+                    card_infoInt[index][3]=fat;
+                    setProgressBar(date_Check);
                     if(userMeal.equals("")){
                         userMeal+=food_name;
                     }else{
@@ -140,22 +162,40 @@ public class Add_Camera extends AppCompatActivity {
         }
     }
     //프로그래스바 설정 함수
-    public void setProgressBar(){
+    public void setProgressBar(boolean date_Check){
         // 프로그래스바 설정해줌
         prgbar_calorie.setMax(Frag_Home.today_calorie);
         prgbar_carbohydrate.setMax(Frag_Home.today_carbohydrate);
         prgbar_protein.setMax(Frag_Home.today_protein);
         prgbar_fat.setMax(Frag_Home.today_fat);
-        //현재 정보 프로그래스바에 표시
-        prgbar_calorie.setProgress(Frag_Home.current_calorie);
-        prgbar_carbohydrate.setProgress(Frag_Home.current_carbohydrate);
-        prgbar_protein.setProgress(Frag_Home.current_protein);
-        prgbar_fat.setProgress(Frag_Home.current_fat);
-        // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
-        tv_current_calorie.setText(Frag_Home.current_calorie + " / " + Frag_Home.today_calorie + " kcal");
-        tv_current_carbohydrate.setText(Frag_Home.current_carbohydrate + " / " + Frag_Home.today_carbohydrate + " g");
-        tv_current_protein.setText(Frag_Home.current_protein + " / " + Frag_Home.today_protein + " g");
-        tv_current_fat.setText(Frag_Home.current_fat + " / " + Frag_Home.today_fat + " g");
+        //오늘 날짜인경우
+        if(date_Check){
+            //현재 정보 프로그래스바에 표시
+            prgbar_calorie.setProgress(tmp[0]);
+            prgbar_carbohydrate.setProgress(tmp[1]);
+            prgbar_protein.setProgress(tmp[2]);
+            prgbar_fat.setProgress(tmp[3]);
+            // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
+            tv_current_calorie.setText(tmp[0] + " / " + Frag_Home.today_calorie + " kcal");
+            tv_current_carbohydrate.setText(tmp[1] + " / " + Frag_Home.today_carbohydrate + " g");
+            tv_current_protein.setText(tmp[2] + " / " + Frag_Home.today_protein + " g");
+            tv_current_fat.setText(tmp[3] + " / " + Frag_Home.today_fat + " g");
+        }
+        //오늘 날짜가 아닌경우
+        else{
+            //현재 정보 프로그래스바에 표시
+            prgbar_calorie.setProgress(c[0]);
+            prgbar_carbohydrate.setProgress(c[1]);
+            prgbar_protein.setProgress(c[2]);
+            prgbar_fat.setProgress(c[3]);
+            // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
+            tv_current_calorie.setText(c[0] + " / " + Frag_Home.today_calorie + " kcal");
+            tv_current_carbohydrate.setText(c[1] + " / " + Frag_Home.today_carbohydrate + " g");
+            tv_current_protein.setText(c[2] + " / " + Frag_Home.today_protein + " g");
+            tv_current_fat.setText(c[3] + " / " + Frag_Home.today_fat + " g");
+
+        }
+
 
     }
 
@@ -179,7 +219,9 @@ public class Add_Camera extends AppCompatActivity {
         tv_current_carbohydrate = (TextView)findViewById(R.id.tv_currentcarbohydrate);
         tv_current_protein = (TextView)findViewById(R.id.tv_currentprotein);
         tv_current_fat = (TextView)findViewById(R.id.tv_currentfat);
-
+        //현재 날짜 확인
+        Date today= new Date();
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(today);
 
         //이전 엑티비티에서 받아온 데이터 받아오기
         Intent intent_r=getIntent();
@@ -192,6 +234,11 @@ public class Add_Camera extends AppCompatActivity {
             tv_AddFood.setText(date+"식단추가");
             if(mCurrentPhotoPath == null) {
                 mCurrentPhotoPath = "";
+            }
+            if(date.equals(currentDate)){
+                date_Check=true;
+            }else{
+                date_Check=false;
             }
         }
 
@@ -223,15 +270,23 @@ public class Add_Camera extends AppCompatActivity {
                         }
                     }
                     //프로그래스바 업데이트
-                    Frag_Home.current_calorie-=card_infoInt[index][0];
-                    Frag_Home.current_carbohydrate-=card_infoInt[index][1];
-                    Frag_Home.current_protein-=card_infoInt[index][2];
-                    Frag_Home.current_fat-=card_infoInt[index][3];
+                    if(date_Check){
+                        tmp[0]-=card_infoInt[index][0];
+                        tmp[1]-=card_infoInt[index][1];
+                        tmp[2]-=card_infoInt[index][2];
+                        tmp[3]-=card_infoInt[index][3];
+                    }
+                    else{
+                        c[0]-=card_infoInt[index][0];
+                        c[1]-=card_infoInt[index][1];
+                        c[2]-=card_infoInt[index][2];
+                        c[3]-=card_infoInt[index][3];
+                    }
                     card_infoInt[index][0]=0;
                     card_infoInt[index][1]=0;
                     card_infoInt[index][2]=0;
                     card_infoInt[index][3]=0;
-                    setProgressBar();
+                    setProgressBar(date_Check);
                     userMeal=rst;
                 }
             });
@@ -277,6 +332,12 @@ public class Add_Camera extends AppCompatActivity {
                         }
                     }
                 };
+                if(date_Check){
+                    Frag_Home.current_calorie+=tmp[0];
+                    Frag_Home.current_carbohydrate+=tmp[1];
+                    Frag_Home.current_protein+=tmp[2];
+                    Frag_Home.current_fat+=tmp[3];
+                }
 
                 // 서버로 Volley를 이용해서 요청을 함.
                 // String userID, String mealDate, String mealType, String userMeal, String mealPhoto, listener
