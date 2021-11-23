@@ -20,6 +20,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,10 @@ public class Add_Camera extends AppCompatActivity {
     //이미지 파일경로
     String mCurrentPhotoPath,date,meal,food_name,flag;
     int index;
+    ProgressBar prgbar_calorie, prgbar_protein, prgbar_carbohydrate, prgbar_fat;
+    int today_calorie, today_carbohydrate, today_protein, today_fat;            // 오늘 먹어야할 것들 : today_0000
+    int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
+    TextView tv_current_calorie, tv_current_protein, tv_current_carbohydrate, tv_current_fat;
 
     // 음식 정보 변수!!!!!!!!!
     String foodK_name, foodSize, foodCarbo, foodProtein, foodFat, foodKcal;
@@ -74,8 +79,8 @@ public class Add_Camera extends AppCompatActivity {
     //
     String encodeImageString;
     private static final String url = "http://15.164.88.236/InsertPhotoInDB.php";
-
-
+    //카드뷰에 있는 영양정보 수치 저장할 배열
+    int card_infoInt[][]={{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     // DB에서 푸드 정보 가져오는 메소드
     public void getFoodInfo(String food_name,int index) {
         // 기존 회원 정보 가져오는 과정 필요
@@ -92,12 +97,23 @@ public class Add_Camera extends AppCompatActivity {
                     foodKcal = getjsonObject.getString("foodKcal");
 
 
-                    Toast.makeText(getApplicationContext(), foodSize+":1", Toast.LENGTH_SHORT).show();
                     //카드뷰 정보입력
-                    String info="음식이름: "+food_name +"\n\n음식 섭취량: " +foodSize+"g"+"\n\n칼로리: " + foodKcal+"Kcal"+"\n\n탄수화물: " + foodCarbo+"g"+"\n\n단백질: " + foodProtein+"g"+"\n\n지방: " + foodFat+"g";
+                    String info="음식이름: "+food_name +"\n\n1회 제공량: " +foodSize+"g"+"\n\n칼로리: " + foodKcal+"Kcal"+"\n\n탄수화물: " + foodCarbo+"g"+"\n\n단백질: " + foodProtein+"g"+"\n\n지방: " + foodFat+"g";
                     tv_food_info[index].setText(info);
                     //
                     cv_food[index].setVisibility(View.VISIBLE);
+                    //프로그래스바 설정
+                    Frag_Home.current_calorie+=(int)Math.floor(Double.parseDouble(foodKcal));
+                    Frag_Home.current_carbohydrate+=(int)Math.floor(Double.parseDouble(foodCarbo));
+                    Frag_Home.current_fat+=(int)Math.floor(Double.parseDouble(foodFat));
+                    Frag_Home.current_protein+=(int)Math.floor(Double.parseDouble(foodProtein));
+
+                    //나중에 카드뷰 삭제할때 프로그래스바에서도 수정해줘야 하기 때문에 수치 저장
+                    card_infoInt[index][0]=(int)Math.floor(Double.parseDouble(foodKcal));
+                    card_infoInt[index][1]=(int)Math.floor(Double.parseDouble(foodCarbo));
+                    card_infoInt[index][2]=(int)Math.floor(Double.parseDouble(foodFat));
+                    card_infoInt[index][3]=(int)Math.floor(Double.parseDouble(foodProtein));
+                    setProgressBar();
                     if(userMeal.equals("")){
                         userMeal+=food_name;
                     }else{
@@ -105,13 +121,12 @@ public class Add_Camera extends AppCompatActivity {
                     }
 
                 } catch(JSONException e) {
-                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "잘못된 음식 이름입니다. 다시 추가해 주세요", Toast.LENGTH_SHORT).show();
 
                     e.printStackTrace();
                 }
             }
         };
-        Toast.makeText(getApplicationContext(), foodSize+":2", Toast.LENGTH_SHORT).show();
         // 서버로 Volley를 이용해서 요청을 함.
         FoodInfo_GetRequest foodInfoGetRequest = new FoodInfo_GetRequest(food_name, getresponseListener);
         RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
@@ -133,6 +148,25 @@ public class Add_Camera extends AppCompatActivity {
             }
         }
     }
+    //프로그래스바 설정 함수
+    public void setProgressBar(){
+        // 프로그래스바 설정해줌
+        prgbar_calorie.setMax(Frag_Home.today_calorie);
+        prgbar_carbohydrate.setMax(Frag_Home.today_carbohydrate);
+        prgbar_protein.setMax(Frag_Home.today_protein);
+        prgbar_fat.setMax(Frag_Home.today_fat);
+        //현재 정보 프로그래스바에 표시
+        prgbar_calorie.setProgress(Frag_Home.current_calorie);
+        prgbar_carbohydrate.setProgress(Frag_Home.current_carbohydrate);
+        prgbar_protein.setProgress(Frag_Home.current_protein);
+        prgbar_fat.setProgress(Frag_Home.current_fat);
+        // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
+        tv_current_calorie.setText(Frag_Home.current_calorie + " / " + Frag_Home.today_calorie + " kcal");
+        tv_current_carbohydrate.setText(Frag_Home.current_carbohydrate + " / " + Frag_Home.today_carbohydrate + " g");
+        tv_current_protein.setText(Frag_Home.current_protein + " / " + Frag_Home.today_protein + " g");
+        tv_current_fat.setText(Frag_Home.current_fat + " / " + Frag_Home.today_fat + " g");
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +176,19 @@ public class Add_Camera extends AppCompatActivity {
         btn_add=findViewById(R.id.btn_add);
         cv_add_food=findViewById(R.id.cv_add_food);
         tv_AddFood=findViewById(R.id.tv_AddFood);
+
+        // 프로그래스바 위젯 변수 위젯 id 연결
+        prgbar_calorie = (ProgressBar)findViewById(R.id.prgbar_calorie);
+        prgbar_carbohydrate = (ProgressBar)findViewById(R.id.prgbar_carbohydrate);
+        prgbar_protein = (ProgressBar)findViewById(R.id.prgbar_protein);
+        prgbar_fat = (ProgressBar)findViewById(R.id.prgbar_fat);
+
+        // 텍스트뷰 위젯 변수 위젯 id 연결
+        tv_current_calorie = (TextView)findViewById(R.id.tv_currentcalorie);
+        tv_current_carbohydrate = (TextView)findViewById(R.id.tv_currentcarbohydrate);
+        tv_current_protein = (TextView)findViewById(R.id.tv_currentprotein);
+        tv_current_fat = (TextView)findViewById(R.id.tv_currentfat);
+
 
         //이전 엑티비티에서 받아온 데이터 받아오기
         Intent intent_r=getIntent();
@@ -160,7 +207,6 @@ public class Add_Camera extends AppCompatActivity {
             cv_food_cancel[i]=findViewById(id2[i]);
             tv_food_info[i]=findViewById(id3[i]);
         }
-
 
         //카드뷰 취소 이벤트리스너 연결
         int i;
@@ -182,6 +228,16 @@ public class Add_Camera extends AppCompatActivity {
                             rst+=tmp1[i]+",";
                         }
                     }
+                    //프로그래스바 업데이트
+                    Frag_Home.current_calorie-=card_infoInt[index][0];
+                    Frag_Home.current_carbohydrate-=card_infoInt[index][1];
+                    Frag_Home.current_protein-=card_infoInt[index][2];
+                    Frag_Home.current_fat-=card_infoInt[index][3];
+                    card_infoInt[index][0]=0;
+                    card_infoInt[index][1]=0;
+                    card_infoInt[index][2]=0;
+                    card_infoInt[index][3]=0;
+                    setProgressBar();
                     userMeal=rst;
                 }
             });

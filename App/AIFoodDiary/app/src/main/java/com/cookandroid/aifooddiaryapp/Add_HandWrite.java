@@ -60,12 +60,8 @@ public class Add_HandWrite extends AppCompatActivity {
         auto.setAdapter(adapter);
         if(flag==null){
             flag="hand";
-            Toast.makeText(getApplicationContext(),"result:calendar", Toast.LENGTH_SHORT).show();
         }
 
-        else if(flag.equals("add_camera")){
-            Toast.makeText(getApplicationContext(),"result", Toast.LENGTH_SHORT).show();
-        }
 
         // 자주 먹는 식단 데이터 db에서 가져옴
         Response.Listener<String> getresponseListener = new Response.Listener<String>() {

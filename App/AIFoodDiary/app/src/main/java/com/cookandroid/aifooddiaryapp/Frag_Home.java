@@ -26,10 +26,11 @@ public class Frag_Home extends Fragment {
     TextView tv_current_calorie, tv_current_protein, tv_current_carbohydrate, tv_current_fat;
 
     // 데이터베이스에서 받아오는 정보 저장할 변수 선언
-    int today_calorie, today_carbohydrate, today_protein, today_fat;            // 오늘 먹어야할 것들 : today_0000
-    int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
+    static  int today_calorie, today_carbohydrate, today_protein, today_fat;            // 오늘 먹어야할 것들 : today_0000
+    static int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
     double userHeight;
     int userBMR;
+
 
     ///////////// 하루 권장 섭취량 구하는 법 : 기초대사량 + (기초대사량 * 0.7) 
     ///////////// 탄단지 비율 -> 전체 권장 섭취 칼로리에서 보통 사람 비율 (탄,단,지) : (6, 2, 2) , 다이어트 : 4, 3, 3, 벌크업 : 5.5, 2.5, 2
