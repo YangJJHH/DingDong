@@ -234,14 +234,6 @@ public class Add_Camera extends AppCompatActivity {
 
         }
 
-        // btn_add(식단 기록하기) 버튼 클릭 이벤트 처리
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
     }   // onCreate 메소드 종료 부분
 
     public void addFood(){
