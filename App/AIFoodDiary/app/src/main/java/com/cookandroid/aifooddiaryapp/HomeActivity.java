@@ -74,8 +74,6 @@ public class HomeActivity extends AppCompatActivity {
 
         // 초기 표시 화면을 홈화면으로 하기 위해 매개변수 0을 줌
         setFrag(0);
-
-        Log.d("HomeActivity", "이거 뜹니까?");
     }
 
     // 프래그먼트 교체가 일어나는 함수 setFrag()
