@@ -86,9 +86,7 @@ public class Frag_FoodCalendar extends Fragment {
                             cv_morning.setVisibility(View.GONE);
 
                             // 여기서부터 코딩 해주면 됩니다.
-                            for(int i = 0; i < morning.length; i++) {
 
-                            }
 
                         }
 
@@ -124,11 +122,28 @@ public class Frag_FoodCalendar extends Fragment {
                             //
                         }
 
+                        if(getjsonObject.getInt("mealSnack") > 0) {
+                            // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
+                            String mealSnack = getjsonObject.getString("Snack");
+
+                            // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
+                            String sncak[] = mealSnack.split(",");
+
+                            // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
+                            cv_snack.setVisibility(View.GONE);
+
+                            // 여기서부터 코딩 해주면 됩니다.
+                            //
+                            //
+                            //
+                        }
+
                     } else {
                         // 가져온 데이터가 없다는 것이므로 + 모양(추가 모양)이 다시 보이게함
                         cv_morning.setVisibility(View.VISIBLE);
                         cv_lunch.setVisibility(View.VISIBLE);
                         cv_dinner.setVisibility(View.VISIBLE);
+                        cv_snack.setVisibility(View.VISIBLE);
                     }
 
                 } catch(JSONException e) {
@@ -218,11 +233,28 @@ public class Frag_FoodCalendar extends Fragment {
                                     //
                                 }
 
+                                if(getjsonObject.getInt("mealSnack") > 0) {
+                                    // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
+                                    String mealSnack = getjsonObject.getString("Snack");
+
+                                    // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
+                                    String sncak[] = mealSnack.split(",");
+
+                                    // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
+                                    cv_snack.setVisibility(View.GONE);
+
+                                    // 여기서부터 코딩 해주면 됩니다.
+                                    //
+                                    //
+                                    //
+                                }
+
                             } else {
                                 // 가져온 데이터가 없다는 것이므로 + 모양(추가 모양)이 다시 보이게함
                                 cv_morning.setVisibility(View.VISIBLE);
                                 cv_lunch.setVisibility(View.VISIBLE);
                                 cv_dinner.setVisibility(View.VISIBLE);
+                                cv_snack.setVisibility(View.VISIBLE);
                             }
 
                         } catch(JSONException e) {
@@ -267,7 +299,7 @@ public class Frag_FoodCalendar extends Fragment {
         cv_lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("meal","아침");
+                intent.putExtra("meal","점심");
                 intent.putExtra("date",currentDate);
                 startActivity(intent);
             }
@@ -277,17 +309,17 @@ public class Frag_FoodCalendar extends Fragment {
         cv_dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("meal","아침");
+                intent.putExtra("meal","저녁");
                 intent.putExtra("date",currentDate);
                 startActivity(intent);
             }
         });
 
-        // cv_morning 클릭 했을 때의 이벤트 처리
+        // cv_snack 클릭 했을 때의 이벤트 처리
         cv_snack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("meal","아침");
+                intent.putExtra("meal","간식");
                 intent.putExtra("date",currentDate);
                 startActivity(intent);
             }

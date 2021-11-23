@@ -114,17 +114,22 @@ public class Frag_Mypage extends Fragment {
                     double userBodyfat = Double.parseDouble(et_bodyfat.getText().toString());
                     double userMusclemass = Double.parseDouble(et_musclemass.getText().toString());
                     int userBMR = Integer.parseInt(et_BMR.getText().toString());
+
+                    int userRecommend = 0;
                     char userFoodpurpose = ' ';
 
                     switch(rdg_foodpurpose.getCheckedRadioButtonId()) {
                         case R.id.rdb_bulk :
                             userFoodpurpose = 'B';
+                            userRecommend = (int) Math.floor(userBMR + (userBMR * 0.6));
                             break;
                         case R.id.rdb_diet:
                             userFoodpurpose = 'D';
+                            userRecommend = (int) Math.floor(userBMR + (userBMR * 0.2));
                             break;
                         case R.id.rdb_keep:
                             userFoodpurpose = 'K';
+                            userRecommend = (int) Math.floor(userBMR + (userBMR * 0.4));
                             break;
                     }
 
@@ -151,9 +156,9 @@ public class Frag_Mypage extends Fragment {
                     };
 
                     // 서버로 Volley를 이용해서 요청을 함.
-                    MypageRequest mypageRequest= new MypageRequest(HomeActivity.userID, userHeight, userWeight, userBodyfat, userMusclemass, userBMR, userFoodpurpose, setresponseListener);
+                    MypageSetUserInfo mypageSetUserInfo = new MypageSetUserInfo(HomeActivity.userID, userHeight, userWeight, userBodyfat, userMusclemass, userBMR, userRecommend, userFoodpurpose, setresponseListener);
                     RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-                    queue.add(mypageRequest);
+                    queue.add(mypageSetUserInfo);
 
                 }catch (Exception e) {
                     Toast.makeText(getActivity().getApplicationContext(), "오류! 입력된 값들을 확인해주세요.", Toast.LENGTH_SHORT).show();
