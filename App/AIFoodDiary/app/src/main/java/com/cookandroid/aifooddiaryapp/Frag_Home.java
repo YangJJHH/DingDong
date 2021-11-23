@@ -28,7 +28,6 @@ public class Frag_Home extends Fragment {
     // 데이터베이스에서 받아오는 정보 저장할 변수 선언
     static  int today_calorie, today_carbohydrate, today_protein, today_fat;            // 오늘 먹어야할 것들 : today_0000
     static int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
-    double userHeight;
     int userBMR;
     int userRecommend;
 
@@ -63,12 +62,11 @@ public class Frag_Home extends Fragment {
                     JSONObject getjsonObject = new JSONObject(response);
 
                     // 현재 회원의 권장섭취량 변수에 저장
-                    userBMR = getjsonObject.getInt("userBMR");
                     userRecommend = getjsonObject.getInt("userRecommend");
 
                     // 식단 목적이 아직 없는 사람들의 경우 표준으로 구해서 제공해줌
                     if(getjsonObject.getString("userFoodpurpose").equals("") || getjsonObject.getString("userFoodpurpose").equals("K")) {
-                        today_calorie = (int) Math.floor(userBMR + (userBMR * 0.4));
+                        today_calorie = userRecommend;
                         today_carbohydrate = (int) Math.floor(today_calorie * 0.6 / 4);
                         today_protein = (int) Math.floor(today_calorie * 0.2 / 4);
                         today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
@@ -79,7 +77,7 @@ public class Frag_Home extends Fragment {
 
                     }   // 다이어트인 사람들의 권장 섭취량 수정
                     else if(getjsonObject.getString("userFoodpurpose").equals("D")) {
-                        today_calorie = (int) Math.floor(userBMR + (userBMR * 0.2));
+                        today_calorie = userRecommend;
                         today_carbohydrate = (int) Math.floor(today_calorie * 0.55 / 4);
                         today_protein = (int) Math.floor(today_calorie * 0.15 / 4);
                         today_fat = (int) Math.floor(today_calorie * 0.3 / 9);
@@ -90,7 +88,7 @@ public class Frag_Home extends Fragment {
 
                     }   // 벌크업인 사람들의 권장 섭취량 수정
                     else if(getjsonObject.getString("userFoodpurpose").equals("B")) {
-                        today_calorie = (int) Math.floor(userBMR + (userBMR * 0.6));
+                        today_calorie = userRecommend;
                         today_carbohydrate = (int) Math.floor(today_calorie * 0.55 / 4);
                         today_protein = (int) Math.floor(today_calorie * 0.25 / 4);
                         today_fat = (int) Math.floor(today_calorie * 0.2 / 9);
