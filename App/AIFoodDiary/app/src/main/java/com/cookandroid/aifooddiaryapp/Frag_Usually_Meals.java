@@ -107,12 +107,20 @@ public class Frag_Usually_Meals extends Fragment {
             public void onClick(View view) {
                 // AutoText에 담긴 음식 이름 가져옴
                 String food_name = auto_name.getText().toString();
-                m1 = new Usually_Meal(food_name);
-                m2.add_names(food_name);
+                for(int i = 0; i < items.length; i++) {
+                    if(food_name.equals(items[i])) {
+                        m1 = new Usually_Meal(food_name);
+                        m2.add_names(food_name);
 
-                arrayList.add(m1);
-                //새로고침
-                usuallyMeal_adapter.notifyDataSetChanged();
+                        arrayList.add(m1);
+                        //새로고침
+                        usuallyMeal_adapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(getActivity(), "존재하지 않는 음식을 입력하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
             }
         });
 
