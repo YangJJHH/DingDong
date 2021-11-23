@@ -1,16 +1,11 @@
 package com.cookandroid.aifooddiaryapp;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
@@ -37,11 +32,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,7 +49,7 @@ public class Add_Camera extends AppCompatActivity {
     Integer id2[]={R.id.cv_food1_cancel,R.id.cv_food2_cancel,R.id.cv_food3_cancel,R.id.cv_food4_cancel,R.id.cv_food5_cancel,R.id.cv_food6_cancel,R.id.cv_food7_cancel};
     Integer id3[]={R.id.tv_food1_info,R.id.tv_food2_info,R.id.tv_food3_info,R.id.tv_food4_info,R.id.tv_food5_info,R.id.tv_food6_info,R.id.tv_food7_info,};
     //이미지 파일경로
-    String mCurrentPhotoPath,date,meal,food_name,flag;
+    String mCurrentPhotoPath = "",date,meal,food_name,flag;
     int index;
     ProgressBar prgbar_calorie, prgbar_protein, prgbar_carbohydrate, prgbar_fat;
     int today_calorie, today_carbohydrate, today_protein, today_fat;            // 오늘 먹어야할 것들 : today_0000
@@ -66,7 +57,7 @@ public class Add_Camera extends AppCompatActivity {
     TextView tv_current_calorie, tv_current_protein, tv_current_carbohydrate, tv_current_fat;
 
     // 음식 정보 변수!!!!!!!!!
-    String foodK_name, foodSize, foodCarbo, foodProtein, foodFat, foodKcal;
+    String foodSize, foodCarbo, foodProtein, foodFat, foodKcal;
 
     // 푸드 캘린더에 작성할 때 mealType 변수 필요 아침 : M, 점심 : L, 저녁 : D, 간식 : S
     String mealType = "";
@@ -173,7 +164,7 @@ public class Add_Camera extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_camera);
         img_food_photo=(ImageView)findViewById(R.id.img_food_photo);
-        btn_add=findViewById(R.id.btn_add);
+        btn_add = findViewById(R.id.btn_add);
         cv_add_food=findViewById(R.id.cv_add_food);
         tv_AddFood=findViewById(R.id.tv_AddFood);
 
@@ -193,12 +184,15 @@ public class Add_Camera extends AppCompatActivity {
         //이전 엑티비티에서 받아온 데이터 받아오기
         Intent intent_r=getIntent();
         if(intent_r!=null){
-            mCurrentPhotoPath= intent_r.getStringExtra("file_path");
+            mCurrentPhotoPath = intent_r.getStringExtra("file_path");
             meal=intent_r.getStringExtra("meal");
             date=intent_r.getStringExtra("date");
             food_name=intent_r.getStringExtra("food_name");
             flag=intent_r.getStringExtra("flag");
             tv_AddFood.setText(date+"식단추가");
+            if(mCurrentPhotoPath == null) {
+                mCurrentPhotoPath = "";
+            }
         }
 
         //카드뷰.텍스트뷰 위젯연결
@@ -256,15 +250,15 @@ public class Add_Camera extends AppCompatActivity {
                 } else if(meal.equals("간식")) {
                     mealType = "S";
                 }
-
                 // 해당 회원의 식단 정보 DB에 저장
                 Response.Listener<String> setresponseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject getjsonObject = new JSONObject(response);
+                            JSONObject setjsonObject = new JSONObject(response);
 
-                            boolean success = getjsonObject.getBoolean("success");
+                            boolean success = setjsonObject.getBoolean("success");
+
 
                             if(success) {
                                 Toast.makeText(getApplicationContext(), "식단을 정상적으로 등록하였습니다.", Toast.LENGTH_SHORT).show();
@@ -274,7 +268,7 @@ public class Add_Camera extends AppCompatActivity {
                             } else
                                 Toast.makeText(getApplicationContext(), "식단을 등록하는데 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
 
-                        } catch(JSONException e) {
+                        } catch(Exception e) {
                             Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
 
                             e.printStackTrace();
@@ -284,10 +278,9 @@ public class Add_Camera extends AppCompatActivity {
 
                 // 서버로 Volley를 이용해서 요청을 함.
                 // String userID, String mealDate, String mealType, String userMeal, String mealPhoto, listener
-                FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, userMeal, mCurrentPhotoPath,setresponseListener);
+                FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, userMeal, mCurrentPhotoPath, setresponseListener);
                 RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
                 queue.add(foodCalendarSetRequest);
-                Toast.makeText(getApplicationContext(),userMeal,Toast.LENGTH_SHORT).show();
             }
         });
 
