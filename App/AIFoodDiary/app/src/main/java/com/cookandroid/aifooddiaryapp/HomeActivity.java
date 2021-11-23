@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 
@@ -73,6 +74,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // 초기 표시 화면을 홈화면으로 하기 위해 매개변수 0을 줌
         setFrag(0);
+
+        Log.d("HomeActivity", "이거 뜹니까?");
     }
 
     // 프래그먼트 교체가 일어나는 함수 setFrag()
@@ -86,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
-                Intent intent = new Intent(HomeActivity.this,Add_Set_Date.class);
+                Intent intent = new Intent(HomeActivity.this, Add_Set_Date.class);
                 startActivity(intent);
                 break;
             case 2:

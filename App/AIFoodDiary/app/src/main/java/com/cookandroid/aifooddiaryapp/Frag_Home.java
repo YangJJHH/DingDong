@@ -28,7 +28,6 @@ public class Frag_Home extends Fragment {
     // 데이터베이스에서 받아오는 정보 저장할 변수 선언
     static  int today_calorie, today_carbohydrate, today_protein, today_fat;            // 오늘 먹어야할 것들 : today_0000
     static int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
-    int userBMR;
     int userRecommend;
 
 

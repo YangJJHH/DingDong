@@ -264,7 +264,9 @@ public class Add_Camera extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "식단을 정상적으로 등록하였습니다.", Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(Add_Camera.this, HomeActivity.class);
+                                intent.putExtra("userID", HomeActivity.userID);
                                 startActivity(intent);
+
                             } else
                                 Toast.makeText(getApplicationContext(), "식단을 등록하는데 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
 
