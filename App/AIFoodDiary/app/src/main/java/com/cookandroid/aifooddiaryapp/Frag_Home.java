@@ -30,6 +30,7 @@ public class Frag_Home extends Fragment {
     static int current_calorie = 0, current_carbohydrate = 0, current_protein = 0, current_fat = 0;    // 현재 먹은 수치 : current_0000
     double userHeight;
     int userBMR;
+    int userRecommend;
 
 
     ///////////// 하루 권장 섭취량 구하는 법 : 기초대사량 + (기초대사량 * 0.7) 
@@ -61,10 +62,9 @@ public class Frag_Home extends Fragment {
                 try {
                     JSONObject getjsonObject = new JSONObject(response);
 
-                    // 현재 회원의 키 정보 변수에 저장
-                    userHeight = getjsonObject.getDouble("userHeight");
+                    // 현재 회원의 권장섭취량 변수에 저장
                     userBMR = getjsonObject.getInt("userBMR");
-
+                    userRecommend = getjsonObject.getInt("userRecommend");
 
                     // 식단 목적이 아직 없는 사람들의 경우 표준으로 구해서 제공해줌
                     if(getjsonObject.getString("userFoodpurpose").equals("") || getjsonObject.getString("userFoodpurpose").equals("K")) {
