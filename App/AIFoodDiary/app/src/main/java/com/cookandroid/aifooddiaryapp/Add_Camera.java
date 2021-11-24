@@ -82,7 +82,7 @@ public class Add_Camera extends AppCompatActivity {
     int card_infoInt[][]={{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     // DB에서 푸드 정보 가져오는 메소드
     public void getFoodInfo(String food_name,int index) {
-        // 기존 회원 정보 가져오는 과정 필요
+        // 음식 정보 가져옴
         Response.Listener<String> getresponseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -365,7 +365,7 @@ public class Add_Camera extends AppCompatActivity {
         if(flag.equals("camera")){
             //카메라 추가로부터 왔을경우
             loadImage();
-            modelRun();
+            //모델 출력 결과를 food_name 가져오는 메소드 이벤트 짜야함
             addFood();
         }
         else{
@@ -462,6 +462,5 @@ public class Add_Camera extends AppCompatActivity {
 
 
 
-    public void modelRun(){}
 
 }

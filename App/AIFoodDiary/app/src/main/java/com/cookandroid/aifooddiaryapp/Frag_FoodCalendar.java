@@ -136,6 +136,7 @@ public class Frag_FoodCalendar extends Fragment {
 
                             } else {
                                 //이미지뷰에 음식사진 불러오기
+                                img_morning.setVisibility(View.VISIBLE);
                                 File file = new File(mCurrentPhotoPath_m);
                                 if (Build.VERSION.SDK_INT >= 29) {
                                     ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
@@ -179,6 +180,7 @@ public class Frag_FoodCalendar extends Fragment {
                                 img_no_image_lunch.setVisibility(View.VISIBLE);
                             } else {
                                 //이미지뷰에 음식사진 불러오기
+                                img_lunch.setVisibility(View.VISIBLE);
                                 File file = new File(mCurrentPhotoPath_l);
                                 if (Build.VERSION.SDK_INT >= 29) {
                                     ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
@@ -213,7 +215,6 @@ public class Frag_FoodCalendar extends Fragment {
                             // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
                             cv_dinner.setVisibility(View.GONE);
 
-                            // 여기서부터 코딩 해주면 됩니다.
                             // 띄워줄 사진이 있는지 확인함
                             if(mCurrentPhotoPath_d.equals("")) {
                                 // 띄워줄 사진이 없으면 img_no_image_dinner을 보이게 함
@@ -221,6 +222,7 @@ public class Frag_FoodCalendar extends Fragment {
                                 img_no_image_dinner.setVisibility(View.VISIBLE);
                             } else {
                                 //이미지뷰에 음식사진 불러오기
+                                img_dinner.setVisibility(View.VISIBLE);
                                 File file = new File(mCurrentPhotoPath_d);
                                 if (Build.VERSION.SDK_INT >= 29) {
                                     ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
@@ -262,8 +264,8 @@ public class Frag_FoodCalendar extends Fragment {
                                 img_snack.setVisibility(View.GONE);
                                 img_no_image_snack.setVisibility(View.VISIBLE);
                             } else {
-
                                 //이미지뷰에 음식사진 불러오기
+                                img_snack.setVisibility(View.VISIBLE);
                                 File file = new File(mCurrentPhotoPath_s);
                                 if (Build.VERSION.SDK_INT >= 29) {
                                     ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
@@ -300,6 +302,12 @@ public class Frag_FoodCalendar extends Fragment {
                         img_no_image_lunch.setVisibility(View.GONE);
                         img_no_image_dinner.setVisibility(View.GONE);
                         img_no_image_snack.setVisibility(View.GONE);
+
+                        img_morning.setVisibility(View.GONE);
+                        img_lunch.setVisibility(View.GONE);
+                        img_dinner.setVisibility(View.GONE);
+                        img_snack.setVisibility(View.GONE);
+
                     }
 
                 } catch(JSONException e) {
@@ -615,6 +623,54 @@ public class Frag_FoodCalendar extends Fragment {
             }
         });
 
+        // 푸드 이미지 뷰 클릭 했을 때의 이벤트 처리
+        img_morning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFoodName();
+                // 음식이 여러 개일시 여러번 푸드 인포 접근하도록 함.
+                getFoodInfo();
+            }
+        });
+
+
+
         return view;
+    }
+
+    public void getFoodName() {
+        Response.Listener<String> getresponseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject getjsonObject = new JSONObject(response);
+
+                    String userMeal = getjsonObject.getString("Morning");
+
+                    String meals[] = userMeal.split(",");
+
+                    for(int i = 0; i < meals.length; i++ ) {
+
+                    }
+
+
+
+                } catch(Exception e) {
+                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        // 서버로 Volley를 이용해서 요청을 함.
+        FoodCalendarInfo_Request foodCalendarInfoRequest = new FoodCalendarInfo_Request(HomeActivity.userID, currentDate, getresponseListener);
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        queue.add(foodCalendarInfoRequest);
+    }
+
+    public void getFoodInfo() {
+        //add_camera에 있는 getFoodInfo 메소드와 비슷하게 구성하면됨.
+
     }
 }

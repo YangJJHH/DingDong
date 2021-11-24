@@ -79,7 +79,8 @@
                    <ImageView
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:id="@+id/img_morning"/>
+                       android:id="@+id/img_morning"
+                       android:visibility="gone"/>
 
                    // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
                    <ImageView
@@ -135,7 +136,8 @@
                    <ImageView
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:id="@+id/img_lunch"/>
+                       android:id="@+id/img_lunch"
+                       android:visibility="gone"/>
 
                    // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
                    <ImageView
@@ -191,7 +193,8 @@
                    <ImageView
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:id="@+id/img_dinner"/>
+                       android:id="@+id/img_dinner"
+                       android:visibility="gone"/>
 
                    // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
                    <ImageView
@@ -247,7 +250,8 @@
                    <ImageView
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:id="@+id/img_snack"/>
+                       android:id="@+id/img_snack"
+                       android:visibility="gone"/>
 
                    // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
                    <ImageView
