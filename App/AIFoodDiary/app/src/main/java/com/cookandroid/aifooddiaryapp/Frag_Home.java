@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Frag_Home extends Fragment {
     private View view;
@@ -41,6 +45,10 @@ public class Frag_Home extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_home, container, false);
 
+        // 현재 날짜 변수 생성
+        Date td = new Date();
+        String today = new SimpleDateFormat("yyyy-MM-dd").format(td);
+
         // 프로그래스바 위젯 변수 위젯 id 연결
         prgbar_calorie = (ProgressBar) view.findViewById(R.id.prgbar_calorie);
         prgbar_carbohydrate = (ProgressBar) view.findViewById(R.id.prgbar_carbohydrate);
@@ -52,17 +60,6 @@ public class Frag_Home extends Fragment {
         tv_current_carbohydrate = (TextView) view.findViewById(R.id.tv_current_carbohydrate);
         tv_current_protein = (TextView) view. findViewById(R.id.tv_current_protein);
         tv_current_fat = (TextView) view.findViewById(R.id.tv_current_fat);
-
-        //현재 정보 프로그래스바에 표시
-        prgbar_calorie.setProgress(current_calorie);
-        prgbar_carbohydrate.setProgress(current_carbohydrate);
-        prgbar_protein.setProgress(current_protein);
-        prgbar_fat.setProgress(current_fat);
-        // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
-        tv_current_calorie.setText(current_calorie + " / " + Frag_Home.today_calorie + " kcal");
-        tv_current_carbohydrate.setText(current_carbohydrate + " / " + Frag_Home.today_carbohydrate + " g");
-        tv_current_protein.setText(current_protein + " / " + Frag_Home.today_protein + " g");
-        tv_current_fat.setText(current_fat + " / " + Frag_Home.today_fat + " g");
 
         // 기존 회원 정보 가져오는 과정 필요
         Response.Listener<String> getresponseListener = new Response.Listener<String>() {
@@ -108,8 +105,12 @@ public class Frag_Home extends Fragment {
 
 
                     }
+                    prgbar_calorie.setMax(0);
+                    prgbar_carbohydrate.setMax(0);
+                    prgbar_protein.setMax(0);
+                    prgbar_fat.setMax(0);
 
-                    // 프로그래스바 설정해줌
+                    // 프로그래스바 max 설정해줌
                     prgbar_calorie.setMax(today_calorie);
                     prgbar_carbohydrate.setMax(today_carbohydrate);
                     prgbar_protein.setMax(today_protein);
@@ -132,6 +133,44 @@ public class Frag_Home extends Fragment {
         HomeGetUserData homeGetUserData = new HomeGetUserData(HomeActivity.userID, getresponseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         queue.add(homeGetUserData);
+
+        // 현재 유저의 오늘 날짜 음식 데이터가 있으면 가져와야함
+        Response.Listener<String> grl = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject gjsonObject = new JSONObject(response);
+
+                    // 현재 먹은 칼로리 변수에 저장
+                    current_calorie = (int) Math.floor(gjsonObject.getDouble("Kcal"));
+                    current_carbohydrate = (int) Math.floor(gjsonObject.getDouble("Carbo"));
+                    current_protein = (int) Math.floor(gjsonObject.getDouble("Protein"));
+                    current_fat = (int) Math.floor(gjsonObject.getDouble("Fat"));
+
+                    // 프로그래스바 현재 먹은 것들만큼 채워줌
+                    prgbar_calorie.setProgress(current_calorie);
+                    prgbar_carbohydrate.setProgress(current_carbohydrate);
+                    prgbar_protein.setProgress(current_protein);
+                    prgbar_fat.setProgress(current_fat);
+
+                    // 현재 유저의 권장 섭취량 정보를 TextView에 표시해줌
+                    tv_current_calorie.setText(current_calorie + " / " + today_calorie + " kcal");
+                    tv_current_carbohydrate.setText(current_carbohydrate + " / " + today_carbohydrate + " g");
+                    tv_current_protein.setText(current_protein + " / " + today_protein + " g");
+                    tv_current_fat.setText(current_fat + " / " + today_fat + " g");
+
+
+                } catch(JSONException e) {
+                    Toast.makeText(getActivity().getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        // 서버로 Volley를 이용해서 요청을 함.
+        HomeGetUser_MealData homeGetUser_mealData = new HomeGetUser_MealData(HomeActivity.userID, today, grl);
+        queue.add(homeGetUser_mealData);
 
         return view;
     }
