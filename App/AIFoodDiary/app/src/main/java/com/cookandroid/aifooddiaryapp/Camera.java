@@ -19,6 +19,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +47,7 @@ public class Camera extends AppCompatActivity {
     ListView lv_recommend;
     ArrayList<list_recommend_item> mitems = new ArrayList<>();
     Adapter_Recommed adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,20 +60,69 @@ public class Camera extends AppCompatActivity {
         tv_AddFood=findViewById(R.id.tv_AddFood);
         lv_recommend=findViewById(R.id.lv_recommend);
 
-        //어댑터 연결
-        adapter=new Adapter_Recommed(this,mitems);
-        lv_recommend.setAdapter(adapter);
-        for(int i=0; i<3; i++){
-            list_recommend_item item = new list_recommend_item();
-            item.setKacl("2300kcal");
-            item.setCarbo("23");
-            item.setProtein("12");
-            item.setFat("0");
-            mitems.add(item);
-            adapter.setItem(mitems);
-        }
+        // DB에서 나와 비슷한 사용자 정보 가져옴
+        Response.Listener<String> getresponseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    String userFoodpurpose;
+                    int rcm_kcal[] = new int[3];
+                    int rcm_carbo[] = new int[3];
+                    int rcm_protein[] = new int[3];
+                    int rcm_fat[] = new int[3];
 
+                    JSONObject getjsonObject = new JSONObject(response);
 
+                    // 현재 유저의 식단 목적 저장
+                    userFoodpurpose = getjsonObject.getString("userFoodpurpose");
+                    
+                    // 추천 받은 권장 섭취 칼로리 변수에 저장
+                    rcm_kcal[0] = getjsonObject.getInt("Recommend1");
+                    rcm_kcal[1] = getjsonObject.getInt("Recommend2");
+                    rcm_kcal[2] = getjsonObject.getInt("Recommend3");
+
+                    // 가져온 값에 대해 권장 탄수화물, 단백질, 지방 섭취량 구해줌
+                    if(userFoodpurpose != null) {
+                        //어댑터 연결
+                        adapter = new Adapter_Recommed(getApplicationContext(), mitems);
+                        lv_recommend.setAdapter(adapter);
+
+                        for(int i = 0; i < 3; i++) {
+                            if(userFoodpurpose.equals("K") || userFoodpurpose.equals("")) {
+                                rcm_carbo[i] = (int) Math.floor((rcm_kcal[i] * 0.6) / 4);
+                                rcm_protein[i] = (int) Math.floor((rcm_kcal[i] * 0.2) / 4);
+                                rcm_fat[i] = (int) Math.floor((rcm_kcal[i] * 0.2) / 9);
+                            } else if(userFoodpurpose.equals("B")) {
+                                rcm_carbo[i] = (int) Math.floor((rcm_kcal[i] * 0.55) / 4);
+                                rcm_protein[i] = (int) Math.floor((rcm_kcal[i] * 0.25) / 4);
+                                rcm_fat[i] = (int) Math.floor((rcm_kcal[i] * 0.2) / 9);
+                            } else if(userFoodpurpose.equals("D")) {
+                                rcm_carbo[i] = (int) Math.floor((rcm_kcal[i] * 0.55) / 4);
+                                rcm_protein[i] = (int) Math.floor((rcm_kcal[i] * 0.15) / 4);
+                                rcm_fat[i] = (int) Math.floor((rcm_kcal[i] * 0.3) / 9);
+                            }
+                            list_recommend_item item = new list_recommend_item();
+                            item.setKacl(rcm_kcal[i]+"");
+                            item.setCarbo(rcm_carbo[i]+"");
+                            item.setProtein(rcm_protein[i]+"");
+                            item.setFat(rcm_fat[i]+"");
+                            mitems.add(item);
+                            adapter.setItem(mitems);
+
+                        }
+                    }
+
+                } catch(JSONException e) {
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        // 서버로 Volley를 이용해서 요청을 함.
+        RecommendUserRequest recommendUserRequest = new RecommendUserRequest(HomeActivity.userID, getresponseListener);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(recommendUserRequest);
+        
 
 
 
