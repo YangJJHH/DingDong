@@ -1,11 +1,14 @@
 package com.cookandroid.aifooddiaryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -23,6 +26,11 @@ public class FirstActivity extends AppCompatActivity {
         //위젯 연결
         btn_login=(Button)findViewById(R.id.btn_Login);
         btn_register=(Button)findViewById(R.id.btn_register);
+
+        // 시작 페이드인 애니메이션 적용
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        ConstraintLayout layout = findViewById(R.id.layout);
+        layout.startAnimation(animation);
 
         // 만약 데이터에 자동 로그인이 체크 되어있다면 바로 홈 화면으로 이동하게끔 함
         SharedPreferences setting = getSharedPreferences("UserLogin", MODE_PRIVATE);

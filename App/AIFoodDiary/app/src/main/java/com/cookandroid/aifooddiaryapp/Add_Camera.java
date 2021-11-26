@@ -78,6 +78,7 @@ public class Add_Camera extends AppCompatActivity {
     //
     String encodeImageString;
     private static final String url = "http://15.164.88.236/InsertPhotoInDB.php";
+
     //카드뷰에 있는 영양정보 수치 저장할 배열
     int card_infoInt[][]={{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     // DB에서 푸드 정보 가져오는 메소드
@@ -365,8 +366,9 @@ public class Add_Camera extends AppCompatActivity {
         if(flag.equals("camera")){
             //카메라 추가로부터 왔을경우
             loadImage();
+            uploadDataToDB();
             //모델 출력 결과를 food_name 가져오는 메소드 이벤트 짜야함
-            addFood();
+            //addFood();
         }
         else{
             //수기추가로부터 왔을경우
@@ -401,7 +403,6 @@ public class Add_Camera extends AppCompatActivity {
                 if (bitmap != null) {
                     img_food_photo.setImageBitmap(bitmap);
                     encodeBitmapImage(bitmap);
-                    uploadDataToDB();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -413,7 +414,6 @@ public class Add_Camera extends AppCompatActivity {
                 if (bitmap != null) {
                     img_food_photo.setImageBitmap(bitmap);
                     encodeBitmapImage(bitmap);
-                    uploadDataToDB();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -428,6 +428,18 @@ public class Add_Camera extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+
+                    if(!jsonObject.isNull("food_info")) {
+                        String info = jsonObject.getString("food_info");
+                    }
+
+
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         }, new Response.ErrorListener() {
