@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,12 +39,17 @@ import java.util.Date;
 
 public class Frag_FoodCalendar extends Fragment {
     private View view;
-
+    boolean flag[] ={false,false,false,false};
     // 위젯 변수 생성
     TextView tv_date;
     CardView cv_morning, cv_lunch, cv_dinner, cv_snack;
+    CardView cv[] = new CardView[4];
+    Integer id[] ={R.id.cv_x1,R.id.cv_x2,R.id.cv_x3,R.id.cv_x4};
     ImageView img_morning, img_lunch, img_dinner, img_snack;
-
+    TextView memo;
+    TextView tv[]= new TextView[4];
+    Integer tid[]={R.id.tv_m,R.id.tv_l,R.id.tv_d,R.id.tv_s};
+    static String m[],l[],d[],s[];
     // 식단을 추가했는데 사진을 추가 안 했을 경우 다음 이미지를 띄우게 됨
     ImageView img_no_image_morning, img_no_image_lunch, img_no_image_dinner, img_no_image_snack;
 
@@ -51,9 +58,10 @@ public class Frag_FoodCalendar extends Fragment {
     Date today;
     String currentDate;
     Intent intent;
-
     Bitmap bitmap;
     String mCurrentPhotoPath_m, mCurrentPhotoPath_l, mCurrentPhotoPath_d, mCurrentPhotoPath_s;
+    String meals;
+    int kcal=0,carbo=0,protein=0,fat=0;
 
     @Nullable
     @Override
@@ -62,6 +70,13 @@ public class Frag_FoodCalendar extends Fragment {
         intent = new Intent(getActivity(),Camera.class);
         // 위젯 변수 id 연결
         tv_date = (TextView) view.findViewById(R.id.tv_date);
+
+        for(int i=0; i<4; i++){
+            tv[i]=view.findViewById(tid[i]);
+            cv[i]=view.findViewById(id[i]);
+        }
+
+
 
         cv_morning = (CardView) view.findViewById(R.id.cv_morning);
         cv_lunch = (CardView) view.findViewById(R.id.cv_lunch);
@@ -83,6 +98,93 @@ public class Frag_FoodCalendar extends Fragment {
         today = new Date();
         tv_date.setText(new SimpleDateFormat("MM월 dd일").format(today));
         currentDate = new SimpleDateFormat("yyyy-MM-dd").format(today);
+        /////텍스트뷰에 미리 저장
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject getjsonObject = new JSONObject(response);
+
+                        meals=getjsonObject.getString("Morning");
+                        if(meals!=null){
+                            tv[0].setText(meals);
+                            m=meals.split(",");
+
+                        }
+
+                        meals = getjsonObject.getString("Lunch");
+                        if(meals!=null){
+                            tv[1].setText(meals);
+                            l=meals.split(",");
+                        }
+
+
+                        meals = getjsonObject.getString("Dinner");
+                        if(meals!=null){
+                            tv[2].setText(meals);
+                            d=meals.split(",");
+                        }
+
+                        meals = getjsonObject.getString("Snack");
+                        if(meals!=null){
+                            tv[3].setText(meals);
+                            s=meals.split(",");
+                        }
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        // 서버로 Volley를 이용해서 요청을 함.
+        FoodCalendarInfo_Request foodCalendarInfoRequest1 = new FoodCalendarInfo_Request(HomeActivity.userID, currentDate, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        queue.add(foodCalendarInfoRequest1);
+        //텍스트뷰에 데이터 미리 저장
+        // 음식 정보 가져옴
+       /* Response.Listener<String> getresponseListener2 = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject getjsonObject = new JSONObject(response);
+
+
+                    String foodCarbo = getjsonObject.getString("foodCarbo");
+                    String foodProtein = getjsonObject.getString("foodProtein");
+                    String foodFat = getjsonObject.getString("foodFat");
+                    String foodKcal = getjsonObject.getString("foodKcal");
+                    kcal+=(int)Math.floor(Double.parseDouble(foodKcal));
+                    carbo+=(int)Math.floor(Double.parseDouble(foodCarbo));
+                    protein+=(int)Math.floor(Double.parseDouble(foodProtein));
+                    fat+=(int)Math.floor(Double.parseDouble(foodFat));
+                    //Toast.makeText(getActivity().getApplicationContext(), foodCarbo, Toast.LENGTH_SHORT).show();
+                } catch(JSONException e) {
+                    Toast.makeText(getActivity().getApplicationContext(), "에러", Toast.LENGTH_SHORT).show();
+
+                    e.printStackTrace();
+                }
+            }
+        };
+        // 서버로 Volley를 이용해서 요청을 함.
+        for(int i=0; i<4; i++){
+            kcal=0; carbo=0; protein=0; fat=0;
+            for(int j=0; j<food_names[i].length; i++){
+                FoodInfo_GetRequest foodInfoGetRequest2 = new FoodInfo_GetRequest(food_names[i][j], getresponseListener2);
+                RequestQueue queue2 = Volley.newRequestQueue(getActivity().getApplicationContext());
+                queue2.add(foodInfoGetRequest2);
+            }
+            String rst="\n\n칼로리:"+kcal+"kcal\n\n탄수화물:"+carbo+"g\n\n단백질:"+protein+"g\n\n지방:"+fat+"g";
+            tv[i].append(rst);
+        }*/
+
+
+
+
+
+
+
+
+
+
 
         // 현재 날짜에 식단 존재시 다이어리 가져오는 과정 필요
         // 푸드 다이어리 부분
@@ -318,8 +420,8 @@ public class Frag_FoodCalendar extends Fragment {
 
         // 서버로 Volley를 이용해서 요청을 함.
         FoodCalendar_GetRequest foodCalendar_getRequest= new FoodCalendar_GetRequest(HomeActivity.userID, currentDate, getresponseListener);
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        queue.add(foodCalendar_getRequest);
+        RequestQueue queue1 = Volley.newRequestQueue(getActivity().getApplicationContext());
+        queue1.add(foodCalendar_getRequest);
 
 
 
@@ -623,54 +725,124 @@ public class Frag_FoodCalendar extends Fragment {
             }
         });
 
-        // 푸드 이미지 뷰 클릭 했을 때의 이벤트 처리
-        img_morning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFoodName();
-                // 음식이 여러 개일시 여러번 푸드 인포 접근하도록 함.
-                getFoodInfo();
-            }
-        });
 
 
 
-        return view;
-    }
+        //카드뷰에 음식영양정보 표시
+        /////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 아침 이미지 뷰 클릭 했을 때의 이벤트 처리
+        //카드뷰 취소 이벤트리스너 연결
+        int i;
+        for(i=0; i<4; i++){
+            final int index;
+            index=i;
+            cv[index].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //x버튼 클릭시 식단 지우기
+                    if(flag[index]==false){
+                        tv[index].setVisibility(View.VISIBLE);
+                        switch (index){
+                            case 0:
+                                if(img_morning.getVisibility()==View.VISIBLE){
+                                    img_morning.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                else if(img_no_image_morning.getVisibility()==View.VISIBLE){
+                                    img_no_image_morning.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                break;
+                            case 1:
+                                if(img_lunch.getVisibility()==View.VISIBLE){
+                                    img_lunch.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                else if(img_no_image_lunch.getVisibility()==View.VISIBLE){
+                                    img_no_image_lunch.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                break;
+                            case 2:
+                                if(img_dinner.getVisibility()==View.VISIBLE){
+                                    img_dinner.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                else if(img_no_image_dinner.getVisibility()==View.VISIBLE){
+                                    img_no_image_dinner.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                break;
+                            case 3:
+                                if(img_snack.getVisibility()==View.VISIBLE){
+                                    img_snack.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                else if(img_no_image_snack.getVisibility()==View.VISIBLE){
+                                    img_no_image_snack.setVisibility(View.INVISIBLE);
+                                    tv[index].setVisibility(View.VISIBLE);
+                                }
+                                break;
+                        }
+                        flag[index]=true;
+                    }
+                    else{
+                        switch (index){
+                            case 0:
+                                if(img_morning.getVisibility()==View.INVISIBLE){
+                                    img_morning.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                else if(img_no_image_morning.getVisibility()==View.INVISIBLE){
+                                    img_no_image_morning.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                break;
+                            case 1:
+                                if(img_lunch.getVisibility()==View.INVISIBLE){
+                                    img_lunch.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                else if(img_no_image_lunch.getVisibility()==View.INVISIBLE){
+                                    img_no_image_lunch.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                break;
+                            case 2:
+                                if(img_dinner.getVisibility()==View.INVISIBLE){
+                                    img_dinner.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                else if(img_no_image_dinner.getVisibility()==View.INVISIBLE){
+                                    img_no_image_dinner.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                break;
+                            case 3:
+                                if(img_snack.getVisibility()==View.INVISIBLE){
+                                    img_snack.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                else if(img_no_image_snack.getVisibility()==View.INVISIBLE){
+                                    img_no_image_snack.setVisibility(View.VISIBLE);
+                                    tv[index].setVisibility(View.GONE);
+                                }
+                                break;
+                        }
 
-    public void getFoodName() {
-        Response.Listener<String> getresponseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject getjsonObject = new JSONObject(response);
+                        flag[index]=false;
 
-                    String userMeal = getjsonObject.getString("Morning");
-
-                    String meals[] = userMeal.split(",");
-
-                    for(int i = 0; i < meals.length; i++ ) {
 
                     }
 
-
-
-                } catch(Exception e) {
-                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-
-                    e.printStackTrace();
                 }
-            }
-        };
+            });
+        }
 
-        // 서버로 Volley를 이용해서 요청을 함.
-        FoodCalendarInfo_Request foodCalendarInfoRequest = new FoodCalendarInfo_Request(HomeActivity.userID, currentDate, getresponseListener);
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        queue.add(foodCalendarInfoRequest);
-    }
 
-    public void getFoodInfo() {
-        //add_camera에 있는 getFoodInfo 메소드와 비슷하게 구성하면됨.
-
+        return view;
     }
 }

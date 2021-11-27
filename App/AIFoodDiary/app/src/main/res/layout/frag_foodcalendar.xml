@@ -13,8 +13,36 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:orientation="vertical">
-            
-          <LinearLayout
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/memo"
+               android:textSize="0sp" />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/t1"
+               android:textSize="0sp" />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/t2"
+               android:textSize="0sp"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/t3"
+               android:textSize="0sp"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/t4"
+               android:textSize="0sp"/>
+
+
+
+
+           <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content">
 
@@ -76,11 +104,37 @@
                    android:backgroundTint="@color/white"
                    app:cardElevation="8dp">
 
+                   <androidx.cardview.widget.CardView
+                       android:layout_margin="5dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:cardCornerRadius="100dp"
+                       android:layout_gravity="top|right"
+                       android:backgroundTint="@color/white"
+                       app:cardElevation="10dp"
+                       android:id="@+id/cv_x1">
+
+                       <ImageView
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:src="@drawable/ic_food_add"/>
+                   </androidx.cardview.widget.CardView>
+
+                   <TextView
+                       android:id="@+id/tv_m"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/bmjua"
+                       android:textColor="@color/black"
+                       android:textSize="18sp"
+                       android:padding="20dp"
+                       android:visibility="gone"/>
                    <ImageView
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:id="@+id/img_morning"
                        android:visibility="gone"/>
+
 
                    // 식단을 추가 했는데 이미지가 없을 때 해당 이미지뷰 표시
                    <ImageView
@@ -132,6 +186,31 @@
                    android:layout_marginTop="60dp"
                    android:backgroundTint="@color/white"
                    app:cardElevation="8dp">
+                   <androidx.cardview.widget.CardView
+                       android:layout_margin="5dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:cardCornerRadius="100dp"
+                       android:layout_gravity="top|right"
+                       android:backgroundTint="@color/white"
+                       app:cardElevation="10dp"
+                       android:id="@+id/cv_x2">
+
+                       <ImageView
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:src="@drawable/ic_food_add"/>
+                   </androidx.cardview.widget.CardView>
+
+                   <TextView
+                       android:id="@+id/tv_l"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/bmjua"
+                       android:textColor="@color/black"
+                       android:textSize="18sp"
+                       android:padding="20dp"
+                       android:visibility="gone"/>
 
                    <ImageView
                        android:layout_width="match_parent"
@@ -156,6 +235,7 @@
                        android:backgroundTint="@color/white"
                        app:cardElevation="10dp"
                        android:id="@+id/cv_lunch">
+
 
                        <ImageView
                            android:layout_width="50dp"
@@ -189,6 +269,30 @@
                    android:layout_marginTop="60dp"
                    android:backgroundTint="@color/white"
                    app:cardElevation="8dp">
+                   <androidx.cardview.widget.CardView
+                       android:layout_margin="5dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:cardCornerRadius="100dp"
+                       android:layout_gravity="top|right"
+                       android:backgroundTint="@color/white"
+                       app:cardElevation="10dp"
+                       android:id="@+id/cv_x3">
+
+                       <ImageView
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:src="@drawable/ic_food_add"/>
+                   </androidx.cardview.widget.CardView>
+                   <TextView
+                       android:id="@+id/tv_d"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/bmjua"
+                       android:textColor="@color/black"
+                       android:textSize="18sp"
+                       android:padding="20dp"
+                       android:visibility="gone"/>
 
                    <ImageView
                        android:layout_width="match_parent"
@@ -246,6 +350,30 @@
                    android:layout_marginTop="60dp"
                    android:backgroundTint="@color/white"
                    app:cardElevation="8dp">
+                   <androidx.cardview.widget.CardView
+                       android:layout_margin="5dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:cardCornerRadius="100dp"
+                       android:layout_gravity="top|right"
+                       android:backgroundTint="@color/white"
+                       app:cardElevation="10dp"
+                       android:id="@+id/cv_x4">
+
+                       <ImageView
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:src="@drawable/ic_food_add"/>
+                   </androidx.cardview.widget.CardView>
+                   <TextView
+                       android:id="@+id/tv_s"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:fontFamily="@font/bmjua"
+                       android:textColor="@color/black"
+                       android:textSize="18sp"
+                       android:padding="20dp"
+                       android:visibility="gone"/>
 
                    <ImageView
                        android:layout_width="match_parent"
