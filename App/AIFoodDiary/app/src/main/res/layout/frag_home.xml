@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/theme"
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
         android:layout_width="380dp"
         android:layout_height="400dp"
         android:layout_gravity="center"
-        android:backgroundTint="#BBD3E6"
+        android:backgroundTint="@color/card"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp">
 
@@ -27,6 +28,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_todaycalorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,6 +47,7 @@
                 android:layout_marginRight="45dp">
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_current_calorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,6 +74,7 @@
                 android:layout_marginLeft="40dp">
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_todayprotein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,6 +84,7 @@
                     android:textSize="24sp"/>
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_todaycarbohydrate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,6 +94,7 @@
                     android:textSize="24sp"/>
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_fat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -138,6 +144,7 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_current_protein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -148,6 +155,7 @@
                     android:gravity="center"/>
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_current_carbohydrate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,6 +166,7 @@
                     android:gravity="center"/>
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tv_current_fat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

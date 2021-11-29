@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register_body">
+    tools:context=".Register_body"
+    android:background="@color/theme">
 
     <TextView
         android:id="@+id/tv_title"
@@ -16,6 +17,7 @@
         android:fontFamily="@font/bmjua"
         android:text="회원가입"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +31,7 @@
         android:fontFamily="@font/bmjua"
         android:text="키"
         android:textSize="30sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,6 +58,7 @@
         android:layout_marginLeft="10dp"
         android:fontFamily="@font/bmjua"
         android:text="cm"
+        android:textColor="@color/black"
         android:textSize="24dp"
         app:layout_constraintStart_toEndOf="@+id/et_height"
         app:layout_constraintTop_toTopOf="@+id/et_height" />
@@ -66,6 +70,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/bmjua"
         android:text="몸무게"
+        android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/et_height"
         app:layout_constraintTop_toBottomOf="@+id/et_height" />
@@ -94,6 +99,7 @@
         android:fontFamily="@font/bmjua"
         android:text="kg"
         android:textSize="24dp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/et_weight"
         app:layout_constraintTop_toTopOf="@+id/et_weight" />
 
@@ -105,9 +111,9 @@
         android:background="@drawable/round_button"
         android:fontFamily="@font/bmjua"
         android:text="회원가입"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:textSize="20sp"
-        app:backgroundTint="@color/buttonColor"
+        android:backgroundTint="@color/buttonColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_weight" />

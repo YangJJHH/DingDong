@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register_sex">
+    tools:context=".Register_sex"
+    android:background="@color/theme">
 
     <TextView
         android:id="@+id/tv_title"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -21,6 +23,7 @@
 
     <TextView
         android:id="@+id/tv_sex"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -87,9 +90,9 @@
         android:background="@drawable/round_button"
         android:fontFamily="@font/bmjua"
         android:text="다음"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:textSize="20sp"
-        app:backgroundTint="@color/buttonColor"
+        android:backgroundTint="@color/buttonColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView_m" />

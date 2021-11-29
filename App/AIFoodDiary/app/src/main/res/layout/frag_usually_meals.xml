@@ -41,7 +41,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/round_button"
-                    android:backgroundTint="@color/mainColor"/>
+                    android:backgroundTint="@color/buttonColor"/>
 
 
 

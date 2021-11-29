@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    android:background="@color/theme">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,13 +22,14 @@
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/bmjua"
                 android:text="식단 추가"
+                android:textColor="@color/black"
                 android:textSize="24sp"/>
             <androidx.cardview.widget.CardView
                 android:layout_width="380dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="100dp"
-                android:backgroundTint="#F6FBF6"
+                android:backgroundTint="@color/card"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
                 <ImageView
@@ -43,7 +45,7 @@
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
-                android:backgroundTint="#F6FBF6"
+                android:backgroundTint="@color/card"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
@@ -52,6 +54,7 @@
                     android:layout_height="match_parent">
                     <!-- 칼로리, 단백질, 탄수화물, 지방 차트 표시 -->
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_todaycalorie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -75,6 +78,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_todaycalorie" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_todayprotein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -101,6 +105,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_todayprotein" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_todaycarbohydrate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -124,6 +129,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_todaycarbohydrate" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_bodyfat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -148,6 +154,7 @@
 
                     <!-- 칼로리, 단백질, 탄수화물, 지방 수치 알려주는 텍스트뷰 -->
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_currentcalorie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -159,6 +166,7 @@
                         app:layout_constraintEnd_toEndOf="@+id/prgbar_calorie" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_currentprotein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -171,6 +179,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/prgbar_protein" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_currentcarbohydrate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -183,6 +192,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/prgbar_carbohydrate" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/tv_currentfat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -232,10 +242,11 @@
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/card"
                         app:cardElevation="8dp">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/tv_food1_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -272,10 +283,11 @@
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/card"
                         app:cardElevation="8dp">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/tv_food2_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -310,10 +322,11 @@
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/card"
                         app:cardElevation="8dp">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/tv_food3_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -347,10 +360,11 @@
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/card"
                         app:cardElevation="8dp">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/tv_food4_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -383,10 +397,11 @@
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/card"
                         app:cardElevation="8dp">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/tv_food5_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -420,10 +435,11 @@
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/card"
                         app:cardElevation="8dp">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/tv_food6_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -458,10 +474,11 @@
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         app:cardCornerRadius="20dp"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/card"
                         app:cardElevation="8dp">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/tv_food7_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

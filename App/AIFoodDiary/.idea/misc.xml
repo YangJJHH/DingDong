@@ -8,6 +8,7 @@
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/drawable/custom_handwrite_icon.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/drawable/custom_id_icon.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/drawable/custom_input_text.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/drawable/custom_recommed_icon.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/drawable/ic_food_add.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/drawable/ic_food_cancel.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/drawable/ic_handwrite_focused.xml" value="0.38229166666666664" />
@@ -17,8 +18,15 @@
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_add_set_date.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_camera.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_cv_add_food.xml" value="0.2046875" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_first.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_home.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_register_age.xml" value="0.23777173913043478" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_register_body.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_register_id_pass.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_register_name.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/activity_register_sex.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/custom_spinner_item.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/frag_add_camera.xml" value="0.25" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/frag_add_handwrite.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/frag_camera.xml" value="0.27943840579710144" />
@@ -27,6 +35,9 @@
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/frag_home.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/frag_mypage.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/frag_set_date.xml" value="0.1" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/layout/frag_usually_meals.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/menu/bottom_menu.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/didwogur99/Desktop/Capstone/DingDong/App/AIFoodDiary/app/src/main/res/menu/item_list_menu.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

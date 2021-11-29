@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundimage"
     tools:context=".Login">
 
     <androidx.cardview.widget.CardView
@@ -70,10 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
-        android:backgroundTint="@color/mainColor"
+        android:backgroundTint="@color/buttonColor"
         android:fontFamily="@font/bmjua"
         android:text="로그인"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

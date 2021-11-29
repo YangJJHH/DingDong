@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name = "mainColor">#6620C8</color>
-    <color name = "buttonColor">#8073fb9c</color>
+<resources>#7c4dff
+    <color name = "mainColor">#7c4dff</color>
+    <color name = "buttonColor">#ffffff</color>
     <color name = "subColor">#FFFFFFFF</color>
+    <color name = "textColor">#000000</color>
+    <color name = "theme">#EBF7F6</color>
+    <color name="card">#018577</color>
 </resources>

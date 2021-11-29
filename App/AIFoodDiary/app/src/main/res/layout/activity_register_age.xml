@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/theme"
     tools:context=".Register_age">
 
     <TextView
@@ -14,6 +15,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/bmjua"
+        android:textColor="@color/black"
         android:text="회원가입"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,9 +30,9 @@
         android:fontFamily="@font/bmjua"
         android:lineSpacingExtra="20sp"
         android:text="다음"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:textSize="20sp"
-        app:backgroundTint="@color/buttonColor"
+        android:backgroundTint="@color/buttonColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_info" />
@@ -38,6 +40,7 @@
     //출생년도 선택창
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
