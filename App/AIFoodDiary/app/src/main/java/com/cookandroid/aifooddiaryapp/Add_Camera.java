@@ -307,54 +307,62 @@ public class Add_Camera extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(meal.equals("아침")) {
-                    mealType = "M";
-                } else if(meal.equals("점심")) {
-                    mealType = "L";
-                } else if(meal.equals("저녁")) {
-                    mealType = "D";
-                } else if(meal.equals("간식")) {
-                    mealType = "S";
-                }
-                // 해당 회원의 식단 정보 DB에 저장
-                Response.Listener<String> setresponseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject setjsonObject = new JSONObject(response);
-
-                            boolean success = setjsonObject.getBoolean("success");
-
-
-                            if(success) {
-                                Toast.makeText(getApplicationContext(), "식단을 정상적으로 등록하였습니다.", Toast.LENGTH_SHORT).show();
-
-                                Intent intent = new Intent(Add_Camera.this, HomeActivity.class);
-                                intent.putExtra("userID", HomeActivity.userID);
-                                startActivity(intent);
-
-                            } else
-                                Toast.makeText(getApplicationContext(), "식단을 등록하는데 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
-
-                        } catch(Exception e) {
-                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-
-                            e.printStackTrace();
-                        }
+                // 만약 음식이 없는데 기록 버튼을 눌렀다면 기록이 안 되게 해야함
+                if(food_name == null || food_name == "") {
+                    Toast.makeText(getApplicationContext(), "음식을 추가하고 기록해주세요!", Toast.LENGTH_LONG).show();
+                } else {
+                    if(meal.equals("아침")) {
+                        mealType = "M";
+                    } else if(meal.equals("점심")) {
+                        mealType = "L";
+                    } else if(meal.equals("저녁")) {
+                        mealType = "D";
+                    } else if(meal.equals("간식")) {
+                        mealType = "S";
                     }
-                };
-                if(date_Check){
-                    Frag_Home.current_calorie+=tmp[0];
-                    Frag_Home.current_carbohydrate+=tmp[1];
-                    Frag_Home.current_protein+=tmp[2];
-                    Frag_Home.current_fat+=tmp[3];
+                    // 해당 회원의 식단 정보 DB에 저장
+                    Response.Listener<String> setresponseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject setjsonObject = new JSONObject(response);
+
+                                boolean success = setjsonObject.getBoolean("success");
+
+
+                                if(success) {
+                                    Toast.makeText(getApplicationContext(), "식단을 정상적으로 등록하였습니다.", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(Add_Camera.this, HomeActivity.class);
+                                    intent.putExtra("userID", HomeActivity.userID);
+                                    startActivity(intent);
+
+                                } else
+                                    Toast.makeText(getApplicationContext(), "식단을 등록하는데 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+
+                            } catch(Exception e) {
+                                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    if(date_Check){
+                        Frag_Home.current_calorie+=tmp[0];
+                        Frag_Home.current_carbohydrate+=tmp[1];
+                        Frag_Home.current_protein+=tmp[2];
+                        Frag_Home.current_fat+=tmp[3];
+                    }
+
+                    // 서버로 Volley를 이용해서 요청을 함.
+                    // String userID, String mealDate, String mealType, String userMeal, String mealPhoto, listener
+                    FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, userMeal, mCurrentPhotoPath, setresponseListener);
+                    RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
+                    queue.add(foodCalendarSetRequest);
+
                 }
 
-                // 서버로 Volley를 이용해서 요청을 함.
-                // String userID, String mealDate, String mealType, String userMeal, String mealPhoto, listener
-                FoodCalendar_SetRequest foodCalendarSetRequest = new FoodCalendar_SetRequest(HomeActivity.userID, date, mealType, userMeal, mCurrentPhotoPath, setresponseListener);
-                RequestQueue queue = Volley.newRequestQueue(Add_Camera.this);
-                queue.add(foodCalendarSetRequest);
+
             }
         });
 
@@ -491,6 +499,9 @@ public class Add_Camera extends AppCompatActivity {
                             }
                         }
 
+                    } else {
+                        // 인식된 음식이 없는 경우임
+                        Toast.makeText(getApplicationContext(), "사진에 인식된 음식이 없습니다.\n+ 버튼을 눌러 수기로 작성해주세요.", Toast.LENGTH_LONG).show();
                     }
 
                     // 로딩 화면 종료
