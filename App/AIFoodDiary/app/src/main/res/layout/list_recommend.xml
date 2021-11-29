@@ -24,7 +24,7 @@
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="사용자 1\n\n 권장섭취량"
+                    android:text="사용자 \n\n 권장섭취량"
                     android:textColor="@color/black"
                     android:fontFamily="@font/bmjua"
                     android:textSize="12sp"/>

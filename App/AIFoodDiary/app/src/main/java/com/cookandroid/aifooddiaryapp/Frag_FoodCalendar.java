@@ -56,8 +56,6 @@ public class Frag_FoodCalendar extends Fragment {
     Intent intent;
     Bitmap bitmap;
     String mCurrentPhotoPath_m, mCurrentPhotoPath_l, mCurrentPhotoPath_d, mCurrentPhotoPath_s;
-    String meals;
-    int kcal=0,carbo=0,protein=0,fat=0;
 
     @Nullable
     @Override
@@ -159,7 +157,9 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_morning.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함.
+                                        img_morning.setVisibility(View.GONE);
+                                        img_no_image_morning.setVisibility(View.VISIBLE);
                                     }
                                 } else {
                                     try {
@@ -168,11 +168,19 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_morning.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                        img_morning.setVisibility(View.GONE);
+                                        img_no_image_morning.setVisibility(View.VISIBLE);
                                     }
                                 }
                             }
 
+                        } else {
+                            // available은 트루이나, 아침 식단은 없는 경우
+                            img_morning.setVisibility(View.GONE);
+                            img_no_image_morning.setVisibility(View.GONE);
+                            cv[0].setVisibility(View.GONE);
+                            cv_morning.setVisibility(View.VISIBLE);
                         }
 
                         if(getjsonObject.getInt("mealLunch") > 0) {
@@ -210,7 +218,9 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_lunch.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                        img_lunch.setVisibility(View.GONE);
+                                        img_no_image_lunch.setVisibility(View.VISIBLE);
                                     }
                                 } else {
                                     try {
@@ -219,10 +229,19 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_lunch.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                        img_lunch.setVisibility(View.GONE);
+                                        img_no_image_lunch.setVisibility(View.VISIBLE);
                                     }
                                 }
                             }
+                        }
+                        else {
+                            // available은 트루이나, 점심 식단은 없는 경우
+                            img_lunch.setVisibility(View.GONE);
+                            img_no_image_lunch.setVisibility(View.GONE);
+                            cv[1].setVisibility(View.GONE);
+                            cv_lunch.setVisibility(View.VISIBLE);
                         }
 
                         if(getjsonObject.getInt("mealDinner") > 0) {
@@ -260,7 +279,9 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_dinner.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                        img_dinner.setVisibility(View.GONE);
+                                        img_no_image_dinner.setVisibility(View.VISIBLE);
                                     }
                                 } else {
                                     try {
@@ -269,10 +290,19 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_dinner.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                        img_dinner.setVisibility(View.GONE);
+                                        img_no_image_dinner.setVisibility(View.VISIBLE);
                                     }
                                 }
                             }
+                        }
+                        else {
+                            // available은 트루이나, 저녁 식단은 없는 경우
+                            img_dinner.setVisibility(View.GONE);
+                            img_no_image_dinner.setVisibility(View.GONE);
+                            cv[2].setVisibility(View.GONE);
+                            cv_dinner.setVisibility(View.VISIBLE);
                         }
 
                         if(getjsonObject.getInt("mealSnack") > 0) {
@@ -310,7 +340,9 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_snack.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                        img_snack.setVisibility(View.GONE);
+                                        img_no_image_snack.setVisibility(View.VISIBLE);
                                     }
                                 } else {
                                     try {
@@ -319,10 +351,19 @@ public class Frag_FoodCalendar extends Fragment {
                                             img_snack.setImageBitmap(bitmap);
                                         }
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                        img_snack.setVisibility(View.GONE);
+                                        img_no_image_snack.setVisibility(View.VISIBLE);
                                     }
                                 }
                             }
+                        }
+                        else {
+                            // available은 트루이나, 간식 식단은 없는 경우
+                            img_snack.setVisibility(View.GONE);
+                            img_no_image_snack.setVisibility(View.GONE);
+                            cv[3].setVisibility(View.GONE);
+                            cv_snack.setVisibility(View.VISIBLE);
                         }
 
                     } else {
@@ -381,6 +422,28 @@ public class Frag_FoodCalendar extends Fragment {
                     tv[i].setText("");
                     cv[i].setVisibility(View.GONE);
                 }
+
+                // 파일 경로 또한 초기화 해줌
+                mCurrentPhotoPath_m = "";
+                mCurrentPhotoPath_l = "";
+                mCurrentPhotoPath_d = "";
+                mCurrentPhotoPath_s = "";
+
+                // 일단 모든 이미지가 다 안 보이게 하고 + (식단 추가) 버튼만 보이게 함
+                img_morning.setVisibility(View.GONE);
+                img_lunch.setVisibility(View.GONE);
+                img_dinner.setVisibility(View.GONE);
+                img_snack.setVisibility(View.GONE);
+
+                img_no_image_morning.setVisibility(View.GONE);
+                img_no_image_lunch.setVisibility(View.GONE);
+                img_no_image_dinner.setVisibility(View.GONE);
+                img_no_image_snack.setVisibility(View.GONE);
+
+                cv_morning.setVisibility(View.VISIBLE);
+                cv_lunch.setVisibility(View.VISIBLE);
+                cv_dinner.setVisibility(View.VISIBLE);
+                cv_snack.setVisibility(View.VISIBLE);
 
                 // 푸드 다이어리 부분
                 // 현재 보고 있는 데이트에 식단이 존재 한다면 기존에 있는 다이어리 내용 가져오는 과정 필요
@@ -442,7 +505,9 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_morning.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_morning.setVisibility(View.GONE);
+                                                img_no_image_morning.setVisibility(View.VISIBLE);
                                             }
                                         } else {
                                             try {
@@ -451,11 +516,19 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_morning.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_morning.setVisibility(View.GONE);
+                                                img_no_image_morning.setVisibility(View.VISIBLE);
                                             }
                                         }
                                     }
 
+                                }else {
+                                    // available은 트루이나, 아침 식단은 없는 경우
+                                    img_morning.setVisibility(View.GONE);
+                                    img_no_image_morning.setVisibility(View.GONE);
+                                    cv[0].setVisibility(View.GONE);
+                                    cv_morning.setVisibility(View.VISIBLE);
                                 }
 
                                 if(getjsonObject.getInt("mealLunch") > 0) {
@@ -494,7 +567,9 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_lunch.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_lunch.setVisibility(View.GONE);
+                                                img_no_image_lunch.setVisibility(View.VISIBLE);
                                             }
                                         } else {
                                             try {
@@ -503,10 +578,19 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_lunch.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_lunch.setVisibility(View.GONE);
+                                                img_no_image_lunch.setVisibility(View.VISIBLE);
                                             }
                                         }
                                     }
+                                }
+                                else {
+                                    // available은 트루이나, 점심 식단은 없는 경우
+                                    img_lunch.setVisibility(View.GONE);
+                                    img_no_image_lunch.setVisibility(View.GONE);
+                                    cv[1].setVisibility(View.GONE);
+                                    cv_lunch.setVisibility(View.VISIBLE);
                                 }
 
                                 if(getjsonObject.getInt("mealDinner") > 0) {
@@ -544,7 +628,9 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_dinner.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_dinner.setVisibility(View.GONE);
+                                                img_no_image_dinner.setVisibility(View.VISIBLE);
                                             }
                                         } else {
                                             try {
@@ -553,10 +639,19 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_dinner.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_dinner.setVisibility(View.GONE);
+                                                img_no_image_dinner.setVisibility(View.VISIBLE);
                                             }
                                         }
                                     }
+                                }
+                                else {
+                                    // available은 트루이나, 저녁 식단은 없는 경우
+                                    img_dinner.setVisibility(View.GONE);
+                                    img_no_image_dinner.setVisibility(View.GONE);
+                                    cv[2].setVisibility(View.GONE);
+                                    cv_dinner.setVisibility(View.VISIBLE);
                                 }
 
                                 if(getjsonObject.getInt("mealSnack") > 0) {
@@ -594,7 +689,9 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_snack.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_snack.setVisibility(View.GONE);
+                                                img_no_image_snack.setVisibility(View.VISIBLE);
                                             }
                                         } else {
                                             try {
@@ -603,10 +700,19 @@ public class Frag_FoodCalendar extends Fragment {
                                                     img_snack.setImageBitmap(bitmap);
                                                 }
                                             } catch (IOException e) {
-                                                e.printStackTrace();
+                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                img_snack.setVisibility(View.GONE);
+                                                img_no_image_snack.setVisibility(View.VISIBLE);
                                             }
                                         }
                                     }
+                                }
+                                else {
+                                    // available은 트루이나, 간식 식단은 없는 경우
+                                    img_snack.setVisibility(View.GONE);
+                                    img_no_image_snack.setVisibility(View.GONE);
+                                    cv[3].setVisibility(View.GONE);
+                                    cv_snack.setVisibility(View.VISIBLE);
                                 }
 
                             } else {
