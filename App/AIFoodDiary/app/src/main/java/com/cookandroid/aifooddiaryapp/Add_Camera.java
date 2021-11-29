@@ -455,12 +455,15 @@ public class Add_Camera extends AppCompatActivity {
                         in = in / 6;
                         // 인덱스가 0이 아니면 가져온 정보 출력
                         for(int i = 0; i < in; i++) {
-                            food_name = food[i];
-                            foodSize = food[i + 1];
-                            foodCarbo = food[i + 2];
-                            foodProtein = food[i + 3];
-                            foodFat = food[i + 4];
-                            foodKcal = food[i + 5];
+                            // 가중치 n 변수 선언
+                            int n = 6;
+                            n = n * i;
+                            food_name = food[(i * n)];
+                            foodSize = food[(i * n) + 1];
+                            foodCarbo = food[(i * n) + 2];
+                            foodProtein = food[(i * n) + 3];
+                            foodFat = food[(i * n) + 4];
+                            foodKcal = food[(i * n) + 5];
 
                             String info="음식이름: " + food_name +"\n\n1회 제공량: " +foodSize+"g"+"\n\n칼로리: " + foodKcal+"Kcal"+"\n\n탄수화물: " + foodCarbo+"g"+"\n\n단백질: " + foodProtein+"g"+"\n\n지방: " + foodFat+"g";
                             tv_food_info[index].setText(info);
@@ -496,6 +499,7 @@ public class Add_Camera extends AppCompatActivity {
                             }else{
                                 userMeal+=(","+food_name);
                             }
+                            index++;
                         }
 
                     } else {
@@ -506,8 +510,10 @@ public class Add_Camera extends AppCompatActivity {
                     // 로딩 화면 종료
                     progressOFF();
 
-                } catch (JSONException e) {
+                } catch (Exception e) {
+                    // 오류가 나면 해당 오류 내용 알려주고 로딩 끝나게 함
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    progressOFF();
                 }
 
 
