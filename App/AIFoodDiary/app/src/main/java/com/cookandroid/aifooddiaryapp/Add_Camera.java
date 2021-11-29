@@ -207,7 +207,6 @@ public class Add_Camera extends AppCompatActivity {
 
         }
 
-
     }
 
     @Override
