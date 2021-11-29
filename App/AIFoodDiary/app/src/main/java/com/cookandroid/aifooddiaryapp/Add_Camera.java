@@ -1,16 +1,16 @@
 package com.cookandroid.aifooddiaryapp;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +19,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
+import androidx.cardview.widget.CardView;
+
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -81,6 +88,9 @@ public class Add_Camera extends AppCompatActivity {
 
     //카드뷰에 있는 영양정보 수치 저장할 배열
     int card_infoInt[][]={{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+
+    AppCompatDialog progressDialog;
+
     // DB에서 푸드 정보 가져오는 메소드
     public void getFoodInfo(String food_name,int index) {
         // 음식 정보 가져옴
@@ -360,15 +370,11 @@ public class Add_Camera extends AppCompatActivity {
         });
 
 
-
-
-
         if(flag.equals("camera")){
             //카메라 추가로부터 왔을경우
             loadImage();
             uploadDataToDB();
-            //모델 출력 결과를 food_name 가져오는 메소드 이벤트 짜야함
-            //addFood();
+            progressON(this, "Loading...");
         }
         else{
             //수기추가로부터 왔을경우
@@ -399,7 +405,6 @@ public class Add_Camera extends AppCompatActivity {
             ImageDecoder.Source source = ImageDecoder.createSource(this.getContentResolver(), Uri.fromFile(file));
             try {
                 bitmap = ImageDecoder.decodeBitmap(source);
-                Bitmap targetBmp = bitmap.copy(Bitmap.Config.ARGB_8888, false);
                 if (bitmap != null) {
                     img_food_photo.setImageBitmap(bitmap);
                     encodeBitmapImage(bitmap);
@@ -410,7 +415,6 @@ public class Add_Camera extends AppCompatActivity {
         } else {
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.fromFile(file));
-                Bitmap targetBmp = bitmap.copy(Bitmap.Config.ARGB_8888, false);
                 if (bitmap != null) {
                     img_food_photo.setImageBitmap(bitmap);
                     encodeBitmapImage(bitmap);
@@ -429,12 +433,68 @@ public class Add_Camera extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+
                     JSONObject jsonObject = new JSONObject(response);
 
-                    if(!jsonObject.isNull("food_info")) {
-                        String info = jsonObject.getString("food_info");
+                    // 음식 이름과 음식 인덱스 가져옴
+                    String food_info = jsonObject.getString("food_info");
+                    int in = jsonObject.getInt("index");
+
+                    // 가져온 음식 이름은 ,로 구분지어져 있기 때문에 스플릿 해줌
+                    String food[] = food_info.split(",");
+
+                    if(in != 0) {
+                        //음식 정보는 6개씩 나눠서 들어감
+                        in = in / 6;
+                        // 인덱스가 0이 아니면 가져온 정보 출력
+                        for(int i = 0; i < in; i++) {
+                            food_name = food[i];
+                            foodSize = food[i + 1];
+                            foodCarbo = food[i + 2];
+                            foodProtein = food[i + 3];
+                            foodFat = food[i + 4];
+                            foodKcal = food[i + 5];
+
+                            String info="음식이름: " + food_name +"\n\n1회 제공량: " +foodSize+"g"+"\n\n칼로리: " + foodKcal+"Kcal"+"\n\n탄수화물: " + foodCarbo+"g"+"\n\n단백질: " + foodProtein+"g"+"\n\n지방: " + foodFat+"g";
+                            tv_food_info[index].setText(info);
+                            cv_food[index].setVisibility(View.VISIBLE);
+                            //날짜 확인
+                            int kcal=(int)Math.floor(Double.parseDouble(foodKcal));
+                            int carbo=(int)Math.floor(Double.parseDouble(foodCarbo));
+                            int protein=(int)Math.floor(Double.parseDouble(foodProtein));
+                            int fat=(int)Math.floor(Double.parseDouble(foodFat));
+                            if(date_Check){
+                                //프로그래스바 설정을 위한 임시데이터 저장
+                                tmp[0]+=kcal;
+                                tmp[1]+=carbo;
+                                tmp[2]+=protein;
+                                tmp[3]+=fat;
+
+                            }
+                            else{
+                                c[0]+=kcal;
+                                c[1]+=carbo;
+                                c[2]+=protein;
+                                c[3]+=fat;
+
+                            }
+                            //나중에 카드뷰 삭제할때 프로그래스바에서도 수정해줘야 하기 때문에 수치 저장
+                            card_infoInt[index][0]=kcal;
+                            card_infoInt[index][1]=carbo;
+                            card_infoInt[index][2]=protein;
+                            card_infoInt[index][3]=fat;
+                            setProgressBar(date_Check);
+                            if(userMeal.equals("")){
+                                userMeal+=food_name;
+                            }else{
+                                userMeal+=(","+food_name);
+                            }
+                        }
+
                     }
 
+                    // 로딩 화면 종료
+                    progressOFF();
 
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -458,6 +518,11 @@ public class Add_Camera extends AppCompatActivity {
                 map.put("upload", encodeImageString);
                 return map;
             }
+
+            @Override
+            public Request<?> setRetryPolicy(RetryPolicy retryPolicy) {
+                return super.setRetryPolicy(new DefaultRetryPolicy(30000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            }
         };
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(request);
@@ -473,6 +538,64 @@ public class Add_Camera extends AppCompatActivity {
     }
 
 
+    // 로딩화면 다이얼로그 생성
+    public void progressON(Activity activity, String message) {
+
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
+
+
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressSET(message);
+        } else {
+
+            progressDialog = new AppCompatDialog(activity);
+            progressDialog.setCancelable(false);
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progressDialog.setContentView(R.layout.loading);
+            progressDialog.show();
+
+        }
+
+
+        final ImageView img_loading_frame = (ImageView) progressDialog.findViewById(R.id.iv_frame_loading);
+        final AnimationDrawable frameAnimation = (AnimationDrawable) img_loading_frame.getBackground();
+        img_loading_frame.post(new Runnable() {
+            @Override
+            public void run() {
+                frameAnimation.start();
+            }
+        });
+
+        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.tv_progress_message);
+        if (!TextUtils.isEmpty(message)) {
+            tv_progress_message.setText(message);
+        }
+
+
+    }
+
+    // 프로그래스 set 함수
+    public void progressSET(String message) {
+
+        if (progressDialog == null || !progressDialog.isShowing()) {
+            return;
+        }
+
+        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.tv_progress_message);
+        if (!TextUtils.isEmpty(message)) {
+            tv_progress_message.setText(message);
+        }
+
+    }
+
+    // 프로그래스 종료 함수
+    public void progressOFF() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
 
 
 }
