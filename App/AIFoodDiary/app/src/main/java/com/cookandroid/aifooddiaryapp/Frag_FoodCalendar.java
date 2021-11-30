@@ -121,7 +121,7 @@ public class Frag_FoodCalendar extends Fragment {
                     }
                     if(getjsonObject.getBoolean("available") == true) {
                         // 해당 날짜에 데이터가 있다는 것.
-                        if(getjsonObject.getInt("mealMorning") > 0) {
+                        if(!getjsonObject.isNull("mealMorning") && getjsonObject.getInt("mealMorning") > 0) {
                             // 모닝에 데이터가 존재한다면 해당 음식 데이터 가져옴
                             String mealMorning = getjsonObject.getString("Morning");
 
@@ -183,7 +183,7 @@ public class Frag_FoodCalendar extends Fragment {
                             cv_morning.setVisibility(View.VISIBLE);
                         }
 
-                        if(getjsonObject.getInt("mealLunch") > 0) {
+                        if(!getjsonObject.isNull("mealLunch") && getjsonObject.getInt("mealLunch") > 0) {
                             // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
                             String mealLunch = getjsonObject.getString("Lunch");
 
@@ -244,7 +244,7 @@ public class Frag_FoodCalendar extends Fragment {
                             cv_lunch.setVisibility(View.VISIBLE);
                         }
 
-                        if(getjsonObject.getInt("mealDinner") > 0) {
+                        if(!getjsonObject.isNull("mealDinner") && getjsonObject.getInt("mealDinner") > 0) {
                             // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
                             String mealDinner = getjsonObject.getString("Dinner");
 
@@ -305,7 +305,7 @@ public class Frag_FoodCalendar extends Fragment {
                             cv_dinner.setVisibility(View.VISIBLE);
                         }
 
-                        if(getjsonObject.getInt("mealSnack") > 0) {
+                        if(!getjsonObject.isNull("mealSnack") &&getjsonObject.getInt("mealSnack") > 0) {
                             // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
                             String mealSnack = getjsonObject.getString("Snack");
 
@@ -467,7 +467,7 @@ public class Frag_FoodCalendar extends Fragment {
                                 mCurrentPhotoPath_s = getjsonObject.getString("mealPhoto_s");
                             }
 
-                            if(getjsonObject.getBoolean("available") == true) {
+                            if(!getjsonObject.isNull("mealMorning") && getjsonObject.getBoolean("available") == true) {
                                 // 해당 날짜에 데이터가 있다는 것.
                                 if(getjsonObject.getInt("mealMorning") > 0) {
                                     // 모닝에 데이터가 존재한다면 해당 음식 데이터 가져옴
@@ -531,7 +531,7 @@ public class Frag_FoodCalendar extends Fragment {
                                     cv_morning.setVisibility(View.VISIBLE);
                                 }
 
-                                if(getjsonObject.getInt("mealLunch") > 0) {
+                                if(!getjsonObject.isNull("mealLunch") && getjsonObject.getInt("mealLunch") > 0) {
                                     // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
                                     String mealLunch = getjsonObject.getString("Lunch");
 
@@ -593,7 +593,7 @@ public class Frag_FoodCalendar extends Fragment {
                                     cv_lunch.setVisibility(View.VISIBLE);
                                 }
 
-                                if(getjsonObject.getInt("mealDinner") > 0) {
+                                if(!getjsonObject.isNull("mealDinner") && getjsonObject.getInt("mealDinner") > 0) {
                                     // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
                                     String mealDinner = getjsonObject.getString("Dinner");
 
@@ -654,7 +654,7 @@ public class Frag_FoodCalendar extends Fragment {
                                     cv_dinner.setVisibility(View.VISIBLE);
                                 }
 
-                                if(getjsonObject.getInt("mealSnack") > 0) {
+                                if(!getjsonObject.isNull("mealSnack") && getjsonObject.getInt("mealSnack") > 0) {
                                     // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
                                     String mealSnack = getjsonObject.getString("Snack");
 
