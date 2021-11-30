@@ -381,7 +381,6 @@ public class Add_Camera extends AppCompatActivity {
             //카메라 추가로부터 왔을경우
             loadImage();
             uploadDataToDB();
-            progressON(this, "Loading...");
         }
         else{
             //수기추가로부터 왔을경우
@@ -390,8 +389,12 @@ public class Add_Camera extends AppCompatActivity {
         }
 
 
-
     }   // onCreate 메소드 종료 부분
+
+    // Activity를 반환해주는 메소드 (로딩 화면 실행시 필요)
+    public Activity myActivity() {
+        return this;
+    }
 
     public void addFood(){
         index=-1;
@@ -435,6 +438,7 @@ public class Add_Camera extends AppCompatActivity {
     // DB에 파일 올릴 메소드
     public void uploadDataToDB() {
         final String name = date;
+        progressON(myActivity(), "Loading...");
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
