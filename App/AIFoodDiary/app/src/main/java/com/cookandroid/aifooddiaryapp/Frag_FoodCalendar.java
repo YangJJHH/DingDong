@@ -467,253 +467,261 @@ public class Frag_FoodCalendar extends Fragment {
                                 mCurrentPhotoPath_s = getjsonObject.getString("mealPhoto_s");
                             }
 
-                            if(!getjsonObject.isNull("mealMorning") && getjsonObject.getBoolean("available") == true) {
-                                // 해당 날짜에 데이터가 있다는 것.
-                                if(getjsonObject.getInt("mealMorning") > 0) {
-                                    // 모닝에 데이터가 존재한다면 해당 음식 데이터 가져옴
-                                    String mealMorning = getjsonObject.getString("Morning");
+                            if(getjsonObject.getBoolean("available") == true) {
+                                if(!getjsonObject.isNull("mealMorning")) {
+                                    // 해당 날짜에 데이터가 있다는 것.
+                                    if(getjsonObject.getInt("mealMorning") > 0) {
+                                        // 모닝에 데이터가 존재한다면 해당 음식 데이터 가져옴
+                                        String mealMorning = getjsonObject.getString("Morning");
 
-                                    // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
-                                    String morning[] = mealMorning.split(",");
+                                        // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
+                                        String morning[] = mealMorning.split(",");
 
-                                    // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
-                                    cv_morning.setVisibility(View.GONE);
+                                        // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
+                                        cv_morning.setVisibility(View.GONE);
 
-                                    // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
-                                    cv[0].setVisibility(View.VISIBLE);
+                                        // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
+                                        cv[0].setVisibility(View.VISIBLE);
 
-                                    if(!mealMorning.equals(""))
-                                        tv[0].setText(mealMorning);
+                                        if(!mealMorning.equals(""))
+                                            tv[0].setText(mealMorning);
 
-                                    // 띄워줄 사진이 있는지 확인함
-                                    if(mCurrentPhotoPath_m.equals("")) {
-                                        // 띄워줄 사진이 없으면 img_no_image_morning을 보이게 함
+                                        // 띄워줄 사진이 있는지 확인함
+                                        if(mCurrentPhotoPath_m.equals("")) {
+                                            // 띄워줄 사진이 없으면 img_no_image_morning을 보이게 함
+                                            img_morning.setVisibility(View.GONE);
+                                            img_no_image_morning.setVisibility(View.VISIBLE);
+
+                                        } else {
+                                            //이미지뷰에 음식사진 불러오기
+                                            img_morning.setVisibility(View.VISIBLE);
+                                            img_no_image_morning.setVisibility(View.GONE);
+
+                                            File file = new File(mCurrentPhotoPath_m);
+                                            if (Build.VERSION.SDK_INT >= 29) {
+                                                ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                try {
+                                                    bitmap = ImageDecoder.decodeBitmap(source);
+                                                    if (bitmap != null) {
+                                                        img_morning.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_morning.setVisibility(View.GONE);
+                                                    img_no_image_morning.setVisibility(View.VISIBLE);
+                                                }
+                                            } else {
+                                                try {
+                                                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                    if (bitmap != null) {
+                                                        img_morning.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_morning.setVisibility(View.GONE);
+                                                    img_no_image_morning.setVisibility(View.VISIBLE);
+                                                }
+                                            }
+                                        }
+
+                                    }else {
+                                        // available은 트루이나, 아침 식단은 없는 경우
                                         img_morning.setVisibility(View.GONE);
-                                        img_no_image_morning.setVisibility(View.VISIBLE);
-
-                                    } else {
-                                        //이미지뷰에 음식사진 불러오기
-                                        img_morning.setVisibility(View.VISIBLE);
                                         img_no_image_morning.setVisibility(View.GONE);
+                                        cv[0].setVisibility(View.GONE);
+                                        cv_morning.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                                if(!getjsonObject.isNull("mealLunch")) {
+                                    if(getjsonObject.getInt("mealLunch") > 0) {
+                                        // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
+                                        String mealLunch = getjsonObject.getString("Lunch");
 
-                                        File file = new File(mCurrentPhotoPath_m);
-                                        if (Build.VERSION.SDK_INT >= 29) {
-                                            ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
-                                            try {
-                                                bitmap = ImageDecoder.decodeBitmap(source);
-                                                if (bitmap != null) {
-                                                    img_morning.setImageBitmap(bitmap);
-                                                }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_morning.setVisibility(View.GONE);
-                                                img_no_image_morning.setVisibility(View.VISIBLE);
-                                            }
+                                        // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
+                                        String lunch[] = mealLunch.split(",");
+
+                                        // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
+                                        cv_lunch.setVisibility(View.GONE);
+
+                                        // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
+                                        cv[1].setVisibility(View.VISIBLE);
+
+                                        if(!mealLunch.equals(""))
+                                            tv[1].setText(mealLunch);
+
+                                        // 띄워줄 사진이 있는지 확인함
+                                        if(mCurrentPhotoPath_l.equals("")) {
+                                            // 띄워줄 사진이 없으면 img_no_image_lunch을 보이게 함
+                                            img_lunch.setVisibility(View.GONE);
+                                            img_no_image_lunch.setVisibility(View.VISIBLE);
+
                                         } else {
-                                            try {
-                                                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
-                                                if (bitmap != null) {
-                                                    img_morning.setImageBitmap(bitmap);
+                                            //이미지뷰에 음식사진 불러오기
+                                            img_lunch.setVisibility(View.VISIBLE);
+                                            img_no_image_lunch.setVisibility(View.GONE);
+
+                                            File file = new File(mCurrentPhotoPath_l);
+                                            if (Build.VERSION.SDK_INT >= 29) {
+                                                ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                try {
+                                                    bitmap = ImageDecoder.decodeBitmap(source);
+                                                    if (bitmap != null) {
+                                                        img_lunch.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_lunch.setVisibility(View.GONE);
+                                                    img_no_image_lunch.setVisibility(View.VISIBLE);
                                                 }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_morning.setVisibility(View.GONE);
-                                                img_no_image_morning.setVisibility(View.VISIBLE);
+                                            } else {
+                                                try {
+                                                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                    if (bitmap != null) {
+                                                        img_lunch.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_lunch.setVisibility(View.GONE);
+                                                    img_no_image_lunch.setVisibility(View.VISIBLE);
+                                                }
                                             }
                                         }
                                     }
-
-                                }else {
-                                    // available은 트루이나, 아침 식단은 없는 경우
-                                    img_morning.setVisibility(View.GONE);
-                                    img_no_image_morning.setVisibility(View.GONE);
-                                    cv[0].setVisibility(View.GONE);
-                                    cv_morning.setVisibility(View.VISIBLE);
-                                }
-
-                                if(!getjsonObject.isNull("mealLunch") && getjsonObject.getInt("mealLunch") > 0) {
-                                    // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
-                                    String mealLunch = getjsonObject.getString("Lunch");
-
-                                    // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
-                                    String lunch[] = mealLunch.split(",");
-
-                                    // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
-                                    cv_lunch.setVisibility(View.GONE);
-
-                                    // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
-                                    cv[1].setVisibility(View.VISIBLE);
-
-                                    if(!mealLunch.equals(""))
-                                        tv[1].setText(mealLunch);
-
-                                    // 띄워줄 사진이 있는지 확인함
-                                    if(mCurrentPhotoPath_l.equals("")) {
-                                        // 띄워줄 사진이 없으면 img_no_image_lunch을 보이게 함
+                                    else {
+                                        // available은 트루이나, 점심 식단은 없는 경우
                                         img_lunch.setVisibility(View.GONE);
-                                        img_no_image_lunch.setVisibility(View.VISIBLE);
-
-                                    } else {
-                                        //이미지뷰에 음식사진 불러오기
-                                        img_lunch.setVisibility(View.VISIBLE);
                                         img_no_image_lunch.setVisibility(View.GONE);
+                                        cv[1].setVisibility(View.GONE);
+                                        cv_lunch.setVisibility(View.VISIBLE);
+                                    }
+                                }
 
-                                        File file = new File(mCurrentPhotoPath_l);
-                                        if (Build.VERSION.SDK_INT >= 29) {
-                                            ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
-                                            try {
-                                                bitmap = ImageDecoder.decodeBitmap(source);
-                                                if (bitmap != null) {
-                                                    img_lunch.setImageBitmap(bitmap);
-                                                }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_lunch.setVisibility(View.GONE);
-                                                img_no_image_lunch.setVisibility(View.VISIBLE);
-                                            }
+                                if(!getjsonObject.isNull("mealDinner")) {
+                                    if(getjsonObject.getInt("mealDinner") > 0) {
+                                        // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
+                                        String mealDinner = getjsonObject.getString("Dinner");
+
+                                        // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
+                                        String dinner[] = mealDinner.split(",");
+
+                                        // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
+                                        cv_dinner.setVisibility(View.GONE);
+
+                                        // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
+                                        cv[2].setVisibility(View.VISIBLE);
+
+                                        if(!mealDinner.equals(""))
+                                            tv[2].setText(mealDinner);
+
+                                        // 띄워줄 사진이 있는지 확인함
+                                        if(mCurrentPhotoPath_d.equals("")) {
+                                            // 띄워줄 사진이 없으면 img_no_image_dinner을 보이게 함
+                                            img_dinner.setVisibility(View.GONE);
+                                            img_no_image_dinner.setVisibility(View.VISIBLE);
                                         } else {
-                                            try {
-                                                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
-                                                if (bitmap != null) {
-                                                    img_lunch.setImageBitmap(bitmap);
+                                            //이미지뷰에 음식사진 불러오기
+                                            img_dinner.setVisibility(View.VISIBLE);
+                                            img_no_image_dinner.setVisibility(View.GONE);
+
+                                            File file = new File(mCurrentPhotoPath_d);
+                                            if (Build.VERSION.SDK_INT >= 29) {
+                                                ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                try {
+                                                    bitmap = ImageDecoder.decodeBitmap(source);
+                                                    if (bitmap != null) {
+                                                        img_dinner.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_dinner.setVisibility(View.GONE);
+                                                    img_no_image_dinner.setVisibility(View.VISIBLE);
                                                 }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_lunch.setVisibility(View.GONE);
-                                                img_no_image_lunch.setVisibility(View.VISIBLE);
+                                            } else {
+                                                try {
+                                                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                    if (bitmap != null) {
+                                                        img_dinner.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_dinner.setVisibility(View.GONE);
+                                                    img_no_image_dinner.setVisibility(View.VISIBLE);
+                                                }
                                             }
                                         }
                                     }
-                                }
-                                else {
-                                    // available은 트루이나, 점심 식단은 없는 경우
-                                    img_lunch.setVisibility(View.GONE);
-                                    img_no_image_lunch.setVisibility(View.GONE);
-                                    cv[1].setVisibility(View.GONE);
-                                    cv_lunch.setVisibility(View.VISIBLE);
-                                }
-
-                                if(!getjsonObject.isNull("mealDinner") && getjsonObject.getInt("mealDinner") > 0) {
-                                    // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
-                                    String mealDinner = getjsonObject.getString("Dinner");
-
-                                    // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
-                                    String dinner[] = mealDinner.split(",");
-
-                                    // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
-                                    cv_dinner.setVisibility(View.GONE);
-
-                                    // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
-                                    cv[2].setVisibility(View.VISIBLE);
-
-                                    if(!mealDinner.equals(""))
-                                        tv[2].setText(mealDinner);
-
-                                    // 띄워줄 사진이 있는지 확인함
-                                    if(mCurrentPhotoPath_d.equals("")) {
-                                        // 띄워줄 사진이 없으면 img_no_image_dinner을 보이게 함
+                                    else {
+                                        // available은 트루이나, 저녁 식단은 없는 경우
                                         img_dinner.setVisibility(View.GONE);
-                                        img_no_image_dinner.setVisibility(View.VISIBLE);
-                                    } else {
-                                        //이미지뷰에 음식사진 불러오기
-                                        img_dinner.setVisibility(View.VISIBLE);
                                         img_no_image_dinner.setVisibility(View.GONE);
+                                        cv[2].setVisibility(View.GONE);
+                                        cv_dinner.setVisibility(View.VISIBLE);
+                                    }
+                                }
 
-                                        File file = new File(mCurrentPhotoPath_d);
-                                        if (Build.VERSION.SDK_INT >= 29) {
-                                            ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
-                                            try {
-                                                bitmap = ImageDecoder.decodeBitmap(source);
-                                                if (bitmap != null) {
-                                                    img_dinner.setImageBitmap(bitmap);
-                                                }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_dinner.setVisibility(View.GONE);
-                                                img_no_image_dinner.setVisibility(View.VISIBLE);
-                                            }
+                                if(!getjsonObject.isNull("mealSnack")) {
+                                    if(getjsonObject.getInt("mealSnack") > 0) {
+                                        // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
+                                        String mealSnack = getjsonObject.getString("Snack");
+
+                                        // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
+                                        String sncak[] = mealSnack.split(",");
+
+                                        // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
+                                        cv_snack.setVisibility(View.GONE);
+
+                                        // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
+                                        cv[3].setVisibility(View.VISIBLE);
+
+                                        if(!mealSnack.equals(""))
+                                            tv[3].setText(mealSnack);
+
+                                        // 띄워줄 사진이 있는지 확인함
+                                        if(mCurrentPhotoPath_s.equals("")) {
+                                            // 띄워줄 사진이 없으면 img_no_image_sncak을 보이게 함
+                                            img_snack.setVisibility(View.GONE);
+                                            img_no_image_snack.setVisibility(View.VISIBLE);
                                         } else {
-                                            try {
-                                                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
-                                                if (bitmap != null) {
-                                                    img_dinner.setImageBitmap(bitmap);
+                                            //이미지뷰에 음식사진 불러오기
+                                            img_snack.setVisibility(View.VISIBLE);
+                                            img_no_image_snack.setVisibility(View.GONE);
+
+                                            File file = new File(mCurrentPhotoPath_s);
+                                            if (Build.VERSION.SDK_INT >= 29) {
+                                                ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                try {
+                                                    bitmap = ImageDecoder.decodeBitmap(source);
+                                                    if (bitmap != null) {
+                                                        img_snack.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_snack.setVisibility(View.GONE);
+                                                    img_no_image_snack.setVisibility(View.VISIBLE);
                                                 }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_dinner.setVisibility(View.GONE);
-                                                img_no_image_dinner.setVisibility(View.VISIBLE);
+                                            } else {
+                                                try {
+                                                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
+                                                    if (bitmap != null) {
+                                                        img_snack.setImageBitmap(bitmap);
+                                                    }
+                                                } catch (IOException e) {
+                                                    // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
+                                                    img_snack.setVisibility(View.GONE);
+                                                    img_no_image_snack.setVisibility(View.VISIBLE);
+                                                }
                                             }
                                         }
                                     }
-                                }
-                                else {
-                                    // available은 트루이나, 저녁 식단은 없는 경우
-                                    img_dinner.setVisibility(View.GONE);
-                                    img_no_image_dinner.setVisibility(View.GONE);
-                                    cv[2].setVisibility(View.GONE);
-                                    cv_dinner.setVisibility(View.VISIBLE);
-                                }
-
-                                if(!getjsonObject.isNull("mealSnack") && getjsonObject.getInt("mealSnack") > 0) {
-                                    // 점심에 데이터가 존재한다면 해당 음식 데이터 가져옴
-                                    String mealSnack = getjsonObject.getString("Snack");
-
-                                    // 가져온 음식 데이터는 , 를 기준으로 구분이 되어있으므로 스플릿해줌
-                                    String sncak[] = mealSnack.split(",");
-
-                                    // 가져올 음식이 있는 것이므로 +모양(추가 모양)은 안 보이게 함.
-                                    cv_snack.setVisibility(View.GONE);
-
-                                    // 가져올 음식이 있는 것이므로 음식정보를 보는 +버튼은 보이게 함
-                                    cv[3].setVisibility(View.VISIBLE);
-
-                                    if(!mealSnack.equals(""))
-                                        tv[3].setText(mealSnack);
-
-                                    // 띄워줄 사진이 있는지 확인함
-                                    if(mCurrentPhotoPath_s.equals("")) {
-                                        // 띄워줄 사진이 없으면 img_no_image_sncak을 보이게 함
+                                    else {
+                                        // available은 트루이나, 간식 식단은 없는 경우
                                         img_snack.setVisibility(View.GONE);
-                                        img_no_image_snack.setVisibility(View.VISIBLE);
-                                    } else {
-                                        //이미지뷰에 음식사진 불러오기
-                                        img_snack.setVisibility(View.VISIBLE);
                                         img_no_image_snack.setVisibility(View.GONE);
-
-                                        File file = new File(mCurrentPhotoPath_s);
-                                        if (Build.VERSION.SDK_INT >= 29) {
-                                            ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), Uri.fromFile(file));
-                                            try {
-                                                bitmap = ImageDecoder.decodeBitmap(source);
-                                                if (bitmap != null) {
-                                                    img_snack.setImageBitmap(bitmap);
-                                                }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_snack.setVisibility(View.GONE);
-                                                img_no_image_snack.setVisibility(View.VISIBLE);
-                                            }
-                                        } else {
-                                            try {
-                                                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
-                                                if (bitmap != null) {
-                                                    img_snack.setImageBitmap(bitmap);
-                                                }
-                                            } catch (IOException e) {
-                                                // 경로는 있으나 휴대폰에 이미지가 없다는 것이므로 noImage가 뜨게 함
-                                                img_snack.setVisibility(View.GONE);
-                                                img_no_image_snack.setVisibility(View.VISIBLE);
-                                            }
-                                        }
+                                        cv[3].setVisibility(View.GONE);
+                                        cv_snack.setVisibility(View.VISIBLE);
                                     }
                                 }
-                                else {
-                                    // available은 트루이나, 간식 식단은 없는 경우
-                                    img_snack.setVisibility(View.GONE);
-                                    img_no_image_snack.setVisibility(View.GONE);
-                                    cv[3].setVisibility(View.GONE);
-                                    cv_snack.setVisibility(View.VISIBLE);
-                                }
+
 
                             } else {
                                 // 가져온 데이터가 없다는 것이므로 + 모양(추가 모양)이 다시 보이게함
