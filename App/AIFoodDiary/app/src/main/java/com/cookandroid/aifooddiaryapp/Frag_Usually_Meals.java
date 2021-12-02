@@ -88,6 +88,7 @@ public class Frag_Usually_Meals extends Fragment {
                     //새로고침
                     usuallyMeal_adapter.notifyDataSetChanged();
 
+
                 } catch(JSONException e) {
                     Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
 
@@ -115,8 +116,6 @@ public class Frag_Usually_Meals extends Fragment {
                         arrayList.add(m1);
                         //새로고침
                         usuallyMeal_adapter.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(getActivity(), "존재하지 않는 음식을 입력하였습니다.", Toast.LENGTH_SHORT).show();
                     }
                 }
 
