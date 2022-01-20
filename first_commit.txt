@@ -8,3 +8,5 @@ hello ~~~~
 22. 01. 18. - batch file test
 22. 01. 18. - last batch file test
 22. 01. 18. - finish
+
+22. 01. 20. - last
