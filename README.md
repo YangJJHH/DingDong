@@ -20,14 +20,16 @@
 
 -----
 ## [대표 이미지](#대표-이미지)
-<img width="30%" src="https://user-images.githubusercontent.com/73065398/212473456-f0f41d61-209e-446e-bc47-135e27e2b846.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/73065398/212473463-54cb6799-22d6-4acc-817e-a89211702cb2.png"/> <br>
+<img width="30%" src="https://user-images.githubusercontent.com/73065398/212473456-f0f41d61-209e-446e-bc47-135e27e2b846.png"/> <img width="30%" src="https://user-images.githubusercontent.com/73065398/212473463-54cb6799-22d6-4acc-817e-a89211702cb2.png"/> 
 <img width="30%" src="https://user-images.githubusercontent.com/73065398/212473463-54cb6799-22d6-4acc-817e-a89211702cb2.png"/>
 <img width="30%" src="https://user-images.githubusercontent.com/73065398/212473493-b6ef24dd-03eb-4638-9fd6-39e46b557516.png"/> <br>
 <img width="30%" src="https://user-images.githubusercontent.com/73065398/212473500-4daa5d89-552c-4ad5-bb54-e70c5913dd68.png"/>
 <img width="30%" src="https://user-images.githubusercontent.com/73065398/212473516-82adae88-d047-4a25-bf88-18910b6f6969.png"/> <br>
 <img width="30%" src="https://user-images.githubusercontent.com/73065398/212473533-cf5c1c11-38b1-432f-8591-167e08ac5bf5.png"/> 
 <img width="30%" src="https://user-images.githubusercontent.com/73065398/212473542-8ecb458d-08ba-4160-93e0-24d6720814a5.png"/> 
+
+
+
 ## [기대 효과 및 활용 방안](#기대-효과-및-활용-방안)
 #### 헬스케어를 처음 접한 사용자들도 추천 알고리즘을 통해 쉽게 접근하여 건강의 관심도를 증가시킨다. 사용자가 증가함에 추천 알고리즘이 사용자에게 보다 정확한 정보를 제공할 수 있다. 또한, 질병에 도움이 되는 DB 를 추가하게 되면 건강상에 문제가 있는 환자나 노인계층에 대한 자가 식단 관리기능을 지닌 애플리케이션으로서 활용 또한 기대해 볼 수 있다. 
 -----
