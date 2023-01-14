@@ -20,7 +20,8 @@
 
 -----
 ## [대표 이미지](#대표-이미지)
-<img src="https://user-images.githubusercontent.com/73065398/212471361-9f14de22-c15b-4c70-b56e-8a191bb86ef3.png  width="200" height="400"/>
+<img width="60%" src="https://user-images.githubusercontent.com/73065398/212471361-9f14de22-c15b-4c70-b56e-8a191bb86ef3.png">
+
 
 
 
